@@ -5,72 +5,102 @@
 </div>
 <div class="form">
   <form action="" [formGroup]="signupForm">
-        <div fxFlex fxLayout="column">
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="username" required>
-            <mat-error *ngIf="signupForm.controls.username.touched && signupForm.controls.username.invalid">
-              <span *ngIf="signupForm.controls.username.errors.required">Không được bỏ trống</span>
-              <span *ngIf="signupForm.controls.username.errors.pattern">Tên đăng nhập không phù hợp</span>
-            </mat-error>
-          </mat-form-field>
+    <div fxFlex fxLayout="column">
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="signupForm.controls.username.touched && signupForm.controls.username.invalid">
+          <span *ngIf="signupForm.controls.username.errors.required">Tên đăng nhập không được bỏ trống</span>
+          <span *ngIf="signupForm.controls.username.errors.pattern">Tên đăng nhập không phù hợp</span>
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Mật khẩu</mat-label>
-            <input matInput [type]="showPassword ? 'password' : 'text'" formControlName="password" required type="password">
-            <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword">
-              <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="signupForm.controls.password.touched && signupForm.controls.password.invalid">
-              <span *ngIf="signupForm.controls.password.errors.required">Không được bỏ trống</span>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Mật khẩu</mat-label>
+        <input matInput [type]="showPassword ? 'password' : 'text'" formControlName="password" required type="password">
+        <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword">
+          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm.controls.password.touched && signupForm.controls.password.invalid">
+          <span *ngIf="signupForm.controls.password.errors.required">Mật khẩu không được bỏ trống</span>
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Nhập lại mật khẩu</mat-label>
-            <input matInput formControlName="retypePassword" required>
-            <mat-error *ngIf="signupForm.controls.retypePassword.touched && signupForm.controls.retypePassword.invalid">
-              <span *ngIf="signupForm.controls.retypePassword.errors.required">Không được bỏ trống</span>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Nhập lại mật khẩu</mat-label>
+        <input matInput [type]="showRetypePassword ? 'password' : 'text'" formControlName="retypePassword" required
+               type="password">
+        <button type="button" mat-icon-button matSuffix (click)="showRetypePassword = !showRetypePassword">
+          <mat-icon>{{ showRetypePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm.controls.retypePassword.touched && signupForm.controls.retypePassword.invalid">
+          <span *ngIf="signupForm.controls.retypePassword.errors.required">Mật khẩu không được bỏ trống</span>
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Họ tên</mat-label>
-            <input matInput formControlName="fullName" required>
-            <mat-error *ngIf="signupForm.controls.fullName.touched && signupForm.controls.fullName.invalid">
-              <span *ngIf="signupForm.controls.fullName.errors.required">Không được bỏ trống</span>
-              <span *ngIf="signupForm.controls.fullName.errors.pattern">Họ tên không phù hợp</span>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Họ tên</mat-label>
+        <input matInput formControlName="fullName" required>
+        <mat-error *ngIf="signupForm.controls.fullName.touched && signupForm.controls.fullName.invalid">
+          <span *ngIf="signupForm.controls.fullName.errors.required">Họ tên không được bỏ trống</span>
+          <span *ngIf="signupForm.controls.fullName.errors.pattern">Họ tên không phù hợp</span>
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Ngày sinh</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Chọn ngày sinh" readonly>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Ngày sinh</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Chọn ngày sinh" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Số điện thoại</mat-label>
-            <input matInput formControlName="phoneNumber" required>
-            <mat-error *ngIf="signupForm.controls.phoneNumber.touched && signupForm.controls.phoneNumber.invalid">
-              <span *ngIf="signupForm.controls.phoneNumber.errors.required">Không được bỏ trống</span>
-              <span *ngIf="signupForm.controls.phoneNumber.errors.pattern">Số điện thoại không phù hợp</span>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Số điện thoại</mat-label>
+        <input matInput formControlName="phoneNumber" required>
+        <mat-error *ngIf="signupForm.controls.phoneNumber.touched && signupForm.controls.phoneNumber.invalid">
+          <span *ngIf="signupForm.controls.phoneNumber.errors.required">Số điện thoai không được bỏ trống</span>
+          <span *ngIf="signupForm.controls.phoneNumber.errors.pattern">Số điện thoại không phù hợp</span>
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width custom-field black-outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required>
-            <mat-error *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
-              <span *ngIf="signupForm.controls.email.errors.required">Không được bỏ trống</span>
-              <span *ngIf="signupForm.controls.email.errors.pattern">Email không phù hợp</span>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
+          <span *ngIf="signupForm.controls.email.errors.required">Email không được bỏ trống</span>
+          <span *ngIf="signupForm.controls.email.errors.pattern">Email không phù hợp</span>
+        </mat-error>
+      </mat-form-field>
 
-        </div>
+    </div>
 
   </form>
+</div>
+
+<!--action-->
+
+<!--<div class="forgot-password">-->
+<!--  <a href="">Quên mật khẩu?</a>-->
+<!--</div>-->
+
+<div class="submit">
+  <button mat-raised-button class="submit-button" type="submit" (click)="handleSubmit()">
+    Đăng ký
+  </button>
+
+</div>
+
+<div class="google">
+  <img class="gg-icon" src="../../assets/images/logo-gg.svg" alt="">
+  <button class="gg-button" mat-raised-button>
+    Đăng nhập bằng Google
+  </button>
+
+</div>
+
+<div class="register">
+  <p>You have an account?</p>
+  <a href="">Sign in!</a>
 </div>
 
 </body>

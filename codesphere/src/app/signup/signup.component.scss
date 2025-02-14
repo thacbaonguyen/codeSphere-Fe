@@ -3,8 +3,9 @@
   font-weight: 700;
   color: #000000;
   width: 500px;
-  margin-top: 60px;
+  margin-top: 30px;
   margin-left: 100px;
+  font-family: "Raleway", serif;
 }
 p{
   color: #000000;
@@ -35,5 +36,64 @@ input{
 
 ::ng-deep mat-datepicker-toggle button {
   color: black !important;
+}
+
+//.forgot-password{
+//  text-decoration: none;
+//  text-align: end;
+//  width: 70%;
+//  margin: 0 auto;
+//  margin-bottom: 10px;
+//}
+//
+//.forgot-password a{
+//  text-decoration: none ;
+//  color: #007AFF;
+//
+//}
+
+.submit-button{
+  display: block;
+  background-color: #007AFF;
+  color: #ffffff;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.google{
+  display: flex;
+  background-color: #333333;
+  color: #ffffff;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 40px;
+  justify-content: center;
+  border-radius: 8px;
+
+}
+.gg-button{
+  background-color: #333333;
+  color: #ffffff;
+}
+.gg-icon{
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+}
+.register{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.register p{
+  font-weight: 500;
+  color: #333333;
+}
+.register a{
+  text-decoration: none;
+  color: #007AFF;
+  margin-left: 20px;
 }
 

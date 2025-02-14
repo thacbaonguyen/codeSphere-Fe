@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  "bgsColor": "#b37e7e",
+  "bgsColor": "#168da5",
   "bgsOpacity": 0.5,
   "bgsPosition": "bottom-right",
   "bgsSize": 60,
@@ -34,7 +34,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "masterLoaderId": "master",
   "overlayBorderRadius": "0",
   "overlayColor": "rgba(40, 40, 40, 0.8)",
-  "pbColor": "red",
+  "pbColor": "#168da5",
   "pbDirection": "ltr",
   "pbThickness": 3,
   "hasProgressBar": true,

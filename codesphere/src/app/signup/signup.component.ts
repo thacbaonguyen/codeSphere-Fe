@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
     this.ngxUiLoader.start();
     var formData = this.signupForm.value;
     var data = {
-      username: formData.name,
+      username: formData.username,
       password: formData.password,
       retypePassword: formData.retypePassword,
       fullName: formData.fullName,
@@ -65,14 +65,36 @@ export class SignupComponent implements OnInit {
       this.snackbar.openSnackBar(this.responseMessage, "success");
       this.router.navigate(['/']);
     },(error)=>{
+      // this.ngxUiLoader.stop();
+      // this.matDialogRef.close();
+      // if(error.error?.message){
+      //   this.responseMessage = error.error.message;
+      // }
+      // else{
+      //   this.responseMessage = GlobalConstants.generateError;
+      // }
+      // this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error);
       this.ngxUiLoader.stop();
-      this.matDialogRef.close();
-      if(error.error?.message){
+
+      if (error.error?.data != null) {
+        console.log("data error")
+        const validationErrors = error.error.data;
+        Object.keys(validationErrors).forEach(key => {
+          const control = this.signupForm.get(key);
+          if (control) {
+            control.setErrors({ serverError: validationErrors[key] });
+          }
+        });
+
+        this.responseMessage = Object.values(validationErrors).join('. ');
+      } else if (error.error?.message) {
+        console.log("message error")
         this.responseMessage = error.error.message;
-      }
-      else{
+      } else {
+        console.log("auto error")
         this.responseMessage = GlobalConstants.generateError;
       }
+
       this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
 

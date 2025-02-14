@@ -27,9 +27,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex: 1 auto;
 }
 
-* {
-  font-family: "Raleway", serif !important;
-}
+//* {
+//  font-family: "Raleway", serif !important;
+//}
 
 .mat-dialog-container {
   background-color: #ffffff
@@ -37,4 +37,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-label{
   color: #808080;
 }
+
 
