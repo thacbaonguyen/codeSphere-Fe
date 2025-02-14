@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+  //responsibe table
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@media(max-width: 800px) {
+    .responsive_table {
+        overflow-x: auto !important;
+    }
+
+    .mat-table {
+        min-width:800px;
+    }
+  }
+
+  .mat-row {
+    height: auto;
+  }
+
+  .mat-header-cell,.mat-cell {
+    text-align: center !important;
+    padding: 0px 8px 0px 15px !important;
+  }
+
+.spacer {
+  flex: 1 auto;
+}
+
+* {
+  font-family: "Raleway", serif !important;
+}
+
+.mat-dialog-container {
+  background-color: #ffffff
+}
+mat-label{
+  color: #808080;
+}
+

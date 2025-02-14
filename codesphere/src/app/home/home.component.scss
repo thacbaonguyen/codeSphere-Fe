@@ -1,0 +1,265 @@
+body {
+    background-color: #FFF3DF ;
+  font-family: "Raleway", serif ;
+}
+.intro{
+    width: 516px;
+    height: 117px;
+    font-size: 49px;
+    font-weight: 900;
+    padding-left: 223px;
+    padding-top: 100px;
+    margin-bottom: 0;
+  line-height: 1.01;
+}
+.intro-container{
+    display: flex;
+    padding-top: 150px;
+  background-color: #FFF3DF ;
+}
+.illustration{
+    height: 320px;
+    padding-left: 300px;
+    margin-top: 50px;
+}
+.description{
+    width: 330px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 200;
+    padding-left: 223px;
+    color: #4D4D4D;
+  margin-top: 10px;
+}
+.join-button{
+    margin-left: 223px;
+    height: 49px;
+    width: 178px;
+    background-color: #408AD0;
+    border: none;
+    border-radius: 5px;
+  font-family: "Oxanium", serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  margin-top: 15px;
+}
+.join-button:hover{
+    background-color: #006dd3;
+    transform: scale(1.2);
+}
+.service{
+    display: flex;
+    width: 1100px;
+    height: 1100px;
+    margin: 0 auto;
+    background-color: #fff3df;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    padding-top: 60px;
+}
+.service-container{
+    background-color: #fff3df;
+}
+.item{
+    width: 300px;
+    height: 450px;
+    background-color: #FEFCFA;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(125, 122, 122, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+.item:hover{
+    transform: scale(1.05);
+}
+img{
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+p{
+    width: 270px;
+    margin: 0 auto;
+    margin-top: 30px;
+    color: #7B7A8B;
+    font-size: 15px;
+}
+.item h2{
+    text-align: center;
+    font-weight: 700;
+    margin-top: 30px;
+}
+.title h1{
+    text-align: center;
+    padding-top: 200px;
+    font-weight: 700;
+    font-family: "Raleway";
+    font-size: 40px;
+}
+.contact-container {
+    background-color: #FFF3DF;
+}
+.contact-us{
+    display: flex;
+    margin: 0 auto;
+    width: 1100px;
+    height: 350px;
+    background-color: #FEFCFA;
+    margin-top: 80px;
+    transition: transform 0.3s ease-in-out;
+}
+.contact-us:hover{
+    transform: scale(1.05);
+}
+.contact-title h1{
+    text-align: center;
+    padding-top: 100px;
+    font-size: 40px;
+    font-weight: 700;
+}
+.contact-us img{
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 700px;
+    object-fit: cover;
+}
+.contact-text{
+  padding-right: 100px;
+  margin-top: 50px;
+}
+.contact-text h2{
+  font-weight: 700;
+}
+.location{
+    margin-left: 0px;
+    margin-top: 0px;
+    max-width: 40px;
+    height: auto;
+    padding-right: 20px;
+}
+h3{
+    font-weight: 100;
+    font-size: 15px;
+}
+.location-container{
+    display: flex;
+}
+
+.location-container h3 {
+  margin-top: 10px;
+}
+
+.media-icon{
+    display: flex;
+    width: 20px;
+    height: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 200px;
+    gap: 20px;
+}
+.media-icon img {
+    width: 100%;
+    height: auto;
+}
+.email, .ig{
+    padding-top: 3px;
+}
+
+// Header
+
+body {
+  background-color: #FFF3DF;
+  height: 100px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  background-color: #fff3df;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-left: 223px;
+}
+
+.text-logo{
+  font-family: "Oxanium", serif !important;
+  font-size: 18px;
+  color: #F95C19;
+  margin-top: 30px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-left: 350px;
+  font-family: "Raleway";
+}
+
+.menu li:hover{
+  transform: scale(1.1);
+}
+
+.menu a {
+  text-decoration: none;
+  color: #817382;
+  font-weight: 500;
+  font-weight: bold;
+  // padding-left: 20px;
+  padding-right: 10px;
+}
+
+.menu a.active {
+  color: #408AD0;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+  margin-right: 100px;
+}
+
+.register:hover{
+  transform: scale(1.1);
+}
+
+.login:hover{
+  transform: scale(1.1);
+}
+
+.register, .login {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.register {
+  background-color: #28a745;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.login {
+  background-color: #007bff;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+a{
+  text-decoration: none;
+}

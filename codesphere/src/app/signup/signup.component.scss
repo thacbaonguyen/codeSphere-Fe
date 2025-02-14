@@ -1,0 +1,39 @@
+.title{
+  font-size: 25px;
+  font-weight: 700;
+  color: #000000;
+  width: 500px;
+  margin-top: 60px;
+  margin-left: 100px;
+}
+p{
+  color: #000000;
+}
+
+.full-width {
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 10px;
+}
+.black-outline {
+  ::ng-deep .mat-form-field-outline {
+    color: #F2F2F2 !important;
+  }
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: #F2F2F2 !important;
+  border-radius: 10px;
+}
+input{
+  color: #000000;
+}
+
+::ng-deep mat-datepicker-toggle button {
+  color: black !important;
+}
+

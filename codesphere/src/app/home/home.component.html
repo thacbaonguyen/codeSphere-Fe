@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="./home.component.scss" />
+<body>
+<nav class="navbar">
+  <div class="logo">
+    <svg width="39" height="37" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.5772 36.0748L31.7843 26.9561C32.5883 26.4 33.0372 25.5018 33.0502 24.5846L33.1986 15.6175C33.2197 14.341 32.4417 13.1924 31.2565 12.7505L22.9304 9.64593C22.0795 9.32635 21.0885 9.42425 20.2846 9.9804L7.09391 19.1233L18.6431 23.5815L18.5772 36.0748Z" fill="#F95C19"/>
+      <path d="M20.5266 9.74233L7.24176 18.9146C6.4331 19.4741 5.98158 20.3775 5.96846 21.3002L5.81896 30.3325C5.79783 31.609 6.5759 32.7576 7.76111 33.1995L16.1478 36.3267C17.0037 36.6481 18.0005 36.5497 18.8092 35.9902L32.0774 26.7935L22.382 23.0509C21.2251 22.6044 20.4647 21.4818 20.4713 20.2303L20.5266 9.74233Z" fill="#CA3E02"/>
+    </svg>
+    <a href="localhost:4200"><h2 class="text-logo">CodeSphere</h2></a>
+
+  </div>
+
+
+  <ul class="menu">
+    <li><a href="#" class="active">Trang chủ</a></li>
+    <li><a href="#">Bài tập</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Khóa học</a></li>
+    <li><a href="#">Sách</a></li>
+  </ul>
+
+  <div class="auth-buttons">
+    <button class="register" (click)="handleSignupAction()">Đăng ký</button>
+    <button class="login">Đăng nhập</button>
+  </div>
+</nav>
+</body>
+<body>
+<!--  <app-header></app-header>-->
+
+  <div class="intro-container">
+    <div>
+      <h1 class="intro">Trang web cung cấp tài nguyên lập trình</h1>
+      <h2 class="description">
+        Chúng tôi cung cấp tài liệu cho bạn miễn phí và có trả phí
+      </h2>
+      <a href=""><button class="join-button">Đăng ký ngay</button></a>
+
+    </div>
+
+    <img
+      class="illustration"
+      src="../../assets/images/Illustration.svg"
+      alt=""
+    />
+  </div>
+  <div class="service-container">
+    <div class="title">
+        <h1>Dịch vụ</h1>
+    </div>
+    <div class="service">
+      <div class="item item-1">
+        <img src="../../assets/images/sach.svg" alt="" />
+        <h2>Bài tập lập trình</h2>
+        <p>
+          Cung cấp các bài tập lập trình đa ngôn ngữ( Java, Python, C++... Đủ
+          các dạng bài tập từ cơ bản đến nâng cao, giúp bạn cải thiện kỹ năng
+          một cách hiệu quả
+        </p>
+        <ul>
+            <li>Đa ngôn ngữ</li>
+            <li>Kho bài tập đa dạng</li>
+            <li>Chính xác</li>
+        </ul>
+      </div>
+      <div class="item item-2">
+        <img src="../../assets/images/luu.svg" alt="" />
+        <h2>Lưu trữ bài giải</h2>
+        <p>
+          Với mỗi bài giải, chúng tôi cung cấp kho lưu trữ cho các bạn ngay trên
+          trang web, giúp bạn tiết kiệm thời gian và bộ nhớ khi cần thiết
+        </p>
+        <ul>
+            <li>Lưu trữ miễn phí</li>
+            <li>Nhanh gọn</li>
+            <li>Tiện lợi</li>
+        </ul>
+      </div>
+      <div class="item item-3">
+        <img src="../../assets/images/cong.svg" alt="" />
+        <h2>Đóng góp bài tập</h2>
+        <p>
+          Ngoài ra, nếu bạn có bài tập nào hay, đừng ngần ngại đóng góp cho
+          chúng tôi. Mọi đóng góp của bạn làm cho cộng đồng ngày càng phát triển
+          hơn
+        </p>
+        <ul>
+            <li>Phát triển cộng đồng</li>
+            <li>Vinh danh</li>
+            <li>Đóng góp</li>
+        </ul>
+      </div>
+      <div class="item item-4">
+        <img src="../../assets/images/blog.svg" alt="" />
+        <h2>Blogs</h2>
+        <p>
+          Cung cấp các bài tập lập trình đa ngôn ngữ( Java, Python, C++... Đủ
+          các dạng bài tập từ cơ bản đến nâng cao, giúp bạn cải thiện kỹ năng
+          một cách hiệu quả
+        </p>
+        <ul>
+            <li>Chia sẻ kiến thức</li>
+            <li>Nâng cao trình độ</li>
+            <li>Thảo luận</li>
+        </ul>
+      </div>
+      <div class="item item-5">
+        <img src="../../assets/images/sach.svg" alt="" />
+        <h2>Sách</h2>
+        <p>
+          Với mỗi bài giải, chúng tôi cung cấp kho lưu trữ cho các bạn ngay trên
+          trang web, giúp bạn tiết kiệm thời gian và bộ nhớ khi cần thiết
+        </p>
+        <ul>
+            <li>Tài liệu văn bản</li>
+            <li>Phong phú</li>
+        </ul>
+      </div>
+      <div class="item item-6">
+        <img src="../../assets/images/edu.svg" alt="" />
+        <h2>Khóa học</h2>
+        <p>
+          Ngoài ra, nếu bạn có bài tập nào hay, đừng ngần ngại đóng góp cho
+          chúng tôi. Mọi đóng góp của bạn làm cho cộng đồng ngày càng phát triển
+          hơn
+        </p>
+        <ul>
+            <li>Học tập qua video</li>
+            <li>Miễn phí và có phí</li>
+            <li>Nền tảng số</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="contact-container">
+    <div class="contact-title">
+        <h1>Liên hệ</h1>
+    </div>
+    <div class="contact-us">
+        <img class="map" src="../../assets/images/map.png" alt="">
+        <div class="contact-text">
+          <h2>Liên hệ với chúng tôi</h2>
+          <div class="location-container">
+            <img class="location" src="../../assets/images/location.svg" alt="">
+            <h3>Ha Dong, Ha Noi, Viet Nam</h3>
+          </div>
+          <h3>Thứ 2 - Thứ 7</h3>
+          <h3>7:00 PM - 18:00 PM</h3>
+          <br>
+          <div class="media-icon">
+            <a href="https://www.facebook.com/thbaonguyen.25.11"><img class="fb" src="../../assets/images/facebook.svg" alt=""></a>
+            <a href="https://www.facebook.com/thbaonguyen.25.11"><img class="ig" src="../../assets/images/ig.svg" alt=""></a>
+            <a href="https://www.facebook.com/thbaonguyen.25.11"><img class="email" src="../../assets/images/email.svg" alt=""></a>
+            <!-- <img class="fb" src="../../assets/images/facebook.svg" alt="">
+            <img class="ig" src="../../assets/images/ig.svg" alt="">
+            <img class="email" src="../../assets/images/email.svg" alt=""> -->
+          </div>
+        </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</body>
