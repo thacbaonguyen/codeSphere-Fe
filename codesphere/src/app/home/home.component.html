@@ -21,7 +21,7 @@
 
   <div class="auth-buttons">
     <button class="register" (click)="handleSignupAction()">Đăng ký</button>
-    <button class="login">Đăng nhập</button>
+    <button class="login" (click)="handleLoginAction()">Đăng nhập</button>
   </div>
 </nav>
 </body>
@@ -34,7 +34,7 @@
       <h2 class="description">
         Chúng tôi cung cấp tài liệu cho bạn miễn phí và có trả phí
       </h2>
-      <a href=""><button class="join-button">Đăng ký ngay</button></a>
+      <button class="join-button" (click)="handleSignupAction()">Đăng ký ngay</button>
 
     </div>
 

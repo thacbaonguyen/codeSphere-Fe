@@ -1,7 +1,6 @@
 body{
-  padding-bottom: 20px;
+  padding-bottom: 300px;
 }
-
 .title{
   font-size: 25px;
   font-weight: 700;
@@ -11,6 +10,7 @@ body{
   margin-left: 100px;
   font-family: "Raleway", serif;
 }
+
 p{
   color: #000000;
 }
@@ -42,19 +42,19 @@ input{
   color: black !important;
 }
 
-//.forgot-password{
-//  text-decoration: none;
-//  text-align: end;
-//  width: 70%;
-//  margin: 0 auto;
-//  margin-bottom: 10px;
-//}
-//
-//.forgot-password a{
-//  text-decoration: none ;
-//  color: #007AFF;
-//
-//}
+.forgot-password{
+  text-decoration: none;
+  text-align: end;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.forgot-password a{
+  text-decoration: none ;
+  color: #007AFF;
+
+}
 
 .submit-button{
   display: block;
@@ -64,6 +64,7 @@ input{
   height: 40px;
   margin: 0 auto;
   border-radius: 8px;
+  margin-top: 30px;
 }
 .google{
   display: flex;
@@ -77,10 +78,12 @@ input{
   border-radius: 8px;
 
 }
+
 .gg-button{
   background-color: #333333;
   color: #ffffff;
 }
+
 .gg-icon{
   width: 30px;
   height: 30px;
@@ -118,4 +121,3 @@ input{
 .link-button:focus {
   outline: none;
 }
-

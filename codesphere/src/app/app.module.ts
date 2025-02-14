@@ -13,6 +13,9 @@ import { SignupComponent } from './signup/signup.component';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from "ngx-ui-loader";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
+import { VerifyComponent } from './verify/verify.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -51,7 +54,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SignupComponent
+    SignupComponent,
+    VerifyComponent,
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

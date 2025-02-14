@@ -8,15 +8,34 @@ import {environment} from 'src/environments/environment';
 export class UserService {
   url = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-  signup(data:any){
+  signup(data: any) {
     data.dob = this.formatDate(data.dob);
     return this.httpClient.post(this.url + "/auth/signup", data,
       {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
       }
     );
+  }
+
+  verify(data: any) {
+    return this.httpClient.post(this.url + "/auth/verify-account", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  resendOTP(data: any) {
+    return this.httpClient.post(this.url + "/auth/regenerate-otp", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  login(data: any){
+    return this.httpClient.post(this.url + "/auth/login", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
   }
 
   formatDate(date: Date): string {

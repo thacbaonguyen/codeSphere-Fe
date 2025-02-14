@@ -1,0 +1,64 @@
+body{
+  padding-bottom: 100px;
+}
+.title{
+  font-weight: 700;
+  font-family: "Raleway", serif;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.guide{
+  width: 80%;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 17px;
+  color: #757373;
+}
+
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.otp-container input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  outline: none;
+}
+.submit-button{
+  display: block;
+  background-color: #007AFF;
+  color: #ffffff;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  margin-top: 80px;
+  transition: transform 0.3s ease-in-out;
+}
+.submit-button:hover{
+  transform: scale(1.1);
+}
+
+.resend{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+.resend button{
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.resend p{
+  margin-top: 10px;
+}

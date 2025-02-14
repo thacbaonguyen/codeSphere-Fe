@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="./login.component.scss">
+<body>
+<div class="header">
+  <h1 class="title">Đăng nhập</h1>
+</div>
+<div class="form">
+  <form action="" [formGroup]="loginForm">
+    <div fxFlex fxLayout="column">
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Tên đăng nhập</mat-label>
+        <input type="text" matInput formControlName="username">
+        <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+          <span *ngIf="loginForm.controls.username.errors.required">Tên đăng nhập không được để trống</span>
+          <span *ngIf="loginForm.controls.username.errors.pattern">Tên đăng nhập không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Mật khẩu</mat-label>
+        <input [type]="showPassword ? 'password' : 'text'" matInput formControlName="password">
+        <button mat-icon-button (click)="showPassword = !showPassword" matSuffix>
+          <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+          <span *ngIf="loginForm.controls.password.errors.required">Mật khẩu không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div class="forgot-password">
+  <button class="link-button" (click)="handleForgotPasswordAction()">Quên mật khẩu</button>
+</div>
+
+<div class="submit">
+  <button type="submit" mat-raised-button class="submit-button">Đăng nhập</button>
+</div>
+<div class="google">
+  <img class="gg-icon" src="../../assets/images/logo-gg.svg" alt="">
+  <button class="gg-button" mat-raised-button>
+    Đăng nhập bằng Google
+  </button>
+
+</div>
+</body>

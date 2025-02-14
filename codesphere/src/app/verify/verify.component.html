@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="./verify.component.scss">
+<body>
+<div class="header">
+  <h1 class="title">Verify account</h1>
+  <h2 class="guide">OTP đã được gửi, vui lòng kiểm tra email {{email}} để thực hiện xác thực tài khoản của bạn</h2>
+</div>
+<div class="form">
+  <form action="" [formGroup]="verifyForm">
+    <div class="otp-container">
+      <input *ngFor="let i of array; let idx = index"
+             matInput maxlength="1" type="text"
+             formControlName="otp{{idx}}"
+             (input)="moveFocus($event, idx)">
+    </div>
+  </form>
+  <div class="submit">
+    <button mat-raised-button class="submit-button" type="submit" (click)="handleSubmit()">
+      Xác thực
+    </button>
+  </div>
+</div>
+<div class="resend">
+  <p>Chưa nhận được mã OTP?</p>
+  <button
+    (click)="resendOTP()"
+    [disabled]="!canResend">
+    Gửi lại mã OTP <span *ngIf="!canResend">({{ countDown }}s)</span>
+  </button>
+</div>
+</body>
