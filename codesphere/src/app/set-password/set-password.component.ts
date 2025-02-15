@@ -17,6 +17,8 @@ export class SetPasswordComponent implements OnInit {
   email: string = '';
   responseMessage:any;
   setPasswordForm: any = FormGroup;
+  showPassword: boolean = true;
+  showRetypePassword: boolean = true;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,

@@ -108,3 +108,79 @@ body {
 a{
     text-decoration: none;
 }
+
+//
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .logo {
+    padding-left: 0;
+  }
+
+  .menu {
+    margin-left: 20px;
+  }
+
+  .auth-buttons {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .menu {
+    position: fixed;
+    top: 100px;
+    left: -100%;
+    flex-direction: column;
+    background-color: #fff3df;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+  }
+
+  .menu.active {
+    left: 0;
+  }
+
+  .menu a {
+    padding: 1rem;
+    display: block;
+  }
+
+  .auth-buttons {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .text-logo {
+    font-size: 16px;
+  }
+
+  .auth-buttons button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
