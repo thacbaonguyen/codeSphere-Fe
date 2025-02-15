@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {SignupComponent} from "../signup/signup.component";
 import {VerifyComponent} from "../verify/verify.component";
@@ -11,18 +11,22 @@ import {LoginComponent} from "../login/login.component";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private matDialog: MatDialog) { }
+  token: any;
 
-  ngOnInit(): void {
+  constructor(private matDialog: MatDialog) {
   }
 
-  handleSignupAction(){
+  ngOnInit(): void {
+    this.token = localStorage.getItem('token')
+  }
+
+  handleSignupAction() {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "700px";
     this.matDialog.open(SignupComponent, matDialogConfig);
   }
 
-  handleLoginAction(){
+  handleLoginAction() {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "700px";
     this.matDialog.open(LoginComponent, matDialogConfig);

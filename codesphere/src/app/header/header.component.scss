@@ -71,6 +71,12 @@ body {
     margin-right: 100px;
 }
 
+.auth-buttons button{
+  background-color: #FFF3DF;
+  border: none;
+  cursor: pointer;
+}
+
 .register:hover{
     transform: scale(1.1);
 }

@@ -40,4 +40,34 @@ export class LoginComponent implements OnInit {
     matDialogConfig.width = "700px";
     this.matDialog.open(ForgotPasswordComponent, matDialogConfig);
   }
+
+  handleSubmit(){
+    this.ngxUiLoader.start();
+    var formData = this.loginForm.value;
+    var data = {
+      username: formData.username,
+      password: formData.password
+    }
+
+    this.userService.login(data).subscribe((response: any)=>{
+      this.ngxUiLoader.stop();
+      this.matDialogRef.close();
+      this.responseMessage = "Đăng nhập thành công!";
+      this.snackbar.openSnackBar(this.responseMessage, '');
+      this.router.navigate(['/']).then(()=>{
+        window.location.reload();
+      });
+      localStorage.setItem('token', response.token)
+      console.log('login success')
+    },(error)=>{
+      this.ngxUiLoader.stop();
+      if (error.error?.message){
+        this.responseMessage = error.error.message;
+      }
+      else{
+        this.responseMessage = GlobalConstants.generateError;
+      }
+      this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error);
+    })
+  }
 }

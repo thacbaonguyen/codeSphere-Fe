@@ -1,6 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
+import {H} from "@angular/cdk/keycodes";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,24 @@ export class UserService {
 
   login(data: any){
     return this.httpClient.post(this.url + "/auth/login", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  forgotPassword(data: any){
+    return this.httpClient.post(this.url + "/auth/forgot-password", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  verifyForgotPassword(data: any){
+    return this.httpClient.post(this.url + "/auth/verify-forgot-password", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  setPassword(data:any){
+    return this.httpClient.put(this.url + "/auth/set-password", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }

@@ -16,6 +16,8 @@ import {MatIconModule} from "@angular/material/icon";
 import { VerifyComponent } from './verify/verify.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
+import { VerifyForgotPasswordComponent } from './verify-forgot-password/verify-forgot-password.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -57,7 +59,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SignupComponent,
     VerifyComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    SetPasswordComponent,
+    VerifyForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
