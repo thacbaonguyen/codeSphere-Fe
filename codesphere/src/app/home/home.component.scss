@@ -1,6 +1,12 @@
-body {
-    background-color: #FFF3DF ;
-  font-family: "Raleway", serif ;
+html, body {
+  //  background-color: #FFF3DF ;
+  //font-family: "Raleway", serif ;
+  background-color: #FFF3DF;
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 .intro{
     width: 516px;
@@ -50,17 +56,18 @@ body {
     background-color: #006dd3;
     transform: scale(1.2);
 }
-.service{
-    display: flex;
-    width: 1100px;
-    height: 1100px;
-    margin: 0 auto;
-    background-color: #fff3df;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    padding-top: 60px;
+
+.service {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #fff3df;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+  padding: 60px 20px;
 }
+
 .service-container{
     background-color: #fff3df;
 }
