@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material-module';
+import { MaterialModule } from './material-component/material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { VerifyForgotPasswordComponent } from './verify-forgot-password/verify-forgot-password.component';
+import { ConfirmationComponent } from './material-component/dialog/confirmation/confirmation.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -61,7 +62,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LoginComponent,
     ForgotPasswordComponent,
     SetPasswordComponent,
-    VerifyForgotPasswordComponent
+    VerifyForgotPasswordComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

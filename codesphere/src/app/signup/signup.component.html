@@ -84,7 +84,7 @@
 <!--</div>-->
 
 <div class="submit">
-  <button mat-raised-button class="submit-button" type="submit" (click)="handleSubmit()">
+  <button mat-raised-button class="submit-button" type="submit" (click)="handleSubmit()" [disabled]="!signupForm.valid || validatePasswordMatch()">
     Đăng ký
   </button>
 
@@ -99,8 +99,8 @@
 </div>
 
 <div class="register">
-  <p>You have an account?</p>
-  <button class="link-button" (click)="handleLoginAction()">Sign in!</button>
+  <p>Bạn đã có tài khoản?</p>
+  <button class="link-button" (click)="handleLoginAction()">Đăng nhập!</button>
 </div>
 
 </body>

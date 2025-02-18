@@ -56,10 +56,17 @@
         <li><a href="#">Sách</a></li>
       </ul>
 
-      <div class="auth-buttons">
-        <button >
+      <div class="auth-buttons" #authMenu>
+        <button (click)="toggleMenu()">
           <img src="../../assets/images/auth-icon.svg" alt="">
         </button>
+
+        <div class="dropdown-menu" [class.show]="isMenuOpen">
+          <ul>
+            <li (click)="changePassword()">Change Password</li>
+            <li (click)="logout()">Logout</li>
+          </ul>
+        </div>
       </div>
     </nav>
   </body>

@@ -34,7 +34,7 @@
 </div>
 
 <div class="submit">
-  <button type="submit" mat-raised-button class="submit-button" (click)="handleSubmit()">Đăng nhập</button>
+  <button type="submit" mat-raised-button class="submit-button" (click)="handleSubmit()" [disabled]="!loginForm.valid">Đăng nhập</button>
 </div>
 <div class="google">
   <img class="gg-icon" src="../../assets/images/logo-gg.svg" alt="">

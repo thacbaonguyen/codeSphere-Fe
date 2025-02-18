@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="./confirmation.component.scss">
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Xác nhận</h1>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="content">
+    <h1>Bạn có chắc chắn muốn {{details.message}}!</h1>
+  </div>
+  <div class="action">
+    <button class="accept" mat-raised-button (click)="handleStatusChange()">Có</button>
+    <button class="reject" mat-raised-button mat-dialog-close>
+      Không
+    </button>
+  </div>
+</div>
+</body>

@@ -1,6 +1,4 @@
 html, body {
-  //  background-color: #FFF3DF ;
-  //font-family: "Raleway", serif ;
   background-color: #FFF3DF;
   min-height: 100%;
   width: 100%;
@@ -8,6 +6,35 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  background-color: #fff3df;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-left: 223px;
+}
+.logo img{
+  margin-bottom: 37px;
+}
+
+.text-logo{
+  font-family: "Oxanium", serif !important;
+  font-size: 18px;
+  color: #F95C19;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
 .intro{
     width: 516px;
     height: 117px;
@@ -183,30 +210,7 @@ body {
   height: 100px;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 40px;
-  background-color: #fff3df;
-  height: 100px;
-  margin: 0 auto;
-}
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  padding-left: 223px;
-}
-
-.text-logo{
-  font-family: "Oxanium", serif !important;
-  font-size: 18px;
-  color: #F95C19;
-  margin-top: 30px;
-}
 
 .menu {
   list-style: none;
