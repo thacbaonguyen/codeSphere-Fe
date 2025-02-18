@@ -63,8 +63,15 @@
 
         <div class="dropdown-menu" [class.show]="isMenuOpen">
           <ul>
-            <li (click)="changePassword()">Change Password</li>
-            <li (click)="logout()">Logout</li>
+            <li class="list">
+              <i class="fa-solid fa-address-card"></i> <p>Hồ sơ</p></li>
+            <li class="list" (click)="changePassword()">
+              <i class="fa-solid fa-repeat"></i> <p>Đổi mật khẩu</p></li>
+            <li class="list" (click)="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> <p>Đăng xuất</p></li>
+            <li class="list" *ngIf="hasAdminOrManagerRole()">
+              <i class="fa-solid fa-chart-line"></i> <p>Dashboard</p>
+            </li>
           </ul>
         </div>
       </div>

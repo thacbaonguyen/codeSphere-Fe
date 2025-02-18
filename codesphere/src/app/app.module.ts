@@ -13,11 +13,11 @@ import { SignupComponent } from './signup/signup.component';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from "ngx-ui-loader";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import { VerifyComponent } from './verify/verify.component';
+import { VerifyComponent } from './material-component/dialog/verify/verify.component';
 import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { SetPasswordComponent } from './set-password/set-password.component';
-import { VerifyForgotPasswordComponent } from './verify-forgot-password/verify-forgot-password.component';
+import { ForgotPasswordComponent } from './material-component/dialog/forgot-password/forgot-password.component';
+import { SetPasswordComponent } from './material-component/dialog/set-password/set-password.component';
+import { VerifyForgotPasswordComponent } from './material-component/dialog/verify-forgot-password/verify-forgot-password.component';
 import { ConfirmationComponent } from './material-component/dialog/confirmation/confirmation.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -63,7 +63,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ForgotPasswordComponent,
     SetPasswordComponent,
     VerifyForgotPasswordComponent,
-    ConfirmationComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

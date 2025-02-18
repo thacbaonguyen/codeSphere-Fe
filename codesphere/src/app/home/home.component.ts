@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {SignupComponent} from "../signup/signup.component";
-import {VerifyComponent} from "../verify/verify.component";
+import {VerifyComponent} from "../material-component/dialog/verify/verify.component";
 import {LoginComponent} from "../login/login.component";
 
 @Component({
@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   token: any;
 
-  constructor(private matDialog: MatDialog) {
+  constructor(private matDialog: MatDialog,
+              ) {
   }
 
   ngOnInit(): void {

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedService} from "../services/shared.service";
+import {SharedService} from "../../../services/shared.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {SnackbarService} from "../services/snackbar.service";
+import {UserService} from "../../../services/user.service";
+import {SnackbarService} from "../../../services/snackbar.service";
 import {Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatDialogRef} from "@angular/material/dialog";
-import {GlobalConstants} from "../shared/global-constants";
+import {GlobalConstants} from "../../../shared/global-constants";
 
 @Component({
   selector: 'app-set-password',

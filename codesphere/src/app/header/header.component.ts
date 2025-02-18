@@ -2,6 +2,7 @@ import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../material-component/dialog/confirmation/confirmation.component";
 import {Router} from "@angular/router";
+import {jwtDecode} from "jwt-decode";
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,14 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen = false;
+  userRoles: string[] = [];
 
   constructor(private elementRef: ElementRef,
               private matDialog: MatDialog,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.getUserRoles()
   }
   // close menu khi bam ra ngoai
   @HostListener('document:click', ['$event'])
@@ -23,6 +26,19 @@ export class HeaderComponent implements OnInit {
     if (!this.elementRef.nativeElement.contains(event.target)){
       this.isMenuOpen = false;
     }
+  }
+  // lay ds role tu token
+  private getUserRoles(){
+    const token = localStorage.getItem('token');
+    if (token){
+      const tokenPayload: any = jwtDecode(token);
+      this.userRoles = tokenPayload.role || [];
+    }
+  }
+
+  // kiem tra admin hoac manager
+  hasAdminOrManagerRole():boolean {
+    return this.userRoles.some(role => ['ADMIN', 'MANAGER'].includes(role.toUpperCase()));
   }
 
   toggleMenu(){

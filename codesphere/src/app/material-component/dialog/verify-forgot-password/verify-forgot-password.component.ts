@@ -1,21 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {SnackbarService} from "../services/snackbar.service";
-import {MatDialogRef} from "@angular/material/dialog";
+import {UserService} from "../../../services/user.service";
+import {SnackbarService} from "../../../services/snackbar.service";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import {SharedService} from "../services/shared.service";
-import {GlobalConstants} from "../shared/global-constants";
+import {SharedService} from "../../../services/shared.service";
+import {GlobalConstants} from "../../../shared/global-constants";
+import {SetPasswordComponent} from "../set-password/set-password.component";
 
 @Component({
-  selector: 'app-verify',
-  templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss']
+  selector: 'app-verify-forgot-password',
+  templateUrl: './verify-forgot-password.component.html',
+  styleUrls: ['./verify-forgot-password.component.scss']
 })
-export class VerifyComponent implements OnInit {
-
-  verifyForm: any = FormGroup;
+export class VerifyForgotPasswordComponent implements OnInit {
+  verifyForgotPasswordForm: any = FormGroup;
   responseMessage: any;
   email: string = '';
   otpPlus:any = '';
@@ -29,18 +29,18 @@ export class VerifyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private snackbar: SnackbarService,
-              public matDialogRef: MatDialogRef<VerifyComponent>,
+              public matDialogRef: MatDialogRef<VerifyForgotPasswordComponent>,
               private router: Router,
               private ngxUiLoader: NgxUiLoaderService,
-              private sharedService: SharedService) {
-  }
+              private sharedService: SharedService,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sharedService.currentEmail.subscribe(email => {
       this.email = email;
       console.log(this.email)
     })
-    this.verifyForm = this.formBuilder.group(
+    this.verifyForgotPasswordForm = this.formBuilder.group(
       {
         otp0: [null, Validators.required],
         otp1: [null, Validators.required],
@@ -57,7 +57,7 @@ export class VerifyComponent implements OnInit {
 
   handleSubmit(){
     this.ngxUiLoader.start();
-    var formData = this.verifyForm.value;
+    var formData = this.verifyForgotPasswordForm.value;
     this.otpPlus = formData.otp0 + formData.otp1 + formData.otp2 + formData.otp3 + formData.otp4 + formData.otp5;
     var data = {
       otp: this.otpPlus,
@@ -65,12 +65,13 @@ export class VerifyComponent implements OnInit {
     }
     console.log(data)
 
-    this.userService.verify(data).subscribe((response: any)=>{
+    this.userService.verifyForgotPassword(data).subscribe((response: any)=>{
       this.ngxUiLoader.stop();
       this.matDialogRef.close();
       this.responseMessage = response?.message;
       this.snackbar.openSnackBar(this.responseMessage, '');
       this.router.navigate(['/']);
+      this.handleSetPasswordAction();
     },(error)=>{
       this.ngxUiLoader.stop();
       if (error.error?.message){
@@ -118,5 +119,12 @@ export class VerifyComponent implements OnInit {
     this.startCountDown();
   }
 
+  handleSetPasswordAction(){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "700px";
+    this.matDialog.open(SetPasswordComponent, matDialogConfig)
+  }
+
   protected readonly Array = Array;
+
 }

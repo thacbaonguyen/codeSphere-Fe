@@ -6,7 +6,7 @@ import {SnackbarService} from "../services/snackbar.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {GlobalConstants} from "../shared/global-constants";
-import {VerifyComponent} from "../verify/verify.component";
+import {VerifyComponent} from "../material-component/dialog/verify/verify.component";
 import {SharedService} from "../services/shared.service";
 import {LoginComponent} from "../login/login.component";
 

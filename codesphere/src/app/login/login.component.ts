@@ -6,7 +6,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {GlobalConstants} from "../shared/global-constants";
-import {ForgotPasswordComponent} from "../forgot-password/forgot-password.component";
+import {ForgotPasswordComponent} from "../material-component/dialog/forgot-password/forgot-password.component";
 
 @Component({
   selector: 'app-login',

@@ -89,7 +89,7 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   border-radius: 4px;
   display: none;
-  min-width: 150px;
+  min-width: 200px;
 }
 
 .dropdown-menu.show {
@@ -109,6 +109,19 @@ body {
 
 .dropdown-menu li:hover {
   background: #f5f5f5;
+}
+
+.fa-solid{
+  gap: 10px;
+}
+.list{
+  display: flex;
+}
+.list p {
+  margin-left: 20px;
+}
+.list i {
+  margin-top: 5px;
 }
 
 .register:hover{

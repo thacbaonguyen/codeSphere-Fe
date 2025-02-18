@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {SnackbarService} from "../services/snackbar.service";
+import {UserService} from "../../../services/user.service";
+import {SnackbarService} from "../../../services/snackbar.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {GlobalConstants} from "../shared/global-constants";
+import {GlobalConstants} from "../../../shared/global-constants";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Router} from "@angular/router";
-import {SharedService} from "../services/shared.service";
+import {SharedService} from "../../../services/shared.service";
 import {SetPasswordComponent} from "../set-password/set-password.component";
 import {VerifyForgotPasswordComponent} from "../verify-forgot-password/verify-forgot-password.component";
 
