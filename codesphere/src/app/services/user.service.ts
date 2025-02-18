@@ -57,6 +57,12 @@ export class UserService {
     })
   }
 
+  changePassword(data:any){
+    return this.httpClient.put(this.url + "/auth/change-password", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
