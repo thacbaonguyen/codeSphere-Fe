@@ -21,6 +21,7 @@ import { VerifyForgotPasswordComponent } from './material-component/dialog/verif
 import { ConfirmationComponent } from './material-component/dialog/confirmation/confirmation.component';
 import { ChangePasswordComponent } from './material-component/dialog/change-password/change-password.component';
 import {TokenInterceptorInterceptor} from "./services/interceptor/token-interceptor.interceptor";
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -67,6 +68,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     VerifyForgotPasswordComponent,
     ConfirmationComponent,
     ChangePasswordComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,
