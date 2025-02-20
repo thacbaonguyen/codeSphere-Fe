@@ -75,6 +75,18 @@ export class UserService {
     })
   }
 
+  getAllManagers(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-manager");
+  }
+
+  getAllBloggers(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-blogger");
+  }
+
+  getAllUserBlocked(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-blocked");
+  }
+
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');

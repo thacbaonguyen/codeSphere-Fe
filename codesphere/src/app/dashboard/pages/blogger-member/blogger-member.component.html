@@ -1,1 +1,97 @@
-<p>blogger-member works!</p>
+<div class="intro-container">
+  <div class="page-title-container">
+    <h1 class="page-title parent">Blogger</h1>
+    <span class="page-title child">Quản lý danh sách Blogger</span>
+  </div>
+  <div class="route-container">
+    <div class="home">
+      <mat-icon class="home-mat">home</mat-icon>
+      <a href="">Trang chủ</a>
+    </div>
+    <div class="icon-redirect">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </div>
+    <div class="current-page">
+      <a href="/codesphere">Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!--lien he-->
+<div class="contact">
+  <h1>Hệ thống CodeSphere!</h1>
+  <p>Nếu phát hiện ra lỗi, xin vui lòng hãy liên hệ với đội ngũ phát triển ngay, xin cảm ơn.</p>
+  <div class="social-icon-container">
+    <a href="https://www.facebook.com/thbaonguyen.25.11/" target="_blank">
+      <img class="fb" src="../../../../assets/images/fb-w.svg" alt="">
+    </a>
+    <a href="https://www.instagram.com/thacbaonguyen/" target="_blank">
+      <img class="ig" src="../../../../assets/images/ig-w.svg" alt="">
+    </a>
+    <a href="gmail.com" target="_blank">
+      <img class="email" src="../../../../assets/images/email-w.svg" alt="">
+    </a>
+  </div>
+</div>
+
+<!--table-->
+<div class="mat-elevation-z8">
+  <div class="header">
+    <div class="title"> Danh sách Blogger</div>
+    <div class="search-container">
+      <div class="fast-search">
+        <input type="text" placeholder="Tìm kiếm nhanh trong trang" (keyup)="applyFilter($event)" #input>
+      </div>
+
+      <div class="search">
+        <input type="text" placeholder="Tìm kiếm">
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef>Số điện thoại</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.phoneNumber}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef>Ngày sinh</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.dob | date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef>Họ tên</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.fullName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-icon-button color="primary" (click)="handleBlockBloggerActions(user)">
+          <mat-icon>lock_open</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Chọn kích thước trang"></mat-paginator>
+</div>

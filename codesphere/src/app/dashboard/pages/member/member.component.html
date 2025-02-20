@@ -38,7 +38,7 @@
 <div class="mat-elevation-z8">
   <!-- Filter -->
   <div class="header">
-    <div class="title"> Danh sách thành viên</div>
+    <div class="title"> Danh sách người dùng</div>
     <div class="search-container">
       <div class="fast-search">
         <input type="text" placeholder="Tìm kiếm nhanh trong trang" (keyup)="applyFilter($event)" #input>
@@ -102,7 +102,7 @@
   </mat-table>
 
 <!--  kich thuco trang-->
-  <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]"
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
                  aria-label="Chọn kích thước trang">
   </mat-paginator>
 </div>

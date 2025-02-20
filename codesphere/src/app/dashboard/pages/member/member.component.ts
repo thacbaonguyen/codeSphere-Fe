@@ -17,7 +17,6 @@ import {GlobalConstants} from "../../../shared/global-constants";
 })
 export class MemberComponent implements OnInit {
   displayedColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'actions'];
-  users: User[] = [];
   error: any;
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
 
@@ -82,6 +81,7 @@ export class MemberComponent implements OnInit {
         },
         error: (err: any)=>{
           this.snackbar.openSnackBar('Đã xảy ra lỗi, vui lòng thử lại', GlobalConstants.error);
+          matDialogRef.close();
           console.error('err blocking user:', err)
         }
       })
