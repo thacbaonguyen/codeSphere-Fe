@@ -1,7 +1,9 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
-import {H} from "@angular/cdk/keycodes";
+import {ApiResponse} from "../models/api-response";
+import {User} from "../models/user";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +63,10 @@ export class UserService {
     return this.httpClient.put(this.url + "/auth/change-password", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
+  }
+
+  getAllUsers(): Observable<ApiResponse<User[]>> {
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-user");
   }
 
   formatDate(date: Date): string {
