@@ -69,6 +69,12 @@ export class UserService {
     return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-user");
   }
 
+  blockUser(data: any){
+    return this.httpClient.put(this.url + "/auth/block-user", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');

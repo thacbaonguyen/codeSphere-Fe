@@ -5,6 +5,10 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {SnackbarService} from "../../../services/snackbar.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
+import {GlobalConstants} from "../../../shared/global-constants";
 
 @Component({
   selector: 'app-member',
@@ -21,7 +25,9 @@ export class MemberComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private userService: UserService,
-              private ngxUiLoader: NgxUiLoaderService) {
+              private ngxUiLoader: NgxUiLoaderService,
+              private snackbar: SnackbarService,
+              private matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -54,14 +60,32 @@ export class MemberComponent implements OnInit {
     }
   }
 
-  editUser(user: User): void {
-    // Implement edit logic
-    console.log('Edit user:', user);
-  }
-
-  deleteUser(user: User): void {
-    // Implement delete logic
-    console.log('Delete user:', user);
+  handleBlockUserSubmit(user: User): void {
+    var data = {
+      username: user.username,
+      isBlocked: true
+    }
+    console.log('block:', user);
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "500px";
+    matDialogConfig.data = {
+      message: "khóa người dùng này",
+      confirmation: true
+    }
+    const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
+    const sub = matDialogRef.componentInstance.onEmitStatusChange.subscribe((response: any)=>{
+      this.userService.blockUser(data).subscribe({
+        next: (response:any)=>{
+          this.snackbar.openSnackBar('Đã khóa tài khoản thành công!', '');
+          matDialogRef.close();
+          this.loadUsers();
+        },
+        error: (err: any)=>{
+          this.snackbar.openSnackBar('Đã xảy ra lỗi, vui lòng thử lại', GlobalConstants.error);
+          console.error('err blocking user:', err)
+        }
+      })
+    })
   }
 
 }
