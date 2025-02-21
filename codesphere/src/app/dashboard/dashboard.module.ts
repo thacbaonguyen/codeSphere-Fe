@@ -13,10 +13,11 @@ import {BlogComponent} from './pages/blog/blog.component';
 import {BookComponent} from './pages/book/book.component';
 import {CourseComponent} from './pages/course/course.component';
 import {AccessComponent} from './pages/access/access.component';
-import {ContributeComponent} from './pages/contribute/contribute.component';
 import {ManagerMemberComponent} from './pages/manager-member/manager-member.component';
 import {BloggerMemberComponent} from './pages/blogger-member/blogger-member.component';
 import {BlockListComponent} from './pages/block-list/block-list.component';
+import { ContributeAcceptedComponent } from './pages/contribute/contribute-accepted/contribute-accepted.component';
+import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
 
 @NgModule({
   imports: [
@@ -34,10 +35,11 @@ import {BlockListComponent} from './pages/block-list/block-list.component';
     BookComponent,
     CourseComponent,
     AccessComponent,
-    ContributeComponent,
     ManagerMemberComponent,
     BloggerMemberComponent,
-    BlockListComponent]
+    BlockListComponent,
+    ContributeAcceptedComponent,
+    ContributeQueueComponent]
 })
 export class DashboardModule {
 }

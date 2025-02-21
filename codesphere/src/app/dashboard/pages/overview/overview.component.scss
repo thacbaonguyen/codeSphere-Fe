@@ -1,14 +1,172 @@
-.overview-container {
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.intro-container{
+  display: flex;
+  justify-content: space-between;
+}
+.page-title-container{
+  display: flex;
+  gap: 20px;
+}
+.route-container{
+  display: flex;
+}
 
-  h1 {
-    margin-bottom: 20px;
-    color: #333;
-  }
+.page-title-container h1{
+  font-family: "Raleway", serif;
+  font-size: 28px;
+  font-weight: 700;
+}
 
-  .overview-content {
+.page-title-container span{
+  font-family: "Raleway", serif;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.home{
+  display: flex;
+  gap: 8px;
+}
+.home a{
+  text-decoration: none;
+  margin-top: 10px;
+}
+.home-mat{
+  margin-top: 6px;
+}
+.current-page{
+  margin-top: 10px;
+}
+.current-page a{
+  text-decoration: none;
+}
+.icon-redirect{
+  margin-top: 8px;
+}
+
+// contact
+.contact{
+  background-color: #00A459;
+  color: #ffffff;
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+.contact h1, .contact p{
+  font-family: "Raleway", serif;
+  margin-left: 20px;
+  margin-top: 10px;
+
+}
+.contact h1{
+  font-size: 18px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+.contact p{
+  font-size: 16px;
+}
+.social-icon-container{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  margin-left: 20px;
+
+}
+.email{
+  margin-top: 6px;
+}
+.ig{
+  margin-top: 4px;
+}
+
+// content
+.attribute{
+  max-width: 95%;
+  text-align: start;
+  margin: 0 auto;
+  margin-top: 50px;
+  h1{
+    font-weight: 700;
+    font-family: "Raleway", serif;
+    font-size: 28px;
   }
 }
+.resource-container{
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 95%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.members, .exercises, .blogs, .books, .courses{
+  background-color: #ffffff;
+  width: 405px;
+  height: 135px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+}
+.members:hover, .exercises:hover, .blogs:hover, .books:hover, .courses:hover{
+  transform: scale(1.04);
+
+}
+.icon{
+
+  min-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
+}
+.icon-member{
+  background-color: #6CC179;
+}
+.icon-exercise{
+  background-color: #DD8888;
+}
+.icon-blog{
+  background-color: #7CB7E0;
+}
+.icon-book{
+  background-color: #D2ADD8;
+}
+.icon-course{
+  background-color: #E9D699;
+}
+.icon-access{
+  background-color: #A199E9;
+}
+.icon-contribute{
+  background-color: #99E9D9;
+}
+.text{
+  min-width: 60%;
+}
+.text h1{
+  text-align: center;
+  font-family: "Raleway", serif;
+}
+.title{
+  margin-top: 20px;
+  font-weight: 700;
+  color: #525253;
+}
+.result{
+  font-weight: 600;
+  color: #232121;
+}
+
+.request-container{
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 95%;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding-bottom: 200px;
+}
+

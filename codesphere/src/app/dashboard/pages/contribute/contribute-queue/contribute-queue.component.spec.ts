@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContributeComponent } from './contribute.component';
+import { ContributeQueueComponent } from './contribute-queue.component';
 
-describe('ContributeComponent', () => {
-  let component: ContributeComponent;
-  let fixture: ComponentFixture<ContributeComponent>;
+describe('ContributeQueueComponent', () => {
+  let component: ContributeQueueComponent;
+  let fixture: ComponentFixture<ContributeQueueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContributeComponent ]
+      declarations: [ ContributeQueueComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContributeComponent);
+    fixture = TestBed.createComponent(ContributeQueueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

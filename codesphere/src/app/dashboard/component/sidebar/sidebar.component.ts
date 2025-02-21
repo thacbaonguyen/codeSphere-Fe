@@ -106,7 +106,10 @@ export class SidebarComponent implements OnInit {
       {
         title: 'Đóng góp',
         icon: 'volunteer_activism',
-        path: '/codesphere/dashboard/contributions',
+        children: [
+          { title: 'Danh sách khóa', path: '/codesphere/dashboard/contributions/accepted' },
+          { title: 'Chi tiết khóa', path: '/codesphere/dashboard/contributions/queue' }
+        ],
         roles: ['ADMIN', 'MANAGER'], // cả admin và manager được truy cập đóng góp bài ttajp
         type: 'action'
       },
