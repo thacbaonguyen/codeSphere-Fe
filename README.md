@@ -1,3 +1,16 @@
+## `Tech stack:`
+`Angular cli 13` `npm install -g @angular/cli@13.2.2`
+
+`node v14.15.4`
+
+`npm v6.14.10`
+
+`Angular material` `npm i @angular/material` -> `ng add @angular/material`
+### Build
+`npm install`
+### Run
+`ng serve`
+
 ## `Demo design FE with figma`
 ### <a href="https://www.figma.com/design/D6utLMraiytbEPgZ1ZdftW/CodeSphere?node-id=182-75&t=Pg1h91oHhwMpuyeN-0" target="blank">`Link design figma`</a>
 ### `home-page`
