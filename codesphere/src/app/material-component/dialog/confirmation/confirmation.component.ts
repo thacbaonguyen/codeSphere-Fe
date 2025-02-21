@@ -7,10 +7,12 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
-
+  //event emmiter de emit sự kiện khi user xác nận
   onEmitStatusChange = new EventEmitter();
-  details: any;
 
+  details: any;// biến lưu data được truyền qua dialog
+
+  // inject data từ dialog vào comp
   constructor(@Inject(MAT_DIALOG_DATA) public matDialogData:any) { }
 
   ngOnInit(): void {

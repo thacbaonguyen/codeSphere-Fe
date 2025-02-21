@@ -87,6 +87,12 @@ export class UserService {
     return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-blocked");
   }
 
+  refreshToken(token: string): Observable<any>{
+    return this.httpClient.post(this.url + "/auth/refresh-token", {}, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    })
+  }
+
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
