@@ -19,6 +19,8 @@ export class BlockListComponent implements OnInit {
   displayColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'roles', 'actions'];
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
   error: string = '';
+  searchQuery: string = '';
+  isSearching: boolean = false;
 
   constructor(private userService: UserService,
               private snackbar: SnackbarService,
@@ -91,6 +93,19 @@ export class BlockListComponent implements OnInit {
 
     if (this.dataSource.paginator){
       this.dataSource.paginator.firstPage();
+    }
+  }
+
+  search(){
+
+  }
+
+  showSearchButton(){
+    if (this.searchQuery.trim()){
+      this.isSearching = true;
+    }
+    else {
+      this.isSearching = false;
     }
   }
 

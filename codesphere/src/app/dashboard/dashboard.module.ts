@@ -19,6 +19,7 @@ import {BlockListComponent} from './pages/block-list/block-list.component';
 import { ContributeAcceptedComponent } from './pages/contribute/contribute-accepted/contribute-accepted.component';
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
 import {FormsModule} from "@angular/forms";
+import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import {FormsModule} from "@angular/forms";
     BloggerMemberComponent,
     BlockListComponent,
     ContributeAcceptedComponent,
-    ContributeQueueComponent]
+    ContributeQueueComponent,
+    DashboardHeaderComponent]
 })
 export class DashboardModule {
 }

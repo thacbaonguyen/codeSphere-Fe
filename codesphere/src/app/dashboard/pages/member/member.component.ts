@@ -126,5 +126,14 @@ export class MemberComponent implements OnInit {
     })
   }
 
+  showSearchButton(){
+    if (this.searchQuery.trim()){
+      this.isSearching = true;
+    }
+    else {
+      this.isSearching = false
+    }
+  }
+
 
 }
