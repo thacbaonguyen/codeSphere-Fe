@@ -16,7 +16,7 @@ import {GlobalConstants} from "../../../shared/global-constants";
   styleUrls: ['./block-list.component.scss']
 })
 export class BlockListComponent implements OnInit {
-  displayColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'actions'];
+  displayColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'roles', 'actions'];
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
   error: string = '';
 

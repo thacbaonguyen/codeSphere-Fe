@@ -18,14 +18,16 @@ import {BloggerMemberComponent} from './pages/blogger-member/blogger-member.comp
 import {BlockListComponent} from './pages/block-list/block-list.component';
 import { ContributeAcceptedComponent } from './pages/contribute/contribute-accepted/contribute-accepted.component';
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FlexLayoutModule,
-    RouterModule.forChild(DashboardRoutes)
-  ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        FlexLayoutModule,
+        RouterModule.forChild(DashboardRoutes),
+        FormsModule
+    ],
   declarations: [DashboardComponent,
     SidebarComponent,
     OverviewComponent,

@@ -100,7 +100,7 @@
   margin-top: 40px;
 }
 
-.members, .exercises, .blogs, .books, .courses{
+.members, .exercises, .blogs, .books, .courses, .access, .contribute{
   background-color: #ffffff;
   width: 405px;
   height: 135px;
@@ -108,9 +108,10 @@
   border-radius: 10px;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 
 }
-.members:hover, .exercises:hover, .blogs:hover, .books:hover, .courses:hover{
+.members:hover, .exercises:hover, .blogs:hover, .books:hover, .courses:hover, .access:hover, .contribute:hover{
   transform: scale(1.04);
 
 }

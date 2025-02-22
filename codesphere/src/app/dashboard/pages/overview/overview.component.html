@@ -41,37 +41,38 @@
 
 <div class="resource-container">
   <!--  member-->
-  <div class="members">
+  <div class="members" (click)="navigateToMembers()" >
     <div class="icon icon-member">
       <img class="icon-img" src="../../../../assets/logo-dashboard/member.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Thành viên</h1>
-      <h1 class="result">1234</h1>
+      <h1 class="result">{{ dashboard.users }}</h1>
     </div>
   </div>
+
   <!--  exercise-->
-  <div class="exercises">
+  <div class="exercises" (click)="navigateToExercises()" >
     <div class="icon icon-exercise">
       <img class="icon-img" src="../../../../assets/logo-dashboard/exercise.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Bài tập</h1>
-      <h1 class="result">23</h1>
+      <h1 class="result">{{ dashboard.exercises }}</h1>
     </div>
   </div>
   <!--  blog-->
-  <div class="blogs">
+  <div class="blogs" (click)="navigateToBlogs()">
     <div class="icon icon-blog">
       <img class="icon-img" src="../../../../assets/logo-dashboard/blog.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Blogs</h1>
-      <h1 class="result">23</h1>
+      <h1 class="result">{{ dashboard.blogs }}</h1>
     </div>
   </div>
   <!--  book-->
-  <div class="books">
+  <div class="books" (click)="navigateToBooks()">
     <div class="icon icon-book">
       <img class="icon-img" src="../../../../assets/logo-dashboard/book.svg" alt="">
     </div>
@@ -97,23 +98,23 @@
 </div>
 
 <div class="request-container">
-  <div class="members">
+  <div class="access" (click)="navigateToPermission()">
     <div class="icon icon-access">
       <img class="icon-img" src="../../../../assets/logo-dashboard/member.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Quyền</h1>
-      <h1 class="result">32</h1>
+      <h1 class="result">{{dashboard.registerRoles}}</h1>
     </div>
   </div>
 
-  <div class="members">
-    <div class="icon icon-contribute">
+  <div class="contribute">
+    <div class="icon icon-contribute" (click)="navigateToContributes()">
       <img class="icon-img" src="../../../../assets/logo-dashboard/member.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Đóng góp</h1>
-      <h1 class="result">89</h1>
+      <h1 class="result">{{ dashboard.contributes }}</h1>
     </div>
   </div>
 </div>

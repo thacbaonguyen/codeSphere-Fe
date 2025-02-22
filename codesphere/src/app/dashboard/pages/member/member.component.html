@@ -44,10 +44,40 @@
         <input type="text" placeholder="Tìm kiếm nhanh trong trang" (keyup)="applyFilter($event)" #input>
       </div>
 
+<!--      <div class="search">-->
+<!--        <input type="text" placeholder="Tìm kiếm">-->
+<!--      </div>-->
       <div class="search">
-        <input type="text" placeholder="Tìm kiếm">
+        <div class="search-container">
+          <input
+            type="text"
+            placeholder="Tìm kiếm"
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="search()"
+          >
+          <button
+            mat-icon-button
+            class="search-button"
+            (click)="search()"
+            [disabled]="isSearching"
+            matTooltip="Tìm kiếm"
+          >
+            <mat-icon>{{ isSearching ? 'sync' : 'search' }}</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+
+<!--  //filter-->
+  <div class="filter-option">
+    <mat-form-field appearance="fill">
+      <mat-label>Lọc theo</mat-label>
+      <mat-select [(ngModel)]="selectedFilter" (selectionChange)="search()">
+        <mat-option value="">Mặc định</mat-option>
+        <mat-option *ngFor=" let option of filterOptions" [value]= "option.value">{{option.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
 
@@ -85,6 +115,11 @@
     <ng-container matColumnDef="dob">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ngày sinh </mat-header-cell>
       <mat-cell *matCellDef="let user"> {{user.dob | date}} </mat-cell>
+    </ng-container>
+<!--    role-->
+    <ng-container matColumnDef="roles">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Roles </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.roles.join(" - ")}} </mat-cell>
     </ng-container>
 
 <!--    khoa user-->

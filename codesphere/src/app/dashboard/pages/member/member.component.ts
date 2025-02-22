@@ -9,6 +9,7 @@ import {SnackbarService} from "../../../services/snackbar.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
 import {GlobalConstants} from "../../../shared/global-constants";
+import {FilterOptions} from "../../../models/filter-options";
 
 @Component({
   selector: 'app-member',
@@ -16,9 +17,23 @@ import {GlobalConstants} from "../../../shared/global-constants";
   styleUrls: ['./member.component.scss']
 })
 export class MemberComponent implements OnInit {
-  displayedColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'actions'];
+  displayedColumns: string[] = ['username', 'fullName', 'dob', 'email', 'phoneNumber', 'roles', 'actions'];
   error: any;
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
+  isSearching = false;
+  searchQuery: string = '';
+
+  selectedFilter: FilterOptions | null = null;
+
+  filterOptions = [
+
+    { value: { by: 'username', order: 'asc' }, viewValue: 'Username A-Z' },
+    { value: { by: 'username', order: 'desc' }, viewValue: 'Username Z-A' },
+    { value: { by: 'dob', order: 'desc' }, viewValue: 'Tuổi nhỏ đến lớn' },
+    { value: { by: 'dob', order: 'asc' }, viewValue: 'Tuổi lớn đến nhỏ' },
+    { value: { by: 'createdAt', order: 'desc' }, viewValue: 'Thời gian tạo mới nhất' },
+    { value: { by: 'createdAt', order: 'asc' }, viewValue: 'Thời gian tạo cũ nhất' }
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -87,5 +102,29 @@ export class MemberComponent implements OnInit {
       })
     })
   }
+
+  search(){
+    this.ngxUiLoader.start()
+    var data = {
+      search: this.searchQuery,
+      order: this.selectedFilter?.order,
+      by: this.selectedFilter?.by
+    }
+    console.log(data)
+    this.userService.searchUser(this.searchQuery, this.selectedFilter?.order, this.selectedFilter?.by).subscribe({
+      next: (response :any)=>{
+        this.dataSource.data = response.data;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.ngxUiLoader.stop()
+      },
+      error: (err :any)=>{
+        this.error = "Error searching user";
+        this.ngxUiLoader.stop();
+        console.error(this.error, err)
+      }
+    })
+  }
+
 
 }

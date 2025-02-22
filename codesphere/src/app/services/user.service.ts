@@ -1,9 +1,10 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {ApiResponse} from "../models/api-response";
 import {User} from "../models/user";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {Observable} from "rxjs";
 export class UserService {
   url = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   signup(data: any) {
@@ -91,6 +93,24 @@ export class UserService {
     return this.httpClient.post(this.url + "/auth/refresh-token", {}, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
     })
+  }
+
+  searchUser(search: string, order: string | undefined, by: string | undefined): Observable<ApiResponse<User[]>>{
+
+    let params = new HttpParams();
+    if (search != ''){
+      params = params.set("search", search.trim());
+    }
+    if (order){
+      params = params.set("order", order)
+    }
+    if (by){
+      params = params.set("by", by)
+    }
+    console.log(params)
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/search", { params: params
+    });
+
   }
 
   formatDate(date: Date): string {

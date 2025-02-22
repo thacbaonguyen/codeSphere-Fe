@@ -1,3 +1,4 @@
+
 .intro-container{
   display: flex;
   justify-content: space-between;
@@ -108,6 +109,22 @@
   height: 60px;
 }
 
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+.search-button {
+  min-width: 40px;
+  height: 40px;
+  background-color: #1976d2;
+  color: white;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
 .fast-search input, .search input{
   height: 30px;
   margin-top: 10px;
@@ -120,6 +137,11 @@
   width: 200px;
 }
 
+.filter-option{
+  background-color: #ffffff;
+  padding-left: 20px;
+}
+
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -130,6 +152,7 @@
   color: red;
   text-align: center;
   padding: 20px;
+  //background-color: #eaf0f5;
 }
 
 mat-cell, mat-header-cell {
@@ -147,4 +170,15 @@ mat-cell, mat-header-cell {
     align-items: center;
     padding: 8px;
   }
+}
+
+.mat-column-email {
+  flex: 0 0 200px;
+  min-width: 150px;
+}
+.mat-cell {
+  padding: 12px 8px;
+  word-break: break-word; // Cho phép break word khi cần
+  white-space: normal; // Cho phép text xuống dòng
+  line-height: 1.2; // Điều chỉnh khoảng cách giữa các dòng
 }
