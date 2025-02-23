@@ -36,6 +36,16 @@
     </div>
   </div>
 
+<!--  filter value-->
+  <div class="filter-option">
+    <mat-form-field>
+      <mat-label>Lọc theo</mat-label>
+      <mat-select [(ngModel)]="selectedFilter" (selectionChange)="search()">
+        <mat-option value="">Mặc định</mat-option>
+        <mat-option *ngFor="let option of filterOptions" [value]="option.value">{{option.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div *ngIf="error" class="error-message">
     {{ error }}
   </div>

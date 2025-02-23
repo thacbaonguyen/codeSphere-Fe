@@ -86,7 +86,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'dashboard/contributions/accepted',
+        path: 'dashboard/contributions',
         component: ContributeAcceptedComponent
       },
       {

@@ -12,6 +12,7 @@
   justify-content: space-between;
   background-color: #ffffff;
   flex-wrap: wrap;
+  padding-bottom: 10px;
 }
 
 .title{
@@ -47,6 +48,13 @@
 .fast-search input{
   padding-right: 40px;
   width: 200px;
+}
+
+.filter-option{
+  display: flex;
+  background-color: #ffffff;
+  padding-left: 20px;
+  gap: 20px;
 }
 
 .loading-spinner {

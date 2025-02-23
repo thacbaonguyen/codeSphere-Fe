@@ -1,0 +1,9 @@
+.title-container{
+  display: flex;
+  justify-content: space-between;
+  .close{
+    mat-icon{
+      cursor: pointer;
+    }
+  }
+}

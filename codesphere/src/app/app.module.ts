@@ -55,34 +55,34 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    SignupComponent,
-    VerifyComponent,
-    LoginComponent,
-    ForgotPasswordComponent,
-    SetPasswordComponent,
-    VerifyForgotPasswordComponent,
-    ConfirmationComponent,
-    ChangePasswordComponent,
-    UnauthorizedComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
-  ],
-  providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        FooterComponent,
+        SignupComponent,
+        VerifyComponent,
+        LoginComponent,
+        ForgotPasswordComponent,
+        SetPasswordComponent,
+        VerifyForgotPasswordComponent,
+        ConfirmationComponent,
+        ChangePasswordComponent,
+        UnauthorizedComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    ],
+    providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

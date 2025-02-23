@@ -22,6 +22,7 @@ export class MemberComponent implements OnInit {
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
   isSearching = false;
   searchQuery: string = '';
+  isBlocked: string = 'false';
 
   selectedFilter: FilterOptions | null = null;
 
@@ -45,7 +46,8 @@ export class MemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUsers()
+    this.loadUsers();
+
   }
 
   loadUsers(): void {
@@ -108,10 +110,11 @@ export class MemberComponent implements OnInit {
     var data = {
       search: this.searchQuery,
       order: this.selectedFilter?.order,
-      by: this.selectedFilter?.by
+      by: this.selectedFilter?.by,
+      isBlocked: this.isBlocked
     }
-    console.log(data)
-    this.userService.searchUser(this.searchQuery, this.selectedFilter?.order, this.selectedFilter?.by).subscribe({
+
+    this.userService.searchUser(data).subscribe({
       next: (response :any)=>{
         this.dataSource.data = response.data;
         this.dataSource.paginator = this.paginator;

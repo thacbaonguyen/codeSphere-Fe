@@ -9,6 +9,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
 import {GlobalConstants} from "../../../shared/global-constants";
+import {FilterOptions} from "../../../models/filter-options";
 
 @Component({
   selector: 'app-block-list',
@@ -21,11 +22,23 @@ export class BlockListComponent implements OnInit {
   error: string = '';
   searchQuery: string = '';
   isSearching: boolean = false;
+  isBlocked: string = 'true';
+
+  selectedFilter: FilterOptions | null = null;
+  filterOptions = [
+    {value: {order: 'asc', by: 'username'}, viewValue: 'Username A - Z'},
+    {value: {order: 'desc', by: 'username'}, viewValue: 'Username Z - A'},
+    {value: {order: 'desc', by: 'dob'}, viewValue: 'Tuổi bé đến lớn'},
+    {value: {order: 'asc', by: 'dob'}, viewValue: 'Tuổi lớn đến bé'},
+    {value: {order: 'desc', by: 'createdAt'}, viewValue: 'Thời gian tạo mới nhất'},
+    {value: {order: 'asc', by: 'createdAt'}, viewValue: 'Thời gian tạo cũ nhất'},
+  ]
 
   constructor(private userService: UserService,
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
-              private ngxUiLoader: NgxUiLoaderService) { }
+              private ngxUiLoader: NgxUiLoaderService) {
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -34,18 +47,18 @@ export class BlockListComponent implements OnInit {
     this.loadAllBlocked()
   }
 
-  loadAllBlocked(){
+  loadAllBlocked() {
 
     this.ngxUiLoader.start();
     this.userService.getAllUserBlocked().subscribe({
-      next: (response: any)=>{
+      next: (response: any) => {
         this.ngxUiLoader.stop();
         this.dataSource.data = response.data;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log(response.data)
       },
-      error: (err: any)=>{
+      error: (err: any) => {
         this.error = "Error loading blocked list";
         this.ngxUiLoader.stop();
         console.log(this.error, err)
@@ -53,7 +66,7 @@ export class BlockListComponent implements OnInit {
     })
   }
 
-  handleUnblockUserAction(user: User){
+  handleUnblockUserAction(user: User) {
     var data = {
       username: user.username,
       isBlocked: false
@@ -68,43 +81,62 @@ export class BlockListComponent implements OnInit {
 
     const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
     const subscription = matDialogRef.componentInstance.onEmitStatusChange.subscribe({
-      next: (response: any)=>{
-        this.userService.blockUser(data).subscribe({
-          next: (response: any)=>{
-            this.snackbar.openSnackBar('Mở khóa người dùng thành công', '');
-            this.loadAllBlocked();
-            matDialogRef.close();
-          },
-          error: (err: any)=>{
-            this.error = "Error unblock user logging";
-            this.snackbar.openSnackBar('Đã xảy ra lỗi khi mở khóa user, vui long thử lại sau!', GlobalConstants.error);
-            matDialogRef.close();
-            console.log(this.error, err)
-          }
-        })
+        next: (response: any) => {
+          this.userService.blockUser(data).subscribe({
+            next: (response: any) => {
+              this.snackbar.openSnackBar('Mở khóa người dùng thành công', '');
+              this.loadAllBlocked();
+              matDialogRef.close();
+            },
+            error: (err: any) => {
+              this.error = "Error unblock user logging";
+              this.snackbar.openSnackBar('Đã xảy ra lỗi khi mở khóa user, vui long thử lại sau!', GlobalConstants.error);
+              matDialogRef.close();
+              console.log(this.error, err)
+            }
+          })
+        }
       }
-    }
     )
   }
 
-  applyFilter(event: Event){
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.toLowerCase();
 
-    if (this.dataSource.paginator){
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  search(){
+  search() {
+    this.ngxUiLoader.start();
+    var data = {
+      search: this.searchQuery,
+      order: this.selectedFilter?.order,
+      by: this.selectedFilter?.by,
+      isBlocked: this.isBlocked
+    }
 
+    this.userService.searchUser(data).subscribe({
+      next: (response: any) => {
+        this.dataSource.data = response.data;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.ngxUiLoader.stop();
+      },
+      error: (err: any) => {
+        this.error = 'Error searching users';
+        this.ngxUiLoader.stop();
+        console.error(this.error, err)
+      }
+    })
   }
 
-  showSearchButton(){
-    if (this.searchQuery.trim()){
+  showSearchButton() {
+    if (this.searchQuery.trim()) {
       this.isSearching = true;
-    }
-    else {
+    } else {
       this.isSearching = false;
     }
   }

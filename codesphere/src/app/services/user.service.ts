@@ -95,18 +95,15 @@ export class UserService {
     })
   }
 
-  searchUser(search: string, order: string | undefined, by: string | undefined): Observable<ApiResponse<User[]>>{
+  searchUser(data: any): Observable<ApiResponse<User[]>>{
 
     let params = new HttpParams();
-    if (search != ''){
-      params = params.set("search", search.trim());
-    }
-    if (order){
-      params = params.set("order", order)
-    }
-    if (by){
-      params = params.set("by", by)
-    }
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`Key: ${key}, Value: ${value}`);
+      if (value !== undefined && value !== null && value !== '') {
+        params = params.set(key, `${value}`);
+      }
+    });
     console.log(params)
     return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/search", { params: params
     });

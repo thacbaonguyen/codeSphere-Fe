@@ -20,6 +20,8 @@ import { ContributeAcceptedComponent } from './pages/contribute/contribute-accep
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
 import {FormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
+import { PaginationComponent } from './component/pagination/pagination.component';
+import { AddExerciseComponent } from './component/add-exercise/add-exercise.component';
 
 @NgModule({
     imports: [
@@ -27,7 +29,7 @@ import { DashboardHeaderComponent } from './component/dashboard-header/dashboard
         MaterialModule,
         FlexLayoutModule,
         RouterModule.forChild(DashboardRoutes),
-        FormsModule
+        FormsModule,
     ],
   declarations: [DashboardComponent,
     SidebarComponent,
@@ -43,7 +45,9 @@ import { DashboardHeaderComponent } from './component/dashboard-header/dashboard
     BlockListComponent,
     ContributeAcceptedComponent,
     ContributeQueueComponent,
-    DashboardHeaderComponent]
+    DashboardHeaderComponent,
+    PaginationComponent,
+    AddExerciseComponent]
 })
 export class DashboardModule {
 }
