@@ -22,6 +22,7 @@ import {FormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { AddExerciseComponent } from './component/add-exercise/add-exercise.component';
+import { TestComponent } from './pages/test/test.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { AddExerciseComponent } from './component/add-exercise/add-exercise.comp
     ContributeQueueComponent,
     DashboardHeaderComponent,
     PaginationComponent,
-    AddExerciseComponent]
+    AddExerciseComponent,
+    TestComponent]
 })
 export class DashboardModule {
 }

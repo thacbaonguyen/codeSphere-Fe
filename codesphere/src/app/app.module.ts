@@ -80,7 +80,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
         FormsModule,
         ReactiveFormsModule,
         MatIconModule,
-        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     ],
     providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
     bootstrap: [AppComponent]

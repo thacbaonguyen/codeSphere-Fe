@@ -7,7 +7,6 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {FilterOptions} from "../../../models/filter-options";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {Subjects} from "../../../models/subject";
-import {LoginComponent} from "../../../login/login.component";
 import {AddExerciseComponent} from "../../component/add-exercise/add-exercise.component";
 
 @Component({
