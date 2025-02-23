@@ -1,7 +1,10 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
-import {H} from "@angular/cdk/keycodes";
+import {ApiResponse} from "../models/api-response";
+import {User} from "../models/user";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,8 @@ import {H} from "@angular/cdk/keycodes";
 export class UserService {
   url = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   signup(data: any) {
@@ -55,6 +59,55 @@ export class UserService {
     return this.httpClient.put(this.url + "/auth/set-password", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
+  }
+
+  changePassword(data:any){
+    return this.httpClient.put(this.url + "/auth/change-password", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  getAllUsers(): Observable<ApiResponse<User[]>> {
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-user");
+  }
+
+  blockUser(data: any){
+    return this.httpClient.put(this.url + "/auth/block-user", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  getAllManagers(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-manager");
+  }
+
+  getAllBloggers(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-blogger");
+  }
+
+  getAllUserBlocked(): Observable<ApiResponse<User[]>>{
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/all-blocked");
+  }
+
+  refreshToken(token: string): Observable<any>{
+    return this.httpClient.post(this.url + "/auth/refresh-token", {}, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    })
+  }
+
+  searchUser(data: any): Observable<ApiResponse<User[]>>{
+
+    let params = new HttpParams();
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`Key: ${key}, Value: ${value}`);
+      if (value !== undefined && value !== null && value !== '') {
+        params = params.set(key, `${value}`);
+      }
+    });
+    console.log(params)
+    return this.httpClient.get<ApiResponse<User[]>>(this.url + "/auth/search", { params: params
+    });
+
   }
 
   formatDate(date: Date): string {

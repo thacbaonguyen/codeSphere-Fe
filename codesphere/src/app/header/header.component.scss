@@ -38,6 +38,7 @@ body {
     font-size: 18px;
     color: #F95C19;
     margin-top: 30px;
+  font-weight: bold;
 }
 
 .menu {
@@ -89,7 +90,7 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   border-radius: 4px;
   display: none;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .dropdown-menu.show {

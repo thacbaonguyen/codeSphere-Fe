@@ -6,9 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material-component/material-module';
+import { MaterialModule } from './shared/material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from "ngx-ui-loader";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -19,6 +19,9 @@ import { ForgotPasswordComponent } from './material-component/dialog/forgot-pass
 import { SetPasswordComponent } from './material-component/dialog/set-password/set-password.component';
 import { VerifyForgotPasswordComponent } from './material-component/dialog/verify-forgot-password/verify-forgot-password.component';
 import { ConfirmationComponent } from './material-component/dialog/confirmation/confirmation.component';
+import { ChangePasswordComponent } from './material-component/dialog/change-password/change-password.component';
+import {TokenInterceptorInterceptor} from "./services/interceptor/token-interceptor.interceptor";
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -52,32 +55,34 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    SignupComponent,
-    VerifyComponent,
-    LoginComponent,
-    ForgotPasswordComponent,
-    SetPasswordComponent,
-    VerifyForgotPasswordComponent,
-    ConfirmationComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        FooterComponent,
+        SignupComponent,
+        VerifyComponent,
+        LoginComponent,
+        ForgotPasswordComponent,
+        SetPasswordComponent,
+        VerifyForgotPasswordComponent,
+        ConfirmationComponent,
+        ChangePasswordComponent,
+        UnauthorizedComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    ],
+    providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

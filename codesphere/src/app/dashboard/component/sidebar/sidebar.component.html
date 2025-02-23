@@ -1,0 +1,48 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="../../assets/images/logo-web.svg" alt="">
+    <h2>CodeSphere</h2>
+  </div>
+
+  <div class="sidebar-content">
+    <ul class="menu-list">
+      <ng-container *ngFor="let item of menuItems">
+        <!-- Chỉ hiển thị menu item nếu user có quyền -->
+        <li *ngIf="hasAccess(item)" class="menu-item">
+          <div *ngIf="item.type == 'head'" class="head-parent">
+            <span>{{item.title}}</span>
+          </div>
+          <!-- Menu item không có submenu -->
+          <a *ngIf="!item.children && item.type == 'action'"
+             [routerLink]="item.path"
+             routerLinkActive="active"
+             class="menu-link">
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span>{{item.title}}</span>
+          </a>
+
+          <!-- Menu item có submenu -->
+          <div *ngIf="item.children" class="submenu-container">
+            <div class="menu-link" (click)="item.isExpanded = !item.isExpanded">
+              <mat-icon>{{item.icon}}</mat-icon>
+              <span>{{item.title}}</span>
+              <mat-icon class="expand-icon">
+                {{item.isExpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </div>
+
+            <ul class="submenu" *ngIf="item.isExpanded">
+              <li *ngFor="let child of item.children">
+                <a [routerLink]="child.path"
+                   routerLinkActive="active"
+                   class="submenu-link">
+                  {{child.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

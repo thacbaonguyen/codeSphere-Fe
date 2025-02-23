@@ -1,0 +1,179 @@
+.sidebar {
+  width: 260px;
+  height: 100%;
+  background-color: #232E33;
+  color: white;
+  padding-bottom: 20px;
+}
+
+// Header styles
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  img{
+    height: 25px;
+  }
+
+  h2 {
+    margin: 0;
+    color: #F95C19;
+    font-size: 18px;
+    font-family: "Oxanium", serif;
+    font-weight: bold;
+
+  }
+}
+
+// Content container
+.sidebar-content {
+  height: calc(100vh - 65px); // Trừ đi chiều cao của header
+  overflow-y: auto;
+}
+
+// Menu list
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Menu item
+.menu-item {
+  width: 100%;
+}
+
+// Head parent (section title)
+.head-parent {
+  padding: 15px 20px;
+  background-color: #1B2225;
+  color: #939498;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  span {
+    display: block;
+    line-height: 1.2;
+  }
+}
+
+// Menu link
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: all 0.3s;
+  background-color: #232E33;
+
+  mat-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    flex: 1;
+  }
+
+  &:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+  }
+
+  &.active {
+    background-color: #2196f3;
+    color: white;
+  }
+}
+
+// Submenu container
+.submenu-container {
+  .menu-link {
+    cursor: pointer;
+
+    .expand-icon {
+      margin-left: auto;
+    }
+  }
+}
+
+// Submenu
+.submenu {
+  list-style: none;
+  padding-left: 56px;
+  margin: 0;
+  background-color: darken(#232E33, 3%);
+}
+
+// Submenu link
+.submenu-link {
+  display: block;
+  padding: 12px 20px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: white;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  &.active {
+    color: white;
+    background-color: #2196f3;
+  }
+}
+
+// Utility classes
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: #939498;
+}
+
+// Scrollbar styles (optional)
+.sidebar-content {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+  }
+}
+
+// Animation classes
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.expand-transition {
+  transition: transform 0.2s ease;
+
+  &.expanded {
+    transform: rotate(180deg);
+  }
+}

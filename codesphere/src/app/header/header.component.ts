@@ -3,6 +3,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../material-component/dialog/confirmation/confirmation.component";
 import {Router} from "@angular/router";
 import {jwtDecode} from "jwt-decode";
+import {ChangePasswordComponent} from "../material-component/dialog/change-password/change-password.component";
 
 @Component({
   selector: 'app-header',
@@ -63,7 +64,16 @@ export class HeaderComponent implements OnInit {
   }
 
   changePassword(){
-
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "700px";
+    this.matDialog.open(ChangePasswordComponent, matDialogConfig);
   }
+
+  navigateToDashboard() {
+    this.router.navigate(['/codesphere']);
+    this.isMenuOpen = false;
+  }
+
+
 
 }

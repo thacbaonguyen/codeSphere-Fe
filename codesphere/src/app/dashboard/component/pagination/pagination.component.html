@@ -1,0 +1,12 @@
+<div class="pagination">
+  <button (click)="redirectFirstPage()"><<</button>
+  <button
+    *ngFor="let page of pages"
+    class="page-btn"
+    [class.active]="page === currentPage"
+    (click)="selectPage(page)">
+    {{ page }}
+  </button>
+  <button>...</button>
+  <button (click)="redirectEndPage()">>></button>
+</div>

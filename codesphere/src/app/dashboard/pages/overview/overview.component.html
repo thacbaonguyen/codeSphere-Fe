@@ -1,0 +1,120 @@
+<div class="intro-container">
+  <div class="page-title-container">
+    <h1 class="page-title parent">Tổng quan</h1>
+    <span class="page-title child">Thống kê tổng quan toàn bộ hệ thống</span>
+  </div>
+  <div class="route-container">
+    <div class="home">
+      <mat-icon class="home-mat">home</mat-icon>
+      <a href="">Trang chủ</a>
+    </div>
+    <div class="icon-redirect">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </div>
+    <div class="current-page">
+      <a href="/codesphere">Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!--lien he-->
+<div class="contact">
+  <h1>Hệ thống CodeSphere!</h1>
+  <p>Nếu phát hiện ra lỗi, xin vui lòng hãy liên hệ với đội ngũ phát triển ngay, xin cảm ơn.</p>
+  <div class="social-icon-container">
+    <a href="https://www.facebook.com/thbaonguyen.25.11/" target="_blank">
+      <img class="fb" src="../../../../assets/images/fb-w.svg" alt="">
+    </a>
+    <a href="https://www.instagram.com/thacbaonguyen/" target="_blank">
+      <img class="ig" src="../../../../assets/images/ig-w.svg" alt="">
+    </a>
+    <a href="gmail.com" target="_blank">
+      <img class="email" src="../../../../assets/images/email-w.svg" alt="">
+    </a>
+  </div>
+</div>
+
+<!--content-->
+<div class="attribute">
+  <h1>Tài nguyên</h1>
+</div>
+
+<div class="resource-container">
+  <!--  member-->
+  <div class="members" (click)="navigateToMembers()" >
+    <div class="icon icon-member">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/member.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Thành viên</h1>
+      <h1 class="result">{{ dashboard.users }}</h1>
+    </div>
+  </div>
+
+  <!--  exercise-->
+  <div class="exercises" (click)="navigateToExercises()" >
+    <div class="icon icon-exercise">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/exercise.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Bài tập</h1>
+      <h1 class="result">{{ dashboard.exercises }}</h1>
+    </div>
+  </div>
+  <!--  blog-->
+  <div class="blogs" (click)="navigateToBlogs()">
+    <div class="icon icon-blog">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/blog.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Blogs</h1>
+      <h1 class="result">{{ dashboard.blogs }}</h1>
+    </div>
+  </div>
+  <!--  book-->
+  <div class="books" (click)="navigateToBooks()">
+    <div class="icon icon-book">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/book.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Sách</h1>
+      <h1 class="result">45</h1>
+    </div>
+  </div>
+  <!--  course-->
+  <div class="courses">
+    <div class="icon icon-course">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/course.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Khóa học</h1>
+      <h1 class="result">15</h1>
+    </div>
+  </div>
+</div>
+<!--// request-->
+<div class="attribute">
+  <h1>Yêu cầu</h1>
+</div>
+
+<div class="request-container">
+  <div class="access" (click)="navigateToPermission()">
+    <div class="icon icon-access">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/access.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Quyền</h1>
+      <h1 class="result">{{dashboard.registerRoles}}</h1>
+    </div>
+  </div>
+
+  <div class="contribute">
+    <div class="icon icon-contribute" (click)="navigateToContributes()">
+      <img class="icon-img" src="../../../../assets/logo-dashboard/contribute.svg" alt="">
+    </div>
+    <div class="text">
+      <h1 class="title">Đóng góp</h1>
+      <h1 class="result">{{ dashboard.contributes }}</h1>
+    </div>
+  </div>
+</div>

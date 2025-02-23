@@ -1,0 +1,116 @@
+.intro-container{
+  display: flex;
+  justify-content: space-between;
+}
+.page-title-container{
+  display: flex;
+  gap: 20px;
+}
+.route-container{
+  display: flex;
+}
+
+.page-title-container h1{
+  font-family: "Raleway", serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.page-title-container span{
+  font-family: "Raleway", serif;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.home{
+  display: flex;
+  gap: 8px;
+}
+.home a{
+  text-decoration: none;
+  margin-top: 10px;
+}
+.home-mat{
+  margin-top: 6px;
+}
+.current-page{
+  margin-top: 10px;
+}
+.current-page a{
+  text-decoration: none;
+}
+.icon-redirect{
+  margin-top: 8px;
+}
+
+
+
+// table
+
+.mat-elevation-z8 {
+  margin: 20px;
+  margin-top: 70px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+}
+
+.title{
+  font-weight: bold;
+  font-size: 25px;
+  font-family: "Raleway", serif;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.search-container{
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  height: 60px;
+}
+
+.fast-search input, .search input{
+  height: 30px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 5px;
+  border-color: #B8B7B7;
+}
+.fast-search input{
+  padding-right: 40px;
+  width: 200px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}
+
+mat-cell, mat-header-cell {
+  padding: 10px;
+}
+
+// Optional: Make the table responsive
+@media(max-width: 800px) {
+  .mat-table {
+    overflow-x: scroll;
+  }
+
+  .mat-cell {
+    min-height: 100%;
+    align-items: center;
+    padding: 8px;
+  }
+}

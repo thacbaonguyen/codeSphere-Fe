@@ -1,0 +1,68 @@
+
+<app-dashboard-header
+  parentTitle = 'Manager'
+  childTitle = 'Quản lý danh sách Manager'
+></app-dashboard-header>
+
+<div class="mat-elevation-z8">
+  <div class="header">
+    <div class="title"> Danh sách Manager</div>
+    <div class="search-container">
+      <div class="fast-search">
+        <input type="text" placeholder="Tìm kiếm nhanh trong trang" (keyup)="applyFilter($event)" #input>
+      </div>
+
+<!--      <div class="search">-->
+<!--        <input type="text" placeholder="Tìm kiếm">-->
+<!--      </div>-->
+    </div>
+  </div>
+
+<!--  nếu lỗi-->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+      <mat-cell *matCellDef = "let user">{{user.username}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Họ và tên</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.fullName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.dob | date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.phoneNumber}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-icon-button color="primary" (click)="handleBlockUserSubmit(user)">
+          <mat-icon>lock_open</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                 aria-label="Chọn kích thước trang">
+  </mat-paginator>
+</div>

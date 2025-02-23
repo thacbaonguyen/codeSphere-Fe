@@ -69,7 +69,7 @@
               <i class="fa-solid fa-repeat"></i> <p>Đổi mật khẩu</p></li>
             <li class="list" (click)="logout()">
               <i class="fa-solid fa-arrow-right-from-bracket"></i> <p>Đăng xuất</p></li>
-            <li class="list" *ngIf="hasAdminOrManagerRole()">
+            <li class="list" *ngIf="hasAdminOrManagerRole()" (click)="navigateToDashboard()">
               <i class="fa-solid fa-chart-line"></i> <p>Dashboard</p>
             </li>
           </ul>
