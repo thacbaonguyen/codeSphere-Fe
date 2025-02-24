@@ -28,12 +28,12 @@
             placeholder="Tìm kiếm theo mã/ tiêu đề"
             [(ngModel)]="searchQuery"
             (input)="showSearchButton()"
-            (keyup.enter)="loadExercise()"
+            (keyup.enter)="search()"
           >
           <button
             mat-icon-button
             class="search-button"
-            (click)="loadExercise()"
+            (click)="search()"
             [disabled]="!isSearching"
             matTooltip="Tìm kiếm"
           >
@@ -48,7 +48,7 @@
     <div class="filter-option">
       <mat-form-field>
         <mat-label>Lọc theo</mat-label>
-        <mat-select [(ngModel)]="selectedFilter" (selectionChange)="loadExercise()">
+        <mat-select [(ngModel)]="selectedFilter" (selectionChange)="search()">
           <mat-option [value]="">Mặc định</mat-option>
           <mat-option *ngFor="let option of filterOptions" [value]="option.value">{{option.viewValue}}</mat-option>
         </mat-select>
@@ -108,10 +108,10 @@
 <!--        <button mat-icon-button color="primary" (click)="handleActions(exercise)">-->
 <!--          <mat-icon>lock_open</mat-icon>-->
 <!--        </button>-->
-        <button mat-icon-button color="primary" (click)="handleActions(exercise)">
+        <button mat-icon-button color="primary" (click)="handleEditAction(exercise)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="handleActions(exercise)">
+        <button mat-icon-button color="warn" (click)="handleDeleteAction(exercise)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>

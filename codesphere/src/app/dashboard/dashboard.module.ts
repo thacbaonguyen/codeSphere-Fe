@@ -18,20 +18,21 @@ import {BloggerMemberComponent} from './pages/blogger-member/blogger-member.comp
 import {BlockListComponent} from './pages/block-list/block-list.component';
 import { ContributeAcceptedComponent } from './pages/contribute/contribute-accepted/contribute-accepted.component';
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { AddExerciseComponent } from './component/add-exercise/add-exercise.component';
 import { TestComponent } from './pages/test/test.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MaterialModule,
-        FlexLayoutModule,
-        RouterModule.forChild(DashboardRoutes),
-        FormsModule,
-    ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FlexLayoutModule,
+    RouterModule.forChild(DashboardRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   declarations: [DashboardComponent,
     SidebarComponent,
     OverviewComponent,

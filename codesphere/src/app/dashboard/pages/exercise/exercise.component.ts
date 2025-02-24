@@ -1,13 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Exercise} from "../../../models/exercise";
 import {ExerciseService} from "../../../services/exercise/exercise.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {FilterOptions} from "../../../models/filter-options";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {Subjects} from "../../../models/subject";
 import {AddExerciseComponent} from "../../component/add-exercise/add-exercise.component";
+import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
+import {SnackbarService} from "../../../services/snackbar.service";
+import {GlobalConstants} from "../../../shared/global-constants";
 
 @Component({
   selector: 'app-exercise',
@@ -40,7 +43,8 @@ export class ExerciseComponent implements OnInit {
   constructor(private exerciseService: ExerciseService,
               private ngxUiLoader: NgxUiLoaderService,
               private matDialog: MatDialog,
-              private subjectService: SubjectService) { }
+              private subjectService: SubjectService,
+              private snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     this.loadAllSubject()
@@ -77,6 +81,13 @@ export class ExerciseComponent implements OnInit {
       }
     })
   }
+
+  search(){
+    this.currentPage = 1;
+    this.loadExercise()
+    console.log(this.currentPage)
+  }
+
   loadExercise(){
     this.ngxUiLoader.start()
     var data = {
@@ -87,7 +98,7 @@ export class ExerciseComponent implements OnInit {
       page: this.currentPage
     }
     this.loadTotalRecord(data)
-    console.log(data)
+    console.log("loadd data", data)
 
     this.exerciseService.allExerciseAndFilter(data).subscribe({
       next: (response: any)=>{
@@ -117,7 +128,32 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
-  handleActions(exercise: Exercise){
+
+
+  handleDeleteAction(exercise: Exercise){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "700px";
+    matDialogConfig.data = {
+      message: "xóa bài tập này không",
+      confirmation: true
+    }
+    const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
+    const subscription = matDialogRef.componentInstance.onEmitStatusChange.subscribe({
+      next: (response: any)=>{
+        this.exerciseService.deleteExercise(exercise.code).subscribe({
+          next: (response: any)=>{
+            this.snackbar.openSnackBar('Xóa bài tập thành công!', '');
+            matDialogRef.close()
+            this.loadExercise()
+          },
+          error: (err: any)=>{
+            this.snackbar.openSnackBar('Đã xảy ra lỗi, xóa bài tập thất bại!', GlobalConstants.error);
+            matDialogRef.close()
+            console.error("error delete exercise", err)
+          }
+        })
+      }
+    });
 
   }
 
@@ -125,7 +161,30 @@ export class ExerciseComponent implements OnInit {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "900px";
     matDialogConfig.disableClose = true;
-    this.matDialog.open(AddExerciseComponent, matDialogConfig)
+    matDialogConfig.data = {
+      action: 'add'
+    }
+    const matDialogRef = this.matDialog.open(AddExerciseComponent, matDialogConfig)
+    const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      this.loadExercise()
+    })
+  }
+
+  handleEditAction(exercise: Exercise){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "900px";
+    matDialogConfig.disableClose = true;
+    matDialogConfig.data = {
+      action: 'edit',
+      data: exercise
+    }
+    const matDialogRef = this.matDialog.open(AddExerciseComponent, matDialogConfig)
+    const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      console.log("check eventttt")
+      this.loadExercise()
+    })
 
   }
 

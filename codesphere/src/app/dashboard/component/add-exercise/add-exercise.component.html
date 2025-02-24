@@ -1,7 +1,150 @@
 
-<div class="title-container">
-  <p>add-exercise works!</p>
-  <div class="close" mat-dialog-close>
-    <mat-icon>close</mat-icon>
+
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p>Tạo mới bài tập</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
   </div>
-</div>
+
+  <form action="" [formGroup]="exerciseForm">
+    <div fxFlex fxLayout="column">
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Ngôn ngữ</mat-label>
+        <mat-select formControlName="subjectId">
+          <mat-option *ngFor="let sub of selectedSubject" [value]="sub.id">{{sub.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="exerciseForm.controls.subjectId.invalid && exerciseForm.controls.subjectId.touched">
+          <span *ngIf="exerciseForm.controls.subjectId.errors.required">Ngôn ngữ không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Mã</mat-label>
+        <input type="text" matInput formControlName="code">
+        <mat-error *ngIf="exerciseForm.controls.code.invalid && exerciseForm.controls.code.touched">
+          <span *ngIf="exerciseForm.controls.code.errors.required">Mã bài tập không được để trống</span>
+          <span *ngIf="exerciseForm.controls.code.errors.pattern">Mã bài tập không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Tiêu đề</mat-label>
+        <input type="text" matInput formControlName="title">
+        <mat-error *ngIf="exerciseForm.controls.title.invalid && exerciseForm.controls.title.touched">
+          <span *ngIf="exerciseForm.controls.title.errors.required">Tiêu đề không được để trống</span>
+          <span *ngIf="exerciseForm.controls.title.errors.pattern">Tiêu đề không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Đề bài</mat-label>
+        <textarea matInput formControlName="paper"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="4"
+                  cdkAutosizeMaxRows="15"
+        ></textarea>
+        <mat-error *ngIf="exerciseForm.controls.paper.invalid && exerciseForm.controls.paper.touched">
+          <span *ngIf="exerciseForm.controls.paper.errors.required">Đề bài không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Input</mat-label>
+        <textarea matInput formControlName="input"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="3"
+                  cdkAutosizeMaxRows="7"
+        ></textarea>
+        <mat-error *ngIf="exerciseForm.controls.input.invalid && exerciseForm.controls.input.touched">
+          <span *ngIf="exerciseForm.controls.input.errors.required">Input không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Output</mat-label>
+        <textarea matInput formControlName="output"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="3"
+                  cdkAutosizeMaxRows="7"
+        ></textarea>
+        <mat-error *ngIf="exerciseForm.controls.output.invalid && exerciseForm.controls.output.touched">
+          <span *ngIf="exerciseForm.controls.output.errors.required">Đề bài không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Note</mat-label>
+        <textarea matInput formControlName="note"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="6"
+        ></textarea>
+        <mat-error *ngIf="exerciseForm.controls.note.invalid && exerciseForm.controls.note.touched">
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Nhóm bài tập</mat-label>
+        <textarea matInput formControlName="description"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="2"
+        ></textarea>
+        <mat-error *ngIf="exerciseForm.controls.description.invalid && exerciseForm.controls.description.touched">
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Level</mat-label>
+        <mat-select formControlName="level">
+          <mat-option value="1">1 - Dễ</mat-option>
+          <mat-option value="2">2 - Trung bình</mat-option>
+          <mat-option value="3">3 - Khó</mat-option>
+          <mat-option value="4">4 - Cực khó</mat-option>
+        </mat-select>
+        <mat-error *ngIf="exerciseForm.controls.level.invalid && exerciseForm.controls.level.touched">
+          <span *ngIf="exerciseForm.controls.level.errors.required">Level không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Giới hạn thời gian</mat-label>
+        <input type="text" matInput formControlName="timeLimit">
+        <mat-error *ngIf="exerciseForm.controls.timeLimit.invalid && exerciseForm.controls.timeLimit.touched">
+          <span *ngIf="exerciseForm.controls.timeLimit.errors.required">Mục này không được để trống</span>
+          <span *ngIf="exerciseForm.controls.timeLimit.errors.pattern">Time limit không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Giới hạn bộ nhớ</mat-label>
+        <input type="text" matInput formControlName="memoryLimit">
+        <mat-error *ngIf="exerciseForm.controls.memoryLimit.invalid && exerciseForm.controls.memoryLimit.touched">
+          <span *ngIf="exerciseForm.controls.memoryLimit.errors.required">Mục này không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Chủ đề</mat-label>
+        <input type="text" matInput formControlName="topic">
+        <mat-error *ngIf="exerciseForm.controls.topic.invalid && exerciseForm.controls.topic.touched">
+          <span *ngIf="exerciseForm.controls.topic.errors.required">Chủ đề không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </form>
+
+  <mat-dialog-actions>
+    <button mat-raised-button class="submit-button" type="submit" [disabled]="!exerciseForm.valid" (click)="handleSubmit()">Tạo bài tập</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+
+
+
