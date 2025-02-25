@@ -1,0 +1,48 @@
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p>Chi tiết bài tập</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+
+  <div class="content">
+
+    <div class="code-title">
+      <div class="title">
+        <p>{{ exerciseDetail?.code }} - {{ exerciseDetail?.title }}</p>
+      </div>
+
+      <!--      <pre class="paper">-->
+      <!--        {{exerciseDetail?.paper}}-->
+      <!--      </pre>-->
+      <div class="paper" [innerHTML]="exerciseDetail?.paper | markdown">
+      </div>
+      <h4 style="font-weight: bold">Ví dụ</h4>
+      <div class="example-table">
+        <table>
+          <tr>
+            <td>Input</td>
+            <td>Output</td>
+          </tr>
+          <tr>
+            <td>
+              <pre>{{ exerciseDetail?.input }}</pre>
+            </td>
+            <td>
+              <pre>{{ exerciseDetail?.output }}</pre>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+      <br>
+      <br>
+      <div class="time-limit">
+        Giới hạn thời gian: {{ exerciseDetail?.timeLimit }} s
+      </div>
+      <div class="memory-limit">Giới hạn bộ nhớ:  {{ exerciseDetail?.memoryLimit }} Kb</div>
+    </div>
+  </div>
+</mat-dialog-content>

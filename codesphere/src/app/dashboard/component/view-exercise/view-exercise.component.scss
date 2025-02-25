@@ -1,0 +1,44 @@
+.mat-dialog-show{
+  padding-bottom: 200px;
+}
+
+.title-container{
+  width: 90%;
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-between;
+  .close{
+    mat-icon{
+      cursor: pointer;
+    }
+  }
+  p{
+    font-family: "Raleway", serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
+.content{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+.title{
+  font-family: "Roboto";
+  font-size: 20px;
+  color: #c84848;
+}
+.paper {
+  font-family: "Times New Roman";
+  font-size: 15px;
+  //white-space: pre-wrap;
+  margin: 0;
+}
+table, th, td{
+  border: #959595 solid 1px;
+  min-width: 75%;
+}
+.paper {
+  line-height: 1.7;
+
+}

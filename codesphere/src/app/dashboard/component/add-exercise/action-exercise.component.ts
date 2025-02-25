@@ -10,11 +10,11 @@ import {SubjectService} from "../../../services/subject/subject.service";
 import {ExerciseDetail} from "../../../models/exercise-detail";
 
 @Component({
-  selector: 'app-add-exercise',
-  templateUrl: './add-exercise.component.html',
-  styleUrls: ['./add-exercise.component.scss']
+  selector: 'app-action-exercise',
+  templateUrl: './action-exercise.component.html',
+  styleUrls: ['./action-exercise.component.scss']
 })
-export class AddExerciseComponent implements OnInit {
+export class ActionExerciseComponent implements OnInit {
   onAddEvent = new EventEmitter();
   onEditEvent = new EventEmitter();
   detailsData: ExerciseDetail | null = null;
@@ -30,7 +30,7 @@ export class AddExerciseComponent implements OnInit {
     private exerciseService: ExerciseService,
     private snackbar: SnackbarService,
     private ngxUiLoader: NgxUiLoaderService,
-    private matDialogRef: MatDialogRef<AddExerciseComponent>,
+    private matDialogRef: MatDialogRef<ActionExerciseComponent>,
     private subjectService: SubjectService) {
 
     this.exerciseForm = this.formBuilder.group({

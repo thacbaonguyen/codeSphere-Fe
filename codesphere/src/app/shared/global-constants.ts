@@ -12,7 +12,7 @@ export class GlobalConstants{
 
   public static codeRegex: string = '^[a-zA-Z0-9]{3,10}$';
 
-  public static titleRegex: string = '^[a-zA-Z0-9\\sàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐ]{2,60}$';
+  public static titleRegex: string = '^[a-zA-Z0-9\\sàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪ]{2,60}$';
 
   public static timeLimitRegex: string = '^[1-8]$';
 

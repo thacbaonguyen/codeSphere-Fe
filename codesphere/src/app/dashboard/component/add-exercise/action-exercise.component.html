@@ -2,16 +2,58 @@
 
 <mat-dialog-content class="mat-dialog-show">
   <div class="title-container">
-    <p>Tạo mới bài tập</p>
+    <p *ngIf="matDialogAction === 'add'">Tạo mới bài tập</p>
+    <p *ngIf="matDialogAction === 'edit'">Sửa bài tập</p>
     <div class="close" mat-dialog-close>
       <mat-icon>close</mat-icon>
     </div>
   </div>
 
+
   <form action="" [formGroup]="exerciseForm">
     <div fxFlex fxLayout="column">
 
-      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+      <div class="guide">
+        <h3>Hướng dẫn định dạng:</h3>
+        <div class="detail-container">
+          <p>**Chữ đậm**</p>
+          <div [innerHTML]="'**Chữ đậm**' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p>`Khối code`</p>
+          <div [innerHTML]="'`Khối code`' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p>*Chữ nghiêng*</p>
+          <div [innerHTML]="'*Chữ nghiêng*' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p class="custom"># Tiêu đề lớn</p>
+          <div [innerHTML]="'# Tiêu đề lớn' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p class="custom">## Tiêu đề nhỏ</p>
+          <div [innerHTML]="'## Tiêu đề nhỏ' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p class="custom-1">- Dấu chấm đầu dòng</p>
+          <div [innerHTML]="'- Dấu châm đầu dòng' | markdown"></div>
+        </div>
+
+        <div class="detail-container">
+          <p class="custom-1">1. Danh sách số</p>
+          <div [innerHTML]="'1. Danh sách số' | markdown"></div>
+        </div>
+
+
+      </div>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline first">
         <mat-label>Ngôn ngữ</mat-label>
         <mat-select formControlName="subjectId">
           <mat-option *ngFor="let sub of selectedSubject" [value]="sub.id">{{sub.name}}</mat-option>
@@ -142,7 +184,16 @@
   </form>
 
   <mat-dialog-actions>
-    <button mat-raised-button class="submit-button" type="submit" [disabled]="!exerciseForm.valid" (click)="handleSubmit()">Tạo bài tập</button>
+    <button *ngIf="matDialogAction === 'add'"
+            mat-raised-button class="submit-button"
+            type="submit" [disabled]="!exerciseForm.valid"
+            (click)="handleSubmit()">Tạo bài tập
+    </button>
+    <button *ngIf="matDialogAction === 'edit'"
+            mat-raised-button class="submit-button"
+            type="submit" [disabled]="!exerciseForm.valid"
+            (click)="handleSubmit()">Hoàn thành
+    </button>
   </mat-dialog-actions>
 </mat-dialog-content>
 

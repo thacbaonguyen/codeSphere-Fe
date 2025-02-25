@@ -7,10 +7,11 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {FilterOptions} from "../../../models/filter-options";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {Subjects} from "../../../models/subject";
-import {AddExerciseComponent} from "../../component/add-exercise/add-exercise.component";
+import {ActionExerciseComponent} from "../../component/add-exercise/action-exercise.component";
 import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {GlobalConstants} from "../../../shared/global-constants";
+import {ViewExerciseComponent} from "../../component/view-exercise/view-exercise.component";
 
 @Component({
   selector: 'app-exercise',
@@ -164,7 +165,7 @@ export class ExerciseComponent implements OnInit {
     matDialogConfig.data = {
       action: 'add'
     }
-    const matDialogRef = this.matDialog.open(AddExerciseComponent, matDialogConfig)
+    const matDialogRef = this.matDialog.open(ActionExerciseComponent, matDialogConfig)
     const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any)=>{
       matDialogRef.close();
       this.loadExercise()
@@ -179,13 +180,23 @@ export class ExerciseComponent implements OnInit {
       action: 'edit',
       data: exercise
     }
-    const matDialogRef = this.matDialog.open(AddExerciseComponent, matDialogConfig)
+    const matDialogRef = this.matDialog.open(ActionExerciseComponent, matDialogConfig)
     const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any)=>{
       matDialogRef.close();
       console.log("check eventttt")
       this.loadExercise()
     })
 
+  }
+
+  handleViewExercise(exercise: Exercise){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "1000px";
+    matDialogConfig.disableClose = true;
+    matDialogConfig.data = {
+      data: exercise
+    }
+    this.matDialog.open(ViewExerciseComponent, matDialogConfig)
   }
 
 }

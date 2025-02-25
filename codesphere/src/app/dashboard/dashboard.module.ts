@@ -21,8 +21,10 @@ import { ContributeQueueComponent } from './pages/contribute/contribute-queue/co
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
-import { AddExerciseComponent } from './component/add-exercise/add-exercise.component';
+import { ActionExerciseComponent } from './component/add-exercise/action-exercise.component';
 import { TestComponent } from './pages/test/test.component';
+import { ViewExerciseComponent } from './component/view-exercise/view-exercise.component';
+import {MarkdownPipe} from "../shared/markdown.pipe";
 
 @NgModule({
   imports: [
@@ -49,8 +51,11 @@ import { TestComponent } from './pages/test/test.component';
     ContributeQueueComponent,
     DashboardHeaderComponent,
     PaginationComponent,
-    AddExerciseComponent,
-    TestComponent]
+    ActionExerciseComponent,
+    TestComponent,
+    ViewExerciseComponent,
+    MarkdownPipe
+  ]
 })
 export class DashboardModule {
 }

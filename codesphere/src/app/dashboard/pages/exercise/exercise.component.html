@@ -105,9 +105,9 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
       <mat-cell *matCellDef="let exercise">
-<!--        <button mat-icon-button color="primary" (click)="handleActions(exercise)">-->
-<!--          <mat-icon>lock_open</mat-icon>-->
-<!--        </button>-->
+        <button mat-icon-button color="primary" (click)="handleViewExercise(exercise)">
+          <mat-icon>visibility</mat-icon>
+        </button>
         <button mat-icon-button color="primary" (click)="handleEditAction(exercise)">
           <mat-icon>edit</mat-icon>
         </button>
