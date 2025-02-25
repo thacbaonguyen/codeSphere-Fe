@@ -25,6 +25,7 @@ import { ActionExerciseComponent } from './component/add-exercise/action-exercis
 import { TestComponent } from './pages/test/test.component';
 import { ViewExerciseComponent } from './component/view-exercise/view-exercise.component';
 import {MarkdownPipe} from "../shared/markdown.pipe";
+import { ActionBlogComponent } from './component/action-blog/action-blog.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import {MarkdownPipe} from "../shared/markdown.pipe";
     ActionExerciseComponent,
     TestComponent,
     ViewExerciseComponent,
-    MarkdownPipe
+    MarkdownPipe,
+    ActionBlogComponent
   ]
 })
 export class DashboardModule {
