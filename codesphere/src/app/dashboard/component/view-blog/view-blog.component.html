@@ -1,0 +1,42 @@
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p>Chi tiết blog</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+
+  <div class="content-container">
+
+      <div class="title">
+        <h1>{{ blogDetail?.title }}</h1>
+      </div>
+
+      <!--      <pre class="paper">-->
+      <!--        {{blogDetail?.paper}}-->
+      <!--      </pre>-->
+      <div class="excerpt" [innerHTML]="blogDetail?.excerpt | markdown">
+      </div>
+      <br>
+    <div *ngIf="imageUrl" class="feature-image-container">
+      <img [src]="imageUrl" alt="{{blogDetail?.title}}" class="feature-image">
+    </div>
+
+      <div class="content" [innerHTML]="blogDetail?.content | markdown">
+      </div>
+
+    <div class="author">
+      <mat-icon color="primary">person</mat-icon>
+      <h4>Tác giả: {{blogDetail?.author?.username}}</h4>
+    </div>
+
+    <div class="time">
+      <h4>Tạo lúc: {{blogDetail?.createdAt}}</h4>
+      <h4>Sửa lúc: {{blogDetail?.updatedAt}}</h4>
+      <h4>Xuất bản lúc: {{blogDetail?.publishedAt | date}}</h4>
+    </div>
+
+
+  </div>
+</mat-dialog-content>

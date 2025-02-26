@@ -6,29 +6,36 @@
 <div class="mat-elevation-z8">
 
   <div class="header">
-    <div class="title"> Danh sách bài tập</div>
-    <div class="search-container">
-      <div class="add-button">
+    <div class="title"> Danh sách blogs</div>
+    <div class="search-container" >
+      <div class="add-button" *ngIf="isAdmin$ | async">
         <button class="submit-button" (click)="handleAddAction()">
           <mat-icon>add</mat-icon><p>Thêm bài viết</p>
         </button>
       </div>
+      <div class="tag-search-container">
+        <div class="tag-search">
+          <input type="text" placeholder="Tìm theo tag"
+          [(ngModel)]="tagQuery"
+          (input)="showSearchTagButton()"
+          (keyup.enter)="searchTag()">
+        </div>
+        <button (click)="searchTag()" [disabled]="!isTagSearching"><mat-icon>search</mat-icon></button>
 
+      </div>
       <div class="search">
-        <div class="search-container">
+        <div class="global-search-container">
           <input
             type="text"
-            placeholder="Tìm kiếm theo tiêu đề"
+            placeholder="Tìm theo tiêu đề"
             [(ngModel)]="searchQuery"
             (input)="showSearchButton()"
             (keyup.enter)="search()"
           >
           <button
-            mat-icon-button
             class="search-button"
             (click)="search()"
             [disabled]="!isSearching"
-            matTooltip="Tìm kiếm"
           >
             <mat-icon>search</mat-icon>
           </button>
@@ -119,12 +126,13 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
       <mat-cell *matCellDef="let blog">
-        <button mat-icon-button color="primary" (click)="handleViewExercise(blog)">
+        <button mat-icon-button color="primary" (click)="handleViewBlog(blog)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="handleEditAction(blog)">
+        <button *ngIf="sub === blog.author" mat-icon-button color="primary" (click)="handleEditAction(blog)">
           <mat-icon>edit</mat-icon>
         </button>
+        <div *ngIf="sub !== blog.author" style="margin-right: 39px"></div>
         <button mat-icon-button color="warn" (click)="handleDeleteAction(blog)">
           <mat-icon>delete</mat-icon>
         </button>

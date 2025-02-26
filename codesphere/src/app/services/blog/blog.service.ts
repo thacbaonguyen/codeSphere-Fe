@@ -27,6 +27,18 @@ export class BlogService {
     })
   }
 
+  getAllBlogsByTag(data: any): Observable<ApiResponse<PageResponse<Blog>>>{
+    let params = new HttpParams();
+    Object.entries(data).forEach(([key, value]) =>{
+      if (value !== undefined && value !== null && value !== ''){
+        params = params.set(key, `${value}`)
+      }
+    })
+    return this.httpClient.get<ApiResponse<PageResponse<Blog>>>(this.url + "/blog/all-blogs/tags", {
+      params
+    })
+  }
+
   viewBlogDetail(slug: string):Observable<ApiResponse<BlogDetail>>{
     return this.httpClient.get<ApiResponse<BlogDetail>>(this.url + `/blog/view/${slug}`)
   }
@@ -37,8 +49,12 @@ export class BlogService {
     })
   }
 
+  uploadImageBlog(id: number, formData: FormData){
+    return this.httpClient.post(this.url + `/blog/upload/feature-image/${id}`, formData)
+  }
+
   updateBlog(data: any){
-    return this.httpClient.post(this.url + `/blog/update/${data.id}`, data, {
+    return this.httpClient.put(this.url + `/blog/update/${data.id}`, data, {
       headers: new  HttpHeaders().set('Content-Type', 'application/json')
     })
   }

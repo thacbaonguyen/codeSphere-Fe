@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
         title: 'Blog',
         icon: 'apps',
         path: '/codesphere/dashboard/blogs', // chỉ admin được truy cập danh sách blog
-        roles: ['ADMIN'],
+        roles: ['ADMIN', 'MANAGER'],
         type: 'action'
       },
       {

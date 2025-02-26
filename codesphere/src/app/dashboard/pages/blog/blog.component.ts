@@ -9,6 +9,11 @@ import {Exercise} from "../../../models/exercise";
 import {FilterOptions} from "../../../models/filter-options";
 import {GlobalConstants} from "../../../shared/global-constants";
 import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
+import {ActionBlogComponent} from "../../component/action-blog/action-blog.component";
+import {Observable} from "rxjs";
+import {AuthService} from "../../../services/auth/auth.service";
+import {ViewExerciseComponent} from "../../component/view-exercise/view-exercise.component";
+import {ViewBlogComponent} from "../../component/view-blog/view-blog.component";
 
 @Component({
   selector: 'app-blog',
@@ -26,7 +31,9 @@ export class BlogComponent implements OnInit {
 
   //filter va search
   searchQuery: string = '';
+  tagQuery: string = '';
   isSearching = false;
+  isTagSearching = false;
   selectedFilter: FilterOptions | null = null;
   isFeatured: any;
 
@@ -36,11 +43,17 @@ export class BlogComponent implements OnInit {
     {value: {order: 'desc', by: 'viewCount'}, viewValue: 'Lượt xem nhiều nhất'},
     {value: {order: 'asc', by: 'viewCount'}, viewValue: 'Lượt xem ít nhất'}
   ]
-
+  //
+  isAdmin$: Observable<boolean>;
+  sub: any;
   constructor(private blogService: BlogService,
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
-              private ngxUiLoader: NgxUiLoaderService) { }
+              private ngxUiLoader: NgxUiLoaderService,
+              private authService: AuthService) {
+    this.isAdmin$ = this.authService.isAdmin();
+    this.sub = this.authService.subAcc()
+  }
 
   ngOnInit(): void {
     this.loadAllBlogs()
@@ -48,8 +61,15 @@ export class BlogComponent implements OnInit {
 
   search(){
     this.currentPage = 1;
+    this.tagQuery= '';
     this.loadAllBlogs()
     console.log('current page:', this.currentPage)
+  }
+
+  searchTag(){
+    this.currentPage = 1;
+    this.searchQuery = '';
+    this.loadAllBlogsByTag()
   }
 
   loadAllBlogs(){
@@ -63,6 +83,34 @@ export class BlogComponent implements OnInit {
     }
     this.ngxUiLoader.start();
     this.blogService.getAllBlogs(data).subscribe({
+      next: (response: any)=>{
+        this.ngxUiLoader.stop();
+        this.dataSource = response.data.content;
+        this.totalPages = response.data.totalPages;
+        this.currentPage = response.data.number + 1;
+        this.pageSize = response.data.size;
+        this.totalRecord = response.data.totalElements
+      },
+      error: (err: any)=>{
+        this.error = 'Error loading all blogs';
+        this.snackbar.openSnackBar('Lỗi tải trang', GlobalConstants.error);
+        this.ngxUiLoader.stop();
+        console.error(this.error, err)
+      }
+    })
+  }
+
+  loadAllBlogsByTag(){
+    var data = {
+      tagName: this.tagQuery,
+      isFeatured: this.isFeatured,
+      page: this.currentPage,
+      pageSize: '',
+      order: this.selectedFilter?.order,
+      by: this.selectedFilter?.by
+    }
+    this.ngxUiLoader.start();
+    this.blogService.getAllBlogsByTag(data).subscribe({
       next: (response: any)=>{
         this.ngxUiLoader.stop();
         this.dataSource = response.data.content;
@@ -94,18 +142,25 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  handleViewExercise(blog: Blog){
-    console.log("datasource", blog.id)
+  showSearchTagButton(){
+    if (this.tagQuery){
+      this.isTagSearching = true
+    }
+    else {
+      this.isTagSearching = false
+    }
   }
 
-  handleEditAction(blog: Blog){
+  handleViewBlog(blog: Blog){
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "1000px";
     matDialogConfig.disableClose = true;
     matDialogConfig.data = {
       data: blog
     }
+    this.matDialog.open(ViewBlogComponent, matDialogConfig)
   }
+
 
   handleDeleteAction(blog: Blog){
     const matDialogConfig = new MatDialogConfig();
@@ -141,6 +196,28 @@ export class BlogComponent implements OnInit {
     matDialogConfig.data = {
       action: 'add'
     }
+    const matDialogRef = this.matDialog.open(ActionBlogComponent, matDialogConfig)
+    const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      console.log("check event add")
+      this.search()
+    })
+  }
+
+  handleEditAction(blog: Blog){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "1000px";
+    matDialogConfig.disableClose = true;
+    matDialogConfig.data = {
+      action: 'edit',
+      data: blog
+    }
+    const matDialogRef = this.matDialog.open(ActionBlogComponent, matDialogConfig)
+    const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      console.log("check event edit")
+      this.search()
+    })
   }
 
 }

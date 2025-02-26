@@ -48,21 +48,61 @@
 .submit-button:hover{
   background-color: #07bf67;
 }
-.search-button {
-  min-width: 40px;
-  height: 40px;
-  background-color: #1976d2;
-  color: white;
+
+
+.tag-search input, {
+  width: 120px;
+  height: 30px;
+  border-color: #B8B7B7;
+}
+.tag-search-container{
+  display: flex;
+  border: #B8B7B7 solid 2px;
+  border-radius: 0 5px 5px 0;
+  mat-icon{
+    margin-top: 5px;
+  }
+  button{
+    height: 36px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:disabled{
+    background-color: #509ae1;
+    cursor: auto;
+    color: #444746;
+  }
   margin-right: 20px;
   margin-top: 10px;
 }
-
-.search input{
-  height: 30px;
-  margin-top: 10px;
+.global-search-container{
+  display: flex;
+  border: #B8B7B7 solid 2px;
+  border-radius: 0 5px 5px 0;
+  mat-icon{
+    margin-top: 5px;
+  }
+  button{
+    height: 36px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:disabled{
+    background-color: #509ae1;
+    cursor: auto;
+    color: #444746;
+  }
+  input{
+    width: 120px;
+    height: 30px;
+    border-color: #B8B7B7;
+  }
   margin-right: 20px;
-  border-radius: 5px;
-  border-color: #B8B7B7;
+  margin-top: 10px;
 }
 
 .filter-container{

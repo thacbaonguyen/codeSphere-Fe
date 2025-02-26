@@ -1,0 +1,144 @@
+.title-container{
+  width: 90%;
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-between;
+  .close{
+    mat-icon{
+      cursor: pointer;
+    }
+  }
+  p{
+    font-family: "Raleway", serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
+
+.guide{
+  width: 90%;
+  margin: 0 auto;
+  border: #959595 solid 1px;
+  border-radius: 5px;
+  h3{
+    margin-left: 15px;
+    margin-top: 10px;
+    color: #959595;
+  }
+}
+
+.detail-container{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 15px;
+  color: #959595;
+}
+.custom{
+  margin-top: 6px;
+}
+.custom-1{
+  margin-top: 14px;
+}
+
+.full-width {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.tags-container{
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 10px;
+}
+.first{
+  margin-top: 10px;
+}
+.black-outline {
+  ::ng-deep .mat-form-field-outline {
+    color: #cac9c9 !important;
+  }
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+}
+
+input{
+  color: #000000;
+}
+.mat-dialog-show {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.mat-dialog-actions {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px;
+
+}
+.submit-button{
+  background-color: #006dd3;
+  color: #ffffff;
+}
+
+.image-upload-section {
+  width: 90%;
+  margin: 0 auto;
+
+  .upload-container {
+    width: 100%;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      border-color: #666;
+    }
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #666;
+    }
+
+    .image-preview {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .remove-image {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.7);
+        }
+      }
+    }
+  }
+}

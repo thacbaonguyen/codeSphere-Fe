@@ -70,7 +70,7 @@ const routes: Routes = [
         component: BlogComponent,
         canActivate: [RouteGuardService],
         data: {
-          allowedRoles: ['ADMIN']
+          allowedRoles: ['ADMIN', 'MANAGER']
         }
       },
       {
