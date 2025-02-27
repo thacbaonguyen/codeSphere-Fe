@@ -23,7 +23,7 @@
       <img [src]="imageUrl" alt="{{blogDetail?.title}}" class="feature-image">
     </div>
 
-      <div class="content" [innerHTML]="blogDetail?.content | markdown">
+      <div class="content" [innerHTML]="sanitizedContent">
       </div>
 
     <div class="author">

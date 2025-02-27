@@ -1,18 +1,39 @@
-import {Component, EventEmitter, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, EventEmitter, Inject, OnInit, ViewChild} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BlogDetail} from "../../../models/blog-detail";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {BlogService} from "../../../services/blog/blog.service";
 import {GlobalConstants} from "../../../shared/global-constants";
-
+import {QuillEditorComponent} from "ngx-quill";
+import {SafeHtml} from "@angular/platform-browser";
 @Component({
   selector: 'app-action-blog',
   templateUrl: './action-blog.component.html',
   styleUrls: ['./action-blog.component.scss']
 })
 export class ActionBlogComponent implements OnInit {
+  @ViewChild('editor') editor: QuillEditorComponent | undefined;
+
+  quillConfig = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'header': 1 }, { 'header': 2 }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+      ['clean'],
+      ['link', 'image'],
+    ]
+  };
+
+
   onAddEvent = new EventEmitter();
   onEditEvent = new EventEmitter();
   blogDetail: BlogDetail | null = null;
@@ -23,9 +44,9 @@ export class ActionBlogComponent implements OnInit {
   //
   selectedFile: File | null = null;
   imagePreview: string | null = null;
-
   //
   isDuplicate: boolean = false;
+  //
   constructor(@Inject(MAT_DIALOG_DATA) private matDialogData: any,
               private formBuilder: FormBuilder,
               private blogService: BlogService,
@@ -34,7 +55,7 @@ export class ActionBlogComponent implements OnInit {
               private matDialogRef: MatDialogRef<ActionBlogComponent>) {
     this.blogForm = this.formBuilder.group({
       title: [null, [Validators.required]],
-      content: [null, [Validators.required]],
+      content: ['', [Validators.required]],
       excerpt: [null, [Validators.required]],
       isFeatured: [null, [Validators.required]],
       tags: this.formBuilder.array([this.createTag()]),
@@ -47,6 +68,34 @@ export class ActionBlogComponent implements OnInit {
       this.matDialogAction = 'edit';
       this.viewDetailBlog(this.matDialogData.data.slug)
     }
+  }
+
+  onEditorCreated(editor: any): void {
+    // Gán giá trị ban đầu từ form vào editor nếu có
+    const contentValue = this.blogForm.get('content').value;
+    if (contentValue) {
+      editor.clipboard.dangerouslyPasteHTML(contentValue);
+    }
+
+    // Đồng bộ giá trị từ form control
+    this.blogForm.get('content').valueChanges.subscribe((val: any) => {
+      if (val !== editor.root.innerHTML) {
+        editor.clipboard.dangerouslyPasteHTML(val);
+      }
+    });
+  }
+
+  onContentChanged(event: any): void {
+    // Cập nhật giá trị vào form control
+    const html = event.html;
+    if (html.trim() === '<p><br></p>' || html.trim() === '') {
+      this.blogForm.get('content').setValue(null);
+    } else {
+      this.blogForm.get('content').setValue(html);
+    }
+
+    // Đánh dấu là đã chạm vào control để hiển thị validation errors
+    this.blogForm.get('content').markAsTouched();
   }
 
   viewDetailBlog(slug: string){

@@ -41,7 +41,8 @@ export class BlogComponent implements OnInit {
     {value: {order: 'desc', by: 'createdAt'}, viewValue: 'Thời gian tạo mới nhất'},
     {value: {order: 'asc', by: 'createdAt'}, viewValue: 'Thời gian tạo cũ nhất'},
     {value: {order: 'desc', by: 'viewCount'}, viewValue: 'Lượt xem nhiều nhất'},
-    {value: {order: 'asc', by: 'viewCount'}, viewValue: 'Lượt xem ít nhất'}
+    {value: {order: 'asc', by: 'viewCount'}, viewValue: 'Lượt xem ít nhất'},
+    {value: {order: 'desc', by: 'updatedAt'}, viewValue: 'Mới chỉnh sửa'}
   ]
   //
   isAdmin$: Observable<boolean>;

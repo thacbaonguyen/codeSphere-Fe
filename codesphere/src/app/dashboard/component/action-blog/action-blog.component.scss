@@ -51,6 +51,7 @@
   width: 90%;
   height: auto;
   margin: 0 auto;
+  margin-top: 100px;
 }
 
 mat-form-field {
@@ -142,3 +143,24 @@ input{
     }
   }
 }
+
+.error-content{
+  margin-top: 200px;
+}
+.quill-editor-container {
+  width: 90%;
+  margin: 0 auto;
+
+  .editor-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+}
+.editor-error, .error {
+  color: #dc3545;
+  margin-top: 5px;
+  font-size: 12px;
+}
+

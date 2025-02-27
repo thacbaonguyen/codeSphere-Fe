@@ -64,7 +64,7 @@
         </mat-error>
       </mat-form-field>
 
-<!--      upfile-->
+      <!--      upfile-->
       <div class="image-upload-section">
         <div class="upload-container"
              (click)="fileInput.click()"
@@ -94,7 +94,7 @@
 
 
       <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline"
-        style="margin-top: 10px"
+                      style="margin-top: 10px"
       >
         <mat-label>Tóm tắt</mat-label>
         <textarea matInput formControlName="excerpt"
@@ -108,17 +108,35 @@
       </mat-form-field>
 
 
-      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline content-area">
-        <mat-label>Nội dung</mat-label>
-        <textarea matInput formControlName="content"
-                  cdkTextareaAutosize
-                  cdkAutosizeMinRows="30"
-                  cdkAutosizeMaxRows="40"
-        ></textarea>
-        <mat-error *ngIf="blogForm.controls.content.invalid && blogForm.controls.content.touched">
-          <span *ngIf="blogForm.controls.content.errors.required">Nội dung không được để trống</span>
-        </mat-error>
-      </mat-form-field>
+      <!--      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline content-area">-->
+      <!--        <mat-label>Nội dung</mat-label>-->
+      <!--        <textarea matInput formControlName="content"-->
+      <!--                  cdkTextareaAutosize-->
+      <!--                  cdkAutosizeMinRows="30"-->
+      <!--                  cdkAutosizeMaxRows="40"-->
+      <!--        ></textarea>-->
+      <!--        <mat-error *ngIf="blogForm.controls.content.invalid && blogForm.controls.content.touched">-->
+      <!--          <span *ngIf="blogForm.controls.content.errors.required">Nội dung không được để trống</span>-->
+      <!--        </mat-error>-->
+      <!--      </mat-form-field>-->
+
+      <div class="quill-editor-container">
+        <label class="editor-label">Nội dung</label>
+        <quill-editor
+          #editor
+          [modules]="quillConfig"
+          (onEditorCreated)="onEditorCreated($event)"
+          (onContentChanged)="onContentChanged($event)"
+        ></quill-editor>
+        <div
+          class="editor-error"
+          *ngIf="blogForm.controls.content.invalid && blogForm.controls.content.touched"
+        >
+      <span *ngIf="blogForm.controls.content.errors?.['required']">
+        Nội dung không được để trống
+      </span>
+        </div>
+      </div>
 
       <div formArrayName="tags" class="tags-container">
 
@@ -170,7 +188,7 @@
           <mat-option value="false">Không</mat-option>
         </mat-select>
         <mat-error *ngIf="blogForm.controls.isFeatured.invalid && blogForm.controls.isFeatured.touched">
-                    <span *ngIf="blogForm.controls.isFeatured.errors.required">Ghim không được để trống</span>
+          <span *ngIf="blogForm.controls.isFeatured.errors.required">Ghim không được để trống</span>
         </mat-error>
       </mat-form-field>
 
@@ -182,7 +200,7 @@
           <mat-option value="archived">Lưu trữ</mat-option>
         </mat-select>
         <mat-error *ngIf="blogForm.controls.status.invalid && blogForm.controls.status.touched">
-                    <span *ngIf="blogForm.controls.status.errors.required">Status không được để trống</span>
+          <span *ngIf="blogForm.controls.status.errors.required">Status không được để trống</span>
         </mat-error>
       </mat-form-field>
 

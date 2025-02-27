@@ -27,6 +27,9 @@ import { ViewExerciseComponent } from './component/view-exercise/view-exercise.c
 import {MarkdownPipe} from "../shared/markdown.pipe";
 import { ActionBlogComponent } from './component/action-blog/action-blog.component';
 import { ViewBlogComponent } from './component/view-blog/view-blog.component';
+// import {QuillModule} from "ngx-quill";
+import {SharedQuillModule} from "../shared/quill/quill.module";
+
 
 @NgModule({
   imports: [
@@ -36,6 +39,9 @@ import { ViewBlogComponent } from './component/view-blog/view-blog.component';
     RouterModule.forChild(DashboardRoutes),
     FormsModule,
     ReactiveFormsModule,
+    SharedQuillModule,
+    // QuillModule.forRoot()
+
   ],
   declarations: [DashboardComponent,
     SidebarComponent,
