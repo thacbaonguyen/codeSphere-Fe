@@ -14,6 +14,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../../../services/auth/auth.service";
 import {ViewExerciseComponent} from "../../component/view-exercise/view-exercise.component";
 import {ViewBlogComponent} from "../../component/view-blog/view-blog.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-blog',
@@ -51,7 +52,7 @@ export class BlogComponent implements OnInit {
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
               private ngxUiLoader: NgxUiLoaderService,
-              private authService: AuthService) {
+              private authService: AuthService,) {
     this.isAdmin$ = this.authService.isAdmin();
     this.sub = this.authService.subAcc()
   }
@@ -72,6 +73,7 @@ export class BlogComponent implements OnInit {
     this.searchQuery = '';
     this.loadAllBlogsByTag()
   }
+
 
   loadAllBlogs(){
     var data = {
