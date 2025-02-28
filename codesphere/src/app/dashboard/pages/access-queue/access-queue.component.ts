@@ -4,11 +4,12 @@ import {AccessRoleService} from "../../../services/access-role/access-role.servi
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-access',
-  templateUrl: './access.component.html',
-  styleUrls: ['./access.component.scss']
+  selector: 'app-access-queue',
+  templateUrl: './access-queue.component.html',
+  styleUrls: ['./access-queue.component.scss']
 })
-export class AccessComponent implements OnInit {
+export class AccessQueueComponent implements OnInit {
+
   displayColumns: string[] = ['stt', 'username', 'email', 'role', 'roles', 'status', 'actions'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   error: string = '';
@@ -39,13 +40,16 @@ export class AccessComponent implements OnInit {
 
   updateUrlParams(){
     const queryParams: any = {};
+
       queryParams.search = this.searchQuery.trim();
+
 
     if (this.currentPage > 1) {
       queryParams.page = this.currentPage;
     }
 
       queryParams.role = this.role;
+
 
     this.router.navigate([], {
       relativeTo: this.route,
@@ -60,7 +64,7 @@ export class AccessComponent implements OnInit {
       search: this.searchQuery,
       page: this.currentPage,
       role: this.role,
-      status: 'true'
+      status: 'false'
     }
     this.accessRoleService.getAllRequest(data).subscribe({
       next: (response: any)=>{

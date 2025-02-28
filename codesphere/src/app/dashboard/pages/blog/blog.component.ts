@@ -52,13 +52,24 @@ export class BlogComponent implements OnInit {
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
               private ngxUiLoader: NgxUiLoaderService,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.isAdmin$ = this.authService.isAdmin();
     this.sub = this.authService.subAcc()
   }
 
   ngOnInit(): void {
-    this.loadAllBlogs()
+    // this.loadAllBlogs()
+    this.route.queryParams.subscribe(params =>{
+      this.searchQuery = params['search'] || '';
+      this.isFeatured = params['isFeatured'] || null;
+      this.currentPage = params['page'] || 1;
+      this.selectedFilter ? this.selectedFilter.order : params['order'] || '';
+      this.selectedFilter ? this.selectedFilter.by : params['by'] || '';
+
+      this.loadAllBlogs()
+    })
   }
 
   search(){
@@ -74,7 +85,26 @@ export class BlogComponent implements OnInit {
     this.loadAllBlogsByTag()
   }
 
+  updateUrlParams(){
+    const queryParams: any = {};
+      queryParams.search = this.searchQuery.trim()
 
+    if (this.currentPage > 1){
+      queryParams.page = this.currentPage
+    }
+
+      queryParams.isFeatured = this.isFeatured
+
+      queryParams.order = this.selectedFilter?.order;
+      queryParams.by = this.selectedFilter?.by
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+      replaceUrl: true
+    })
+  }
   loadAllBlogs(){
     var data = {
       search: this.searchQuery,
@@ -93,6 +123,8 @@ export class BlogComponent implements OnInit {
         this.currentPage = response.data.number + 1;
         this.pageSize = response.data.size;
         this.totalRecord = response.data.totalElements
+
+        this.updateUrlParams()
       },
       error: (err: any)=>{
         this.error = 'Error loading all blogs';
@@ -137,21 +169,11 @@ export class BlogComponent implements OnInit {
   }
 
   showSearchButton(){
-    if (this.searchQuery){
-      this.isSearching = true
-    }
-    else {
-      this.isSearching = false
-    }
+    this.isSearching = !!this.searchQuery.trim();
   }
 
   showSearchTagButton(){
-    if (this.tagQuery){
-      this.isTagSearching = true
-    }
-    else {
-      this.isTagSearching = false
-    }
+    this.isTagSearching = !!this.tagQuery.trim();
   }
 
   handleViewBlog(blog: Blog){

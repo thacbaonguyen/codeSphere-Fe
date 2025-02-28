@@ -29,6 +29,7 @@ import { ActionBlogComponent } from './component/action-blog/action-blog.compone
 import { ViewBlogComponent } from './component/view-blog/view-blog.component';
 // import {QuillModule} from "ngx-quill";
 import {SharedQuillModule} from "../shared/quill/quill.module";
+import { AccessQueueComponent } from './pages/access-queue/access-queue.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {SharedQuillModule} from "../shared/quill/quill.module";
     ViewExerciseComponent,
     MarkdownPipe,
     ActionBlogComponent,
-    ViewBlogComponent
+    ViewBlogComponent,
+    AccessQueueComponent
   ]
 })
 export class DashboardModule {

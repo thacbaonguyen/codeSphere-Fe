@@ -59,7 +59,7 @@
       <mat-form-field>
         <mat-label>Post được ghim</mat-label>
         <mat-select [(ngModel)]="isFeatured" (selectionChange)="search()">
-          <mat-option>Mặc định</mat-option>
+          <mat-option [value]="">Mặc định</mat-option>
           <mat-option value="true">Có</mat-option>
           <mat-option value="false">Không</mat-option>
         </mat-select>
