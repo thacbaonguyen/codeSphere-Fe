@@ -35,24 +35,30 @@ html, body {
   font-weight: bold;
 }
 
+.intro-container{
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  gap: 275px;
+  justify-content: space-between;
+  padding-top: 150px;
+  background-color: #FFF3DF ;
+}
+
 .intro{
     width: 516px;
     height: 117px;
     font-size: 49px;
     font-weight: 900;
-    padding-left: 223px;
+    //padding-left: 223px;
     padding-top: 100px;
     margin-bottom: 0;
   line-height: 1.01;
 }
-.intro-container{
-    display: flex;
-    padding-top: 150px;
-  background-color: #FFF3DF ;
-}
+
 .illustration{
     height: 320px;
-    padding-left: 300px;
+    //padding-left: 300px;
     margin-top: 50px;
 }
 .description{
@@ -60,12 +66,10 @@ html, body {
     height: 56px;
     font-size: 20px;
     font-weight: 200;
-    padding-left: 223px;
     color: #4D4D4D;
   margin-top: 10px;
 }
 .join-button{
-    margin-left: 223px;
     height: 49px;
     width: 178px;
     background-color: #408AD0;
@@ -139,8 +143,7 @@ p{
 .contact-us{
     display: flex;
     margin: 0 auto;
-    width: 1100px;
-    height: 350px;
+    width: 65%;
     background-color: #FEFCFA;
     margin-top: 80px;
     transition: transform 0.3s ease-in-out;
@@ -157,16 +160,17 @@ p{
 .contact-us img{
     margin-left: 0px;
     margin-top: 0px;
-    width: 700px;
+    width: 60%;
     object-fit: cover;
 }
 .contact-text{
-  padding-right: 100px;
-  margin-top: 50px;
+  margin: 0 auto;
+  margin-top: 30px;
+  h2{
+    font-weight: 700;
+  }
 }
-.contact-text h2{
-  font-weight: 700;
-}
+
 .location{
     margin-left: 0px;
     margin-top: 0px;
@@ -178,21 +182,14 @@ h3{
     font-weight: 100;
     font-size: 15px;
 }
-.location-container{
-    display: flex;
-}
-
-.location-container h3 {
-  margin-top: 10px;
-}
 
 .media-icon{
     display: flex;
-    width: 20px;
+  flex-wrap: wrap;
     height: auto;
     margin-left: 0px;
     margin-top: 0px;
-    width: 200px;
+    width: 100%;
     gap: 20px;
 }
 .media-icon img {

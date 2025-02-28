@@ -12,10 +12,11 @@
   border-bottom: 1px solid rgba(255,255,255,0.1);
   display: flex;
   gap: 10px;
-  align-items: center;
-
+  //align-items: center;
+  justify-content: start;
   img{
     height: 25px;
+    margin: 0;
   }
 
   h2 {

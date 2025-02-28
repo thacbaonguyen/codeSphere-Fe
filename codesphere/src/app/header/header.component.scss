@@ -16,6 +16,7 @@ body {
 }
 
 .navbar {
+  width: 75%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,7 +31,7 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-    padding-left: 223px;
+    //padding-left: 223px;
 }
 
 .text-logo{
@@ -41,13 +42,19 @@ body {
   font-weight: bold;
 }
 
+.menu-auth{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
 .menu {
     list-style: none;
     display: flex;
     gap: 20px;
-    margin-left: 350px;
+    //margin-left: 350px;
     font-family: "Raleway";
 }
+
 
 .menu li:hover{
     transform: scale(1.1);
@@ -69,7 +76,7 @@ body {
 .auth-buttons {
     display: flex;
     gap: 10px;
-    margin-right: 100px;
+    //margin-right: 100px;
 }
 
 .auth-buttons button{

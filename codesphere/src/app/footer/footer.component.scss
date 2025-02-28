@@ -1,41 +1,45 @@
-body{
-    background-color: #2F2E41;
-    height: 297px;
+
+.footer-container{
+  background-color: #2F2E41;
+  height: 10%;
 }
 .space{
     height: 200px;
     background-color: #fff3df;
 }
+.box{
+  background-color: #2F2E41;
+  padding-top: 30px;
+}
 .company{
+  h3{
     color: #9291A1;
     font-family: "Raleway";
     font-weight: bold;
     font-size: 16px;
-    height: 44px;
     width: 200px;
-    margin-left: 200px;
-    padding-top: 50px;
-}
-.container{
-    display: flex;
+  }
 
+}
+.information-container{
+  width: 70%;
+  margin: 0 auto;
+    display: flex;
+  justify-content: space-between;
+    background-color: #2F2E41;
+}
+.information{
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
 }
 .resource, .service, .contact{
     color: #9291A1;
-    padding-top: 30px;
 }
 .main{
     color: #ffffff;
 }
-.resource{
-    margin-left: 800px;
-}
-.service{
-    margin-left: 50px;
-}
-.contact{
-    margin-left: 50px;
-}
+
 .copy-right{
     background-color: #222132;
     height: 76px;
