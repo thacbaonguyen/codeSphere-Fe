@@ -6,6 +6,9 @@
 `npm v6.14.10`
 
 `Angular material` `npm i @angular/material` -> `ng add @angular/material`
+
+`quill-editor` `npm install ngx-quill@14.3.0` `npm install quill@1.3.7` `npm install @types/quill@1.3.10`
+
 ### Build
 `npm install`
 ### Run
