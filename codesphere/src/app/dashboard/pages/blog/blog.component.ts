@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Blog} from "../../../models/blog";
 import {BlogService} from "../../../services/blog/blog.service";
 import {SnackbarService} from "../../../services/snackbar.service";
@@ -29,13 +29,14 @@ export class BlogComponent implements OnInit {
   currentPage = 1;
   pageSize = 0;
   error: string = '';
-
+  //
+  private isLoadingFromParams: boolean = false;
   //filter va search
   searchQuery: string = '';
   tagQuery: string = '';
   isSearching = false;
   isTagSearching = false;
-  selectedFilter: FilterOptions | null = null;
+  selectedFilter: FilterOptions = <FilterOptions>{};
   isFeatured: any;
 
   filterOptions = [
@@ -48,6 +49,7 @@ export class BlogComponent implements OnInit {
   //
   isAdmin$: Observable<boolean>;
   sub: any;
+
   constructor(private blogService: BlogService,
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
@@ -61,42 +63,52 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     // this.loadAllBlogs()
-    this.route.queryParams.subscribe(params =>{
-      this.searchQuery = params['search'] || '';
+    this.route.queryParams.subscribe(params => {
+      if (params['search']){
+        this.searchQuery = params['search']
+      }
       this.isFeatured = params['isFeatured'] || null;
       this.currentPage = params['page'] || 1;
-      this.selectedFilter ? this.selectedFilter.order : params['order'] || '';
-      this.selectedFilter ? this.selectedFilter.by : params['by'] || '';
+      if (params['order']){
+        this.selectedFilter.order = params['order']
+      }
+      if (params['by']){
+        this.selectedFilter.by = params['by']
+      }
 
-      this.loadAllBlogs()
+      if (!this.isLoadingFromParams) {
+        this.loadAllBlogs()
+      }
+
+      this.isLoadingFromParams = true;
     })
   }
 
-  search(){
+  search() {
     this.currentPage = 1;
-    this.tagQuery= '';
+    this.tagQuery = '';
     this.loadAllBlogs()
     console.log('current page:', this.currentPage)
   }
 
-  searchTag(){
+  searchTag() {
     this.currentPage = 1;
     this.searchQuery = '';
     this.loadAllBlogsByTag()
   }
 
-  updateUrlParams(){
+  updateUrlParams() {
     const queryParams: any = {};
-      queryParams.search = this.searchQuery.trim()
+    queryParams.search = this.searchQuery.trim()
 
-    if (this.currentPage > 1){
+    if (this.currentPage > 1) {
       queryParams.page = this.currentPage
     }
 
-      queryParams.isFeatured = this.isFeatured
+    queryParams.isFeatured = this.isFeatured
 
-      queryParams.order = this.selectedFilter?.order;
-      queryParams.by = this.selectedFilter?.by
+    queryParams.order = this.selectedFilter?.order;
+    queryParams.by = this.selectedFilter?.by
 
     this.router.navigate([], {
       relativeTo: this.route,
@@ -104,8 +116,10 @@ export class BlogComponent implements OnInit {
       queryParamsHandling: "merge",
       replaceUrl: true
     })
+
   }
-  loadAllBlogs(){
+
+  loadAllBlogs() {
     var data = {
       search: this.searchQuery,
       isFeatured: this.isFeatured,
@@ -116,7 +130,7 @@ export class BlogComponent implements OnInit {
     }
     this.ngxUiLoader.start();
     this.blogService.getAllBlogs(data).subscribe({
-      next: (response: any)=>{
+      next: (response: any) => {
         this.ngxUiLoader.stop();
         this.dataSource = response.data.content;
         this.totalPages = response.data.totalPages;
@@ -126,7 +140,7 @@ export class BlogComponent implements OnInit {
 
         this.updateUrlParams()
       },
-      error: (err: any)=>{
+      error: (err: any) => {
         this.error = 'Error loading all blogs';
         this.snackbar.openSnackBar('Lỗi tải trang', GlobalConstants.error);
         this.ngxUiLoader.stop();
@@ -135,7 +149,7 @@ export class BlogComponent implements OnInit {
     })
   }
 
-  loadAllBlogsByTag(){
+  loadAllBlogsByTag() {
     var data = {
       tagName: this.tagQuery,
       isFeatured: this.isFeatured,
@@ -146,7 +160,7 @@ export class BlogComponent implements OnInit {
     }
     this.ngxUiLoader.start();
     this.blogService.getAllBlogsByTag(data).subscribe({
-      next: (response: any)=>{
+      next: (response: any) => {
         this.ngxUiLoader.stop();
         this.dataSource = response.data.content;
         this.totalPages = response.data.totalPages;
@@ -154,7 +168,7 @@ export class BlogComponent implements OnInit {
         this.pageSize = response.data.size;
         this.totalRecord = response.data.totalElements
       },
-      error: (err: any)=>{
+      error: (err: any) => {
         this.error = 'Error loading all blogs';
         this.snackbar.openSnackBar('Lỗi tải trang', GlobalConstants.error);
         this.ngxUiLoader.stop();
@@ -163,20 +177,20 @@ export class BlogComponent implements OnInit {
     })
   }
 
-  onPageChange(pageNumber: number){
+  onPageChange(pageNumber: number) {
     this.currentPage = pageNumber;
     this.loadAllBlogs()
   }
 
-  showSearchButton(){
+  showSearchButton() {
     this.isSearching = !!this.searchQuery.trim();
   }
 
-  showSearchTagButton(){
+  showSearchTagButton() {
     this.isTagSearching = !!this.tagQuery.trim();
   }
 
-  handleViewBlog(blog: Blog){
+  handleViewBlog(blog: Blog) {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "1000px";
     matDialogConfig.disableClose = true;
@@ -187,7 +201,7 @@ export class BlogComponent implements OnInit {
   }
 
 
-  handleDeleteAction(blog: Blog){
+  handleDeleteAction(blog: Blog) {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "700px";
     matDialogConfig.data = {
@@ -196,14 +210,14 @@ export class BlogComponent implements OnInit {
     }
     const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
     const subscription = matDialogRef.componentInstance.onEmitStatusChange.subscribe({
-      next: (response: any)=>{
+      next: (response: any) => {
         this.blogService.deleteBlog(blog.id).subscribe({
-          next: (response: any)=>{
+          next: (response: any) => {
             this.snackbar.openSnackBar('Xóa bài tập thành công!', '');
             matDialogRef.close()
             this.loadAllBlogs()
           },
-          error: (err: any)=>{
+          error: (err: any) => {
             this.snackbar.openSnackBar('Đã xảy ra lỗi, xóa bài tập thất bại!', GlobalConstants.error);
             matDialogRef.close()
             console.error("error delete exercise", err)
@@ -214,7 +228,7 @@ export class BlogComponent implements OnInit {
 
   }
 
-  handleAddAction(){
+  handleAddAction() {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "900px";
     matDialogConfig.disableClose = true;
@@ -222,14 +236,14 @@ export class BlogComponent implements OnInit {
       action: 'add'
     }
     const matDialogRef = this.matDialog.open(ActionBlogComponent, matDialogConfig)
-    const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any)=>{
+    const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any) => {
       matDialogRef.close();
       console.log("check event add")
       this.search()
     })
   }
 
-  handleEditAction(blog: Blog){
+  handleEditAction(blog: Blog) {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "1000px";
     matDialogConfig.disableClose = true;
@@ -238,7 +252,7 @@ export class BlogComponent implements OnInit {
       data: blog
     }
     const matDialogRef = this.matDialog.open(ActionBlogComponent, matDialogConfig)
-    const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any)=>{
+    const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any) => {
       matDialogRef.close();
       console.log("check event edit")
       this.search()

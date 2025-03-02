@@ -22,6 +22,7 @@ import { ConfirmationComponent } from './material-component/dialog/confirmation/
 import { ChangePasswordComponent } from './material-component/dialog/change-password/change-password.component';
 import {TokenInterceptorInterceptor} from "./services/interceptor/token-interceptor.interceptor";
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ExerciseRsComponent } from './exercise-rs/exercise-rs.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -69,6 +70,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ConfirmationComponent,
     ChangePasswordComponent,
     UnauthorizedComponent,
+    ExerciseRsComponent,
   ],
   imports: [
     BrowserModule,

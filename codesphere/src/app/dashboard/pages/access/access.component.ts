@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {AccessRoleService} from "../../../services/access-role/access-role.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
+import {SnackbarService} from "../../../services/snackbar.service";
+import {GlobalConstants} from "../../../shared/global-constants";
 
 @Component({
   selector: 'app-access',
@@ -12,6 +16,7 @@ export class AccessComponent implements OnInit {
   displayColumns: string[] = ['stt', 'username', 'email', 'role', 'roles', 'status', 'actions'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   error: string = '';
+  responseMessage: string = '';
   //
   searchQuery: string = '';
   isSearching: boolean = false;
@@ -22,7 +27,9 @@ export class AccessComponent implements OnInit {
   role: string = '';
   constructor(private accessRoleService: AccessRoleService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private matDialog: MatDialog,
+              private snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     // this.loadAllRequest()
@@ -79,6 +86,43 @@ export class AccessComponent implements OnInit {
         console.error(this.error, err)
       }
     })
+  }
+
+  deactivateUserRole(item: any){
+    var data = {
+      isAccepted: 'false'
+    }
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "500px";
+    matDialogConfig.data = {
+      message: "hủy quyền này của người dùng không",
+      confirmation: true
+    }
+    const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
+    const subscription = matDialogRef.componentInstance.onEmitStatusChange.subscribe((response: any)=>{
+      matDialogRef.close()
+      this.accessRoleService.activateRequest(item.id, data).subscribe({
+        next: (response: any)=>{
+          this.responseMessage = response?.message;
+          this.snackbar.openSnackBar(this.responseMessage, '');
+
+          this.loadAllRequest()
+        },
+        error: (err: any)=>{
+          if (err.error?.message){
+            this.responseMessage = err.error.message
+          }
+          else {
+            this.responseMessage = GlobalConstants.generateError
+          }
+          this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+          this.error = 'Error deactivate user'
+          console.error(this.error, err)
+        }
+
+      })
+    })
+
   }
 
   showSearchButton(){

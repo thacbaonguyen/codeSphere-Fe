@@ -7,7 +7,7 @@
 
   <div class="header">
 
-    <div class="title"> Danh sách blogs</div>
+    <div class="title"> Danh sách chờ</div>
 
     <div class="search">
       <div class="search-container">
@@ -83,10 +83,10 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
       <mat-cell *matCellDef="let item">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="clusterActivate(item, 'done')">
           <mat-icon color="primary">done</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="clusterActivate(item, 'cancel')">
           <mat-icon color="warn">cancel</mat-icon>
         </button>
       </mat-cell>

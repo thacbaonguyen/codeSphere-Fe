@@ -36,9 +36,9 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     // bắt err
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // neu loi 401 -> rf token
-          return this.handle401Error(request, next);
+        if (error.status === 403) {
+          // neu loi 403 -> rf token
+          return this.handle403Error(request, next);
         }
         return throwError(() => error);
       })
@@ -46,13 +46,13 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
   }
 
   /**
-   * handle lỗi 401
+   * handle lỗi 403
    * @param request
    * @param next
    */
-  handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  handle403Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (!this.isRefreshing) {
-      this.isRefreshing = true; // bat dau qua trinh rf tk. khi request khác truy đưuọc gọi mà gặp lỗi 401 thì rơi xuống dòng 78-> đợi rf tk
+      this.isRefreshing = true; // bat dau qua trinh rf tk. khi request khác truy đưuọc gọi mà gặp lỗi 403 thì rơi xuống dòng 78-> đợi rf tk
       this.refreshTokenSubject.next(null);
 
       const currentToken = localStorage.getItem('token');
@@ -64,7 +64,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
             this.refreshTokenSubject.next(response.data.token); //emit token mới cho các rq đang đợi ở dòng 78
 
             localStorage.setItem('token', response.data.token);
-            return next.handle(this.addToken(request, response.data.token)); // thưcj hiện lại rq ban đầu bị 401 với tk mới
+            return next.handle(this.addToken(request, response.data.token)); // thưcj hiện lại rq ban đầu bị 403 với tk mới
           }),
           // bắt err
           catchError((err: HttpErrorResponse) => {

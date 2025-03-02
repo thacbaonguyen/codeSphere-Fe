@@ -16,6 +16,7 @@
 
   img{
     height: 25px;
+    margin: 0;
   }
 
   h2 {
@@ -103,6 +104,13 @@
     }
   }
 }
+.submenu-container:has(.submenu-link.active) {
+  > .menu-link {
+    background-color: rgba(33, 150, 243, 0.3);
+    color: white;
+  }
+}
+
 
 // Submenu
 .submenu {

@@ -1,0 +1,48 @@
+.mat-elevation-z8 {
+  margin: 20px;
+  margin-top: 70px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+}
+
+.title{
+  font-weight: bold;
+  font-size: 25px;
+  font-family: "Raleway", serif;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+
+.error-message {
+  color: red;
+  text-align: center;
+  padding: 20px;
+  //background-color: #eaf0f5;
+}
+
+.filter-option{
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+.mat-column-stt {
+  flex: 0 0 3%;
+}
+
+
+.mat-cell {
+  padding: 12px 8px;
+  word-break: break-word; // Cho phép break word khi cần
+  white-space: normal; // Cho phép text xuống dòng
+  line-height: 1.2; // Điều chỉnh khoảng cách giữa các dòng
+}
+.mat-button-icon{
+  flex-wrap: wrap;
+}

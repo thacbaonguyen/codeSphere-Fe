@@ -1,0 +1,42 @@
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p>Chi tiết bài tập</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+
+  <div class="content">
+
+      <div class="title">
+        <p>{{ contributeDetail?.title }}</p>
+      </div>
+
+      <div class="paper" [innerHTML]="contributeDetail?.paper | markdown">
+      </div>
+      <h4 style="font-weight: bold">Ví dụ</h4>
+      <div class="example-table">
+        <table>
+          <tr>
+            <td>Input</td>
+            <td>Output</td>
+          </tr>
+          <tr>
+            <td>
+              <pre>{{ contributeDetail?.input }}</pre>
+            </td>
+            <td>
+              <pre>{{ contributeDetail?.output }}</pre>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+      <br>
+    <div class="note" *ngIf="contributeDetail.note">
+      <p>Note: {{contributeDetail.note}}</p>
+    </div>
+
+  </div>
+</mat-dialog-content>

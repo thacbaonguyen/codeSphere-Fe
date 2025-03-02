@@ -43,6 +43,10 @@
         Giới hạn thời gian: {{ exerciseDetail?.timeLimit }} s
       </div>
       <div class="memory-limit">Giới hạn bộ nhớ:  {{ exerciseDetail?.memoryLimit }} Kb</div>
+      <br>
+      <div *ngIf="exerciseDetail?.note">
+        <span>Note:  {{exerciseDetail.note}}</span>
+      </div>
     </div>
   </div>
 </mat-dialog-content>
