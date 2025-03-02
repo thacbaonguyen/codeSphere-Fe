@@ -110,6 +110,10 @@ export class UserService {
 
   }
 
+  checkToken(){
+    return this.httpClient.get(this.url + "/auth/check-token");
+  }
+
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');

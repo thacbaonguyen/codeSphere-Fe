@@ -25,7 +25,7 @@ export class ExerciseComponent implements OnInit {
   isSearching: boolean = false;
   subjectFilter: string = 'Java';
   error: string = '';
-  selectedFilter : FilterOptions | null = null;
+  selectedFilter : FilterOptions = <FilterOptions>{};
 
   totalRecord: any;
 

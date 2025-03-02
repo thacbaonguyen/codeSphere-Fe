@@ -4,8 +4,12 @@
   height: 10%;
 }
 .space{
-    height: 200px;
-    background-color: #fff3df;
+  height: 200px;
+  background-color: #fff3df;
+}
+.box{
+  background-color: #2F2E41;
+  padding-top: 30px;
 }
 .box{
   background-color: #2F2E41;
@@ -17,16 +21,16 @@
     font-family: "Raleway";
     font-weight: bold;
     font-size: 16px;
-    width: 200px;
+    max-width: 200px;
   }
 
 }
 .information-container{
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
-    display: flex;
+  display: flex;
   justify-content: space-between;
-    background-color: #2F2E41;
+  background-color: #2F2E41;
 }
 .information{
   display: flex;
@@ -34,23 +38,25 @@
   gap: 20px;
 }
 .resource, .service, .contact{
-    color: #9291A1;
+
+  color: #9291A1;
 }
 .main{
-    color: #ffffff;
+  color: #ffffff;
+
 }
 
 .copy-right{
-    background-color: #222132;
-    height: 76px;
-    display: flex;
-    color: #DBDBE9;
-    padding-top: 30px;
-    justify-content: space-around;
+  background-color: #222132;
+  max-width: 90%;
+  margin: 0 auto;
+  height: 76px;
+  display: flex;
+  color: #DBDBE9;
+  padding-top: 30px;
+  justify-content: space-between;
 }
-.ptit{
-    margin-right: 400px;
+.box-2{
+  background-color: #222132;
 }
-.made{
-    margin-right: 0px;
-}
+

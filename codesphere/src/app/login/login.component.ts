@@ -7,6 +7,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {Router} from "@angular/router";
 import {GlobalConstants} from "../shared/global-constants";
 import {ForgotPasswordComponent} from "../material-component/dialog/forgot-password/forgot-password.component";
+import {SignupComponent} from "../signup/signup.component";
 
 @Component({
   selector: 'app-login',
@@ -69,5 +70,12 @@ export class LoginComponent implements OnInit {
       }
       this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
+  }
+
+  handleSignupAction(){
+    this.matDialogRef.close()
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "700px";
+    this.matDialog.open(SignupComponent, matDialogConfig);
   }
 }

@@ -4,15 +4,16 @@ import {AccessRoleService} from "../../../services/access-role/access-role.servi
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../../../material-component/dialog/confirmation/confirmation.component";
-import {SnackbarService} from "../../../services/snackbar.service";
 import {GlobalConstants} from "../../../shared/global-constants";
+import {SnackbarService} from "../../../services/snackbar.service";
 
 @Component({
-  selector: 'app-access',
-  templateUrl: './access.component.html',
-  styleUrls: ['./access.component.scss']
+  selector: 'app-access-queue',
+  templateUrl: './access-queue.component.html',
+  styleUrls: ['./access-queue.component.scss']
 })
-export class AccessComponent implements OnInit {
+export class AccessQueueComponent implements OnInit {
+
   displayColumns: string[] = ['stt', 'username', 'email', 'role', 'roles', 'status', 'actions'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   error: string = '';
@@ -28,8 +29,8 @@ export class AccessComponent implements OnInit {
   constructor(private accessRoleService: AccessRoleService,
               private router: Router,
               private route: ActivatedRoute,
-              private matDialog: MatDialog,
-              private snackbar: SnackbarService) { }
+              private snackbar: SnackbarService,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     // this.loadAllRequest()
@@ -46,13 +47,16 @@ export class AccessComponent implements OnInit {
 
   updateUrlParams(){
     const queryParams: any = {};
+
       queryParams.search = this.searchQuery.trim();
+
 
     if (this.currentPage > 1) {
       queryParams.page = this.currentPage;
     }
 
       queryParams.role = this.role;
+
 
     this.router.navigate([], {
       relativeTo: this.route,
@@ -67,7 +71,7 @@ export class AccessComponent implements OnInit {
       search: this.searchQuery,
       page: this.currentPage,
       role: this.role,
-      status: 'true'
+      status: 'false'
     }
     this.accessRoleService.getAllRequest(data).subscribe({
       next: (response: any)=>{
@@ -88,20 +92,37 @@ export class AccessComponent implements OnInit {
     })
   }
 
-  deactivateUserRole(item: any){
+  clusterActivate(item: any, status: string){
+    if (status === 'cancel'){
+      this.activateUserRole("false", item.id)
+    }
+    else {
+      this.activateUserRole("true", item.id)
+    }
+  }
+
+  activateUserRole(status: any, id: number){
     var data = {
-      isAccepted: 'false'
+      isAccepted: status
     }
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = "500px";
-    matDialogConfig.data = {
-      message: "hủy quyền này của người dùng không",
-      confirmation: true
+    if (status === 'false'){
+      matDialogConfig.data = {
+        message: "hủy quyền này của người dùng không",
+        confirmation: true
+      }
+    }
+    if (status === 'true'){
+      matDialogConfig.data = {
+        message: "duyệt quyền này của người dùng không",
+        confirmation: true
+      }
     }
     const matDialogRef = this.matDialog.open(ConfirmationComponent, matDialogConfig);
     const subscription = matDialogRef.componentInstance.onEmitStatusChange.subscribe((response: any)=>{
       matDialogRef.close()
-      this.accessRoleService.activateRequest(item.id, data).subscribe({
+      this.accessRoleService.activateRequest(id, data).subscribe({
         next: (response: any)=>{
           this.responseMessage = response?.message;
           this.snackbar.openSnackBar(this.responseMessage, '');
@@ -116,7 +137,7 @@ export class AccessComponent implements OnInit {
             this.responseMessage = GlobalConstants.generateError
           }
           this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
-          this.error = 'Error deactivate user'
+          this.error = 'Error activate/deactivate user'
           console.error(this.error, err)
         }
 

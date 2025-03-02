@@ -98,7 +98,10 @@ export class SidebarComponent implements OnInit {
       {
         title: 'Quyền',
         icon: 'pan_tool',
-        path: '/codesphere/dashboard/permissions',
+        children: [
+          { title: 'Đã chấp thuận', path: '/codesphere/dashboard/permissions/accepted' },
+          { title: 'Chưa phản hồi', path: '/codesphere/dashboard/permissions/queue' }
+        ],
         roles: ['ADMIN'], // chỉ admin được truy cập danh sách đăng ký quyền
         type: 'action'
       },

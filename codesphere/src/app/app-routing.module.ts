@@ -17,6 +17,8 @@ import {
   ContributeAcceptedComponent
 } from "./dashboard/pages/contribute/contribute-accepted/contribute-accepted.component";
 import {ContributeQueueComponent} from "./dashboard/pages/contribute/contribute-queue/contribute-queue.component";
+import {AccessQueueComponent} from "./dashboard/pages/access-queue/access-queue.component";
+import {ExerciseRsComponent} from "./exercise-rs/exercise-rs.component";
 
 const routes: Routes = [
   {
@@ -78,8 +80,16 @@ const routes: Routes = [
         component: BookComponent
       },
       {
-        path: 'dashboard/permissions',
+        path: 'dashboard/permissions/accepted',
         component: AccessComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          allowedRoles: ['ADMIN']
+        }
+      },
+      {
+        path: 'dashboard/permissions/queue',
+        component: AccessQueueComponent,
         canActivate: [RouteGuardService],
         data: {
           allowedRoles: ['ADMIN']
@@ -118,6 +128,10 @@ const routes: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'exercise',
+    component: ExerciseRsComponent
   },
   {
     path: '**',

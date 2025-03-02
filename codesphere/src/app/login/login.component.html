@@ -2,6 +2,7 @@
 <body>
 <div class="header">
   <h1 class="title">Đăng nhập</h1>
+  <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
 </div>
 <div class="form">
   <form action="" [formGroup]="loginForm">
@@ -37,10 +38,18 @@
   <button type="submit" mat-raised-button class="submit-button" (click)="handleSubmit()" [disabled]="!loginForm.valid">Đăng nhập</button>
 </div>
 <div class="google">
-  <img class="gg-icon" src="../../assets/images/logo-gg.svg" alt="">
-  <button class="gg-button" mat-raised-button>
-    Đăng nhập bằng Google
-  </button>
+  <div><img class="gg-icon" src="../../assets/images/logo-gg.svg" alt=""></div>
+  <div>
+    <button class="gg-button" mat-raised-button>
+      Đăng nhập bằng Google
+    </button>
+  </div>
 
+
+</div>
+
+<div class="register">
+  <p>Bạn chưa có có tài khoản?</p>
+  <button class="link-button" (click)="handleSignupAction()">Đăng ký ngay!</button>
 </div>
 </body>

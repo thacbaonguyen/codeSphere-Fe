@@ -11,18 +11,19 @@
 
   </div>
 
-
+  <div class="menu-auth">
   <ul class="menu">
-    <li><a href="#" class="active">Trang chủ</a></li>
-    <li><a href="#">Bài tập</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Khóa học</a></li>
-    <li><a href="#">Sách</a></li>
+    <li><a href="#" class="active" >Trang chủ</a></li>
+    <li><a (click)="redirectTo('/exercise')">Bài tập</a></li>
+    <li><a (click)="redirectTo('/blog')">Blog</a></li>
+    <li><a (click)="redirectTo('/course')">Khóa học</a></li>
+    <li><a (click)="redirectTo('/book')">Sách</a></li>
   </ul>
 
   <div class="auth-buttons">
     <button class="register" (click)="handleSignupAction()">Đăng ký</button>
     <button class="login" (click)="handleLoginAction()">Đăng nhập</button>
+  </div>
   </div>
 </nav>
 

@@ -1,45 +1,45 @@
 <app-dashboard-header
-  parentTitle = 'Phân quyền - accepted'
-  childTitle = 'Quản lý danh sách quyền đã được chấp thuận'
+  parentTitle = 'Phân quyền - chờ'
+  childTitle = 'Quản lý danh sách quyền đang chờ phản hồi'
 ></app-dashboard-header>
 
 <div class="mat-elevation-z8">
 
   <div class="header">
 
-    <div class="title"> Danh sách chấp thuận</div>
+    <div class="title"> Danh sách chờ</div>
 
-      <div class="search">
-        <div class="search-container">
-          <input
-            type="text"
-            placeholder="Tìm theo username"
-            [(ngModel)]="searchQuery"
-            (input)="showSearchButton()"
-            (keyup.enter)="search()"
-          >
-          <button
-            class="search-button"
-            (click)="search()"
-            [disabled]="!isSearching"
-          >
-            <mat-icon>search</mat-icon>
-          </button>
-        </div>
+    <div class="search">
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Tìm theo username"
+          [(ngModel)]="searchQuery"
+          (input)="showSearchButton()"
+          (keyup.enter)="search()"
+        >
+        <button
+          class="search-button"
+          (click)="search()"
+          [disabled]="!isSearching"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
       </div>
+    </div>
 
   </div>
 
-    <div class="filter-option">
-      <mat-form-field>
-        <mat-label>Lọc theo yêu cầu</mat-label>
-        <mat-select [(ngModel)]="role" (selectionChange)="search()">
-          <mat-option [value]="">Mặc định</mat-option>
-          <mat-option value="manager">MANAGER</mat-option>
-          <mat-option value="blogger">BLOGGER</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+  <div class="filter-option">
+    <mat-form-field>
+      <mat-label>Lọc theo yêu cầu</mat-label>
+      <mat-select [(ngModel)]="role" (selectionChange)="search()">
+        <mat-option [value]="">Mặc định</mat-option>
+        <mat-option value="manager">MANAGER</mat-option>
+        <mat-option value="blogger">BLOGGER</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <div *ngIf="error" class="error-message">
     {{ error }}
@@ -82,8 +82,11 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-      <mat-cell *matCellDef="let item" >
-        <button mat-icon-button (click)="deactivateUserRole(item)">
+      <mat-cell *matCellDef="let item">
+        <button mat-icon-button (click)="clusterActivate(item, 'done')">
+          <mat-icon color="primary">done</mat-icon>
+        </button>
+        <button mat-icon-button (click)="clusterActivate(item, 'cancel')">
           <mat-icon color="warn">cancel</mat-icon>
         </button>
       </mat-cell>

@@ -10,7 +10,7 @@ import {ExerciseDetail} from "../../../models/exercise-detail";
 })
 export class ViewExerciseComponent implements OnInit {
 
-  exerciseDetail: ExerciseDetail | null = null;
+  exerciseDetail: ExerciseDetail = <ExerciseDetail>{};
 
   constructor(@Inject(MAT_DIALOG_DATA) private matDialogData: any,
               private exerciseService: ExerciseService) {
