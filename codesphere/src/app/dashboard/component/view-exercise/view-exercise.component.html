@@ -1,10 +1,10 @@
-<mat-dialog-content class="mat-dialog-show">
-  <div class="title-container">
-    <p>Chi tiết bài tập</p>
-    <div class="close" mat-dialog-close>
-      <mat-icon>close</mat-icon>
-    </div>
+<div class="title-container">
+  <p>Chi tiết bài tập</p>
+  <div class="close" mat-dialog-close>
+    <mat-icon>close</mat-icon>
   </div>
+</div>
+<mat-dialog-content class="mat-dialog-show">
 
 
   <div class="content">
@@ -45,7 +45,7 @@
       <div class="memory-limit">Giới hạn bộ nhớ:  {{ exerciseDetail?.memoryLimit }} Kb</div>
       <br>
       <div *ngIf="exerciseDetail?.note">
-        <span>Note:  {{exerciseDetail.note}}</span>
+        <span>Note:  {{ exerciseDetail.note }}</span>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ import {ConfirmationComponent} from "../../../material-component/dialog/confirma
 import {SnackbarService} from "../../../services/snackbar.service";
 import {GlobalConstants} from "../../../shared/global-constants";
 import {ViewExerciseComponent} from "../../component/view-exercise/view-exercise.component";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-exercise',
@@ -32,7 +33,7 @@ export class ExerciseComponent implements OnInit {
   currentPage = 1;
   pageSize = 50;
 
-  subjects: Subjects[] | null = null;
+  subjects: Subjects[] = [];
 
   filterOptions = [
     {value: {order: 'desc', by: 'created_at'}, viewValue: 'Thời gian tạo mới nhất'},
@@ -45,7 +46,8 @@ export class ExerciseComponent implements OnInit {
               private ngxUiLoader: NgxUiLoaderService,
               private matDialog: MatDialog,
               private subjectService: SubjectService,
-              private snackbar: SnackbarService) { }
+              private snackbar: SnackbarService,
+              private viewportScroller: ViewportScroller) { }
 
   ngOnInit(): void {
     this.loadAllSubject()
@@ -57,6 +59,7 @@ export class ExerciseComponent implements OnInit {
     // Chỉ nhận số trang và xử lý theo logic của bạn
     this.currentPage = pageNumber
     this.loadExercise();
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   loadAllSubject(){

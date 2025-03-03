@@ -1,1 +1,69 @@
 <app-header></app-header>
+
+<div class="container pt-header">
+  <div class="row h-50 justify-content-between">
+    <div class="col-5">
+      <div class="title fs-2">Bài tập</div>
+    </div>
+
+    <div class="col-5 d-flex justify-content-between">
+      <div class="search col-6 d-flex">
+        <div class="col">
+          <input [(ngModel)]="searchQuery" type="text" class="text-search form-control" placeholder="Tìm kiếm" (keyup.enter)="search()">
+        </div>
+<!--        <div class="col-2">-->
+<!--          <button class="btn-primary">-->
+<!--            Tìm-->
+<!--          </button>-->
+<!--        </div>-->
+      </div>
+      <div class="subject col-3">
+        <select [(ngModel)]="subjectFilter" class="form-select" (change)="search()">
+          <option *ngFor="let sub of subjects" [value]="sub.name">{{ sub.name }}</option>
+        </select>
+      </div>
+      <div class="filter col-2">
+        <select [(ngModel)]="selectedFilter" class="form-select col-12" (change)="search()" required >
+          <option [ngValue]="null" disabled selected>-- Chọn bộ lọc --</option>
+          <option *ngFor="let option of filterOptions" [ngValue]="option.value">{{ option.viewValue }}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <!--  table-->
+  <div class="container mt-5">
+    <div class="table-responsive">
+      <table class="table table-borderless mb-0">
+        <thead>
+        <tr class="table-header">
+          <th scope="col">STT</th>
+          <th scope="col">Mã</th>
+          <th scope="col">Tiêu đề</th>
+          <th scope="col">Nhóm</th>
+          <th scope="col">Chủ đề con</th>
+          <th scope="col">Độ khó</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of exerciseList; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ item.code }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.topic }}</td>
+          <td>{{ item.level }}</td>
+        </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalRecords]="totalRecord" (pageChange)="onPageChange($event)">
+  </app-pagination>
+</div>
+
+<app-footer></app-footer>
+

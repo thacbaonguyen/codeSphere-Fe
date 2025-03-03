@@ -23,6 +23,7 @@ import { ChangePasswordComponent } from './material-component/dialog/change-pass
 import {TokenInterceptorInterceptor} from "./services/interceptor/token-interceptor.interceptor";
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ExerciseRsComponent } from './exercise-rs/exercise-rs.component';
+import {SharedModule} from "./shared/shared.module";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -83,6 +84,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReactiveFormsModule,
     MatIconModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    SharedModule,
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],

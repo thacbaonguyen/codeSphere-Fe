@@ -1,0 +1,46 @@
+
+.pt-header{
+  //background-color: #FFF1DC;
+}
+.title{
+  font-family: "Raleway", serif;
+  font-weight: 800;
+}
+
+.pt-header{
+  padding-top: 100px;
+}
+
+.text-search{
+  border-radius: 4px 0 0 4px;
+}
+
+.form-select{
+  font-size: 15px;
+}
+.table-header {
+  background-color: #6c7ae0;
+  color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f8f9fc;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f0f2fa;
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.table th {
+  padding: 15px 12px;
+  font-weight: 500;
+}
+
+.table td {
+  padding: 16px 12px;
+  vertical-align: middle;
+}

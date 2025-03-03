@@ -8,10 +8,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 40px;
+  padding: 0px 40px;
   background-color: #fff3df;
   height: 100px;
   margin: 0 auto;
+  flex-wrap: nowrap;
 }
 
 .logo {
@@ -159,14 +160,11 @@ a{
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  //padding: 0.5rem;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
-  .navbar {
-    padding: 1rem;
-  }
 
   .logo {
     padding-left: 0;

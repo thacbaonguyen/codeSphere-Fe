@@ -38,7 +38,7 @@
   min-width: 130px;
   border-radius: 5px;
   p{
-    margin-top: 10px;
+    margin-top: 7px;
   }
   mat-icon{
     margin-left: 10px;
@@ -58,14 +58,14 @@
 }
 
 .fast-search input, .search input{
-  height: 30px;
+  height: 36px;
   margin-top: 10px;
   margin-right: 20px;
   border-radius: 5px;
   border-color: #B8B7B7;
 }
 .fast-search input{
-  padding-right: 40px;
+  //padding-right: 40px;
   width: 200px;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .mat-column-level {
-  flex: 0 0 4%;
+  flex: 0 0 5%;
   //min-width: 4%;
 }
 .mat-cell {

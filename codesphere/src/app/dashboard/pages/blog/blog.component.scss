@@ -38,7 +38,7 @@
   min-width: 130px;
   border-radius: 5px;
   p{
-    margin-top: 10px;
+    margin-top: 7px;
   }
   mat-icon{
     margin-left: 10px;
@@ -52,7 +52,7 @@
 
 .tag-search input, {
   width: 120px;
-  height: 30px;
+  height: 36px;
   border-color: #B8B7B7;
 }
 .tag-search-container{
@@ -98,7 +98,7 @@
   }
   input{
     width: 120px;
-    height: 30px;
+    height: 36px;
     border-color: #B8B7B7;
   }
   margin-right: 20px;
@@ -124,35 +124,35 @@
 }
 
 .mat-column-stt {
-  flex: 0 0 3%;
+  flex: 0 0 2vw;
 }
 
 .mat-column-title {
-  flex: 0 0 25%;
+  flex: 0 0 30vw;
 }
 
 .mat-column-author {
-  flex: 0 0 9%;
+  flex: 0 0 6vw;
 }
 
 .mat-column-status {
-  flex: 0 0 6%;
+  flex: 0 0 5vw;
 }
 
 .mat-column-featured {
-  flex: 0 0 5%;
+  flex: 0 0 4vw;
 }
 
 .mat-column-viewCount {
-  flex: 0 0 5%;
+  flex: 0 0 5vw;
 }
 
 .mat-column-commentCount {
-  flex: 0 0 5%;
+  flex: 0 0 5vw;
 }
 
 .mat-column-totalReactions {
-  flex: 0 0 5%;
+  flex: 0 0 5vw;
 }
 
 .mat-column-publishedAt {

@@ -20,7 +20,7 @@ import { ContributeAcceptedComponent } from './pages/contribute/contribute-accep
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
-import { PaginationComponent } from './component/pagination/pagination.component';
+import { PaginationComponent } from '../shared/pagination/pagination.component';
 import { ActionExerciseComponent } from './component/add-exercise/action-exercise.component';
 import { ViewExerciseComponent } from './component/view-exercise/view-exercise.component';
 import {MarkdownPipe} from "../shared/markdown.pipe";
@@ -30,44 +30,49 @@ import { ViewBlogComponent } from './component/view-blog/view-blog.component';
 import {SharedQuillModule} from "../shared/quill/quill.module";
 import { AccessQueueComponent } from './pages/access-queue/access-queue.component';
 import { ViewContributeComponent } from './component/view-contribute/view-contribute.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FlexLayoutModule,
-    RouterModule.forChild(DashboardRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    SharedQuillModule,
-    // QuillModule.forRoot()
+    imports: [
+        CommonModule,
+        MaterialModule,
+        FlexLayoutModule,
+        RouterModule.forChild(DashboardRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        SharedQuillModule,
+      SharedModule
+        // QuillModule.forRoot()
 
-  ],
-  declarations: [DashboardComponent,
-    SidebarComponent,
-    OverviewComponent,
-    MemberComponent,
-    ExerciseComponent,
-    BlogComponent,
-    BookComponent,
-    CourseComponent,
-    AccessComponent,
-    ManagerMemberComponent,
-    BloggerMemberComponent,
-    BlockListComponent,
-    ContributeAcceptedComponent,
-    ContributeQueueComponent,
-    DashboardHeaderComponent,
-    PaginationComponent,
-    ActionExerciseComponent,
-    ViewExerciseComponent,
-    MarkdownPipe,
-    ActionBlogComponent,
-    ViewBlogComponent,
-    AccessQueueComponent,
-    ViewContributeComponent
-  ]
+    ],
+    exports: [
+        // PaginationComponent
+    ],
+    declarations: [DashboardComponent,
+        SidebarComponent,
+        OverviewComponent,
+        MemberComponent,
+        ExerciseComponent,
+        BlogComponent,
+        BookComponent,
+        CourseComponent,
+        AccessComponent,
+        ManagerMemberComponent,
+        BloggerMemberComponent,
+        BlockListComponent,
+        ContributeAcceptedComponent,
+        ContributeQueueComponent,
+        DashboardHeaderComponent,
+        // PaginationComponent,
+        ActionExerciseComponent,
+        ViewExerciseComponent,
+        MarkdownPipe,
+        ActionBlogComponent,
+        ViewBlogComponent,
+        AccessQueueComponent,
+        ViewContributeComponent
+    ]
 })
 export class DashboardModule {
 }

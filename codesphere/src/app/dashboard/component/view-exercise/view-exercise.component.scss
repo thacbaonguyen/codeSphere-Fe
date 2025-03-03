@@ -1,6 +1,3 @@
-.mat-dialog-show{
-  padding-bottom: 200px;
-}
 
 .title-container{
   width: 90%;
@@ -42,4 +39,9 @@ table, th, td{
 .paper {
   line-height: 1.7;
 
+}
+
+.mat-dialog-show {
+  max-height: 80vh !important;
+  flex-direction: column !important;
 }

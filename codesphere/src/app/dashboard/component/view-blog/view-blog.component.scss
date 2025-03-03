@@ -1,5 +1,5 @@
 .mat-dialog-show{
-  padding-bottom: 200px;
+  //padding-bottom: 200px;
 }
 
 .title-container{
@@ -52,5 +52,13 @@ h3{
   height: auto;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-dialog-show {
+  max-height: 80vh !important; /* Tối đa 80% chiều cao màn hình */
+  overflow-y: auto !important; /* Cho phép cuộn nếu nội dung nhiều */
+  padding: 20px !important; /* Thêm padding để nội dung không sát cạnh */
+  display: flex !important;
+  flex-direction: column !important;
 }
 
