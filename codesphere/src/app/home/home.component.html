@@ -12,39 +12,299 @@
   </div>
 
   <div class="menu-auth">
-  <ul class="menu">
-    <li><a href="#" class="active" >Trang chủ</a></li>
-    <li><a (click)="redirectTo('/exercise')">Bài tập</a></li>
-    <li><a (click)="redirectTo('/blog')">Blog</a></li>
-    <li><a (click)="redirectTo('/course')">Khóa học</a></li>
-    <li><a (click)="redirectTo('/book')">Sách</a></li>
-  </ul>
+    <ul class="menu">
+      <li><a href="#" class="active">Trang chủ</a></li>
+      <li><a (click)="redirectTo('/exercise')">Bài tập</a></li>
+      <li><a (click)="redirectTo('/blog')">Blog</a></li>
+      <li><a (click)="redirectTo('/course')">Khóa học</a></li>
+      <li><a (click)="redirectTo('/book')">Sách</a></li>
+    </ul>
 
-  <div class="auth-buttons">
-    <button class="register" (click)="handleSignupAction()">Đăng ký</button>
-    <button class="login" (click)="handleLoginAction()">Đăng nhập</button>
-  </div>
+    <div class="auth-buttons">
+      <button class="register" (click)="handleSignupAction()">Đăng ký</button>
+      <button class="login" (click)="handleLoginAction()">Đăng nhập</button>
+    </div>
   </div>
 </nav>
 
-<app-header *ngIf="token"></app-header>
+<app-header *ngIf="token" class="fixed-top"></app-header>
 <!--body-->
 <div class="intro-container">
-  <div>
-    <h1 class="intro">Trang web cung cấp tài nguyên lập trình</h1>
-    <h2 class="description">
-      Chúng tôi cung cấp tài liệu cho bạn miễn phí và có trả phí
-    </h2>
-    <button class="join-button" (click)="handleSignupAction()">Đăng ký ngay</button>
-
+  <div class="d-flex justify-content-center ">
+    <div class="col-lg-3 ">
+      <p class="codesphere">Khám phá CodeSphere</p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <h1 class="intro">Viết code đỉnh hơn, nhanh hơn, sạch hơn với codesphere!</h1>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-3 col-md-6 col-sm-7">
+      <h2 class="description">
+        Chúng tôi cung cấp tài liệu cho bạn miễn phí và có trả phí
+      </h2>
+    </div>
   </div>
 
-  <img
-    class="illustration"
-    src="../../assets/images/Illustration.svg"
-    alt=""
-  />
+  <div class="d-flex justify-content-center">
+    <div class="button-box mt-3">
+      <button class="join-button btn w-100 h-100" (click)="handleSignupAction()">Khám phá ngay</button>
+    </div>
+  </div>
+
 </div>
+<div class="col-12 sign-now d-flex justify-content-center pb-3 pt-3">
+  <div class="col-lg-4 col-md-8 col-sm-10 d-flex justify-content-between">
+    <div class="text-center mt-2">
+      Đăng ký tài khoản để tận hưởng những ưu đãi cho thành viên.
+    </div>
+    <div class="col-3">
+      <button class="btn btn-sign w-100" (click)="handleSignupAction()">Đăng ký</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="box-tag d-flex justify-content-center ">
+  <div class="col-10">
+    <div class="row d-flex row-cols-4 justify-content-between" style="gap: 15px">
+      <div class="card card-item col-lg-3 col-sm-12">
+        <div class="card-body">
+          <div class="card-text spot-light">
+            <div class="title-spot d-flex">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M464 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zM128 120c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40zm0 96c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40zm0 96c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40zm288-136v-32c0-6.627-5.373-12-12-12H204c-6.627 0-12 5.373-12 12v32c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12zm0 96v-32c0-6.627-5.373-12-12-12H204c-6.627 0-12 5.373-12 12v32c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12zm0 96v-32c0-6.627-5.373-12-12-12H204c-6.627 0-12 5.373-12 12v32c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12z"></path>
+              </svg>
+              <h3>Tài nguyên đa dạng</h3>
+            </div>
+
+            Bộ sưu tập tài nguyên đa dạng, từ bài tập lập trình, sách, khóa học cho đến những bài blog hay 1 số tài
+            nguyên khác như bài tập được đóng góp...
+          </div>
+        </div>
+      </div>
+      <div class="card card-item col-lg-3 col-sm-12">
+        <div class="card-body">
+          <div class="card-text spot-light">
+            <div class="title-spot d-flex">
+              <svg class="e-font-icon-svg e-fas-star" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+              </svg>
+              <h3>Lưu trữ miễn phí</h3>
+            </div>
+
+            Lưu trữ các bài giải cho phần luyện tập của bạn hoàn toàn miễn phí, giúp tiết kiệm thời gian và dung lượng.
+          </div>
+        </div>
+      </div>
+      <div class="card card-item col-lg-3 col-sm-12">
+        <div class="card-body">
+          <div class="card-text spot-light">
+            <div class="title-spot d-flex">
+              <svg class="e-font-icon-svg e-fas-edit" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path>
+              </svg>
+              <h3>Dễ dàng sử dụng</h3>
+            </div>
+
+            Dễ dàng đăng ký và sử dụng dành cho người dùng mà không cần xác thực phức tạp.
+          </div>
+        </div>
+      </div>
+      <div class="card card-item col-lg-3 col-sm-12">
+        <div class="card-body">
+          <div class="card-text spot-light">
+            <div class="title-spot d-flex">
+              <svg class="e-font-icon-svg e-fas-calendar-alt" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path>
+              </svg>
+              <h3>Cập nhật thường xuyên</h3>
+            </div>
+
+            Các tài nguyên liên tục được cập nhật theo thời gian phù hợp với xu hướng công nghệ, đáp ứng nhu cầu của
+            bạn.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container container-rs">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="title-intro col-12 text-center">Tài nguyên phong phú</div>
+  </div>
+
+  <div class="tab-menu row d-flex justify-content-center" style="gap: 10px">
+    <div class="tab-item col-2  text-center" (click)="selectTab('exercise')" [class.active]="activeTab === 'exercise'">
+      BÀI TẬP
+    </div>
+    <div class="tab-item col-2  text-center" (click)="selectTab('blog')" [class.active]="activeTab === 'blog'">BLOGS
+    </div>
+    <div class="tab-item col-2  text-center" (click)="selectTab('course')" [class.active]="activeTab === 'course'">KHOÁ HỌC
+    </div>
+    <div class="tab-item col-2  text-center" (click)="selectTab('book')" [class.active]="activeTab === 'book'">SÁCH
+    </div>
+  </div>
+
+  <div class="card content-panel mt-3" id="exercise" [class.active]="activeTab === 'exercise'" [@slideInOut]="activeTab === 'exercise' ? 'in' : 'out'">
+    <div class="card-body">
+      <div class="row g-0 d-flex justify-content-between">
+        <div class="card-text col-5 mt-4">
+          <h1 class="card-head">Bài tập lập trình – Thực hành, nâng cao kỹ năng!</h1>
+          <span class="card-detail">Bộ sưu tập bài tập phong phú từ cơ bản đến nâng cao, giúp bạn củng cố kiến thức và phát triển tư duy lập
+            trình một cách bài bản. Các bài tập bao gồm nhiều chủ đề như thuật toán, cấu trúc dữ liệu, lập trình hướng
+            đối tượng, thiết kế hệ thống và nhiều hơn nữa.</span>
+        </div>
+        <div class="col-5">
+          <img class="img-fluid rounded-end" src="../../assets/images/code-ex.jpg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card content-panel mt-3" id="blog" [class.active]="activeTab === 'blog'" [@slideInOut]="activeTab === 'blog' ? 'in' : 'out'">
+    <div class="card-body">
+      <div class="row g-0 d-flex justify-content-between">
+        <div class="card-text col-5 mt-4">
+          <h1 class="card-head">Blog lập trình – Học hỏi, chia sẻ, phát triển!</h1>
+          <span class="card-detail">Nơi tổng hợp những bài viết chuyên sâu về lập trình, công nghệ và phát triển phần mềm.
+          Tại đây, bạn sẽ tìm thấy các hướng dẫn chi tiết, mẹo hay trong lập trình, phân tích xu hướng công nghệ, cũng như
+          kinh nghiệm thực tiễn từ các lập trình viên dày dặn.</span>
+        </div>
+        <div class="col-5">
+          <img class="img-fluid rounded-end" src="../../assets/images/blog-in.jpg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card content-panel mt-3" id="course" [class.active]="activeTab === 'course'" [@slideInOut]="activeTab === 'course' ? 'in' : 'out'">
+    <div class="card-body">
+      <div class="row g-0 d-flex justify-content-between">
+        <div class="card-text col-5 mt-4">
+          <h1 class="card-head">Khóa học lập trình – Học từ nền tảng đến chuyên sâu!</h1>
+          <span class="card-detail">Các khóa học được thiết kế bài bản, giúp bạn từng bước làm chủ lập trình từ cơ bản đến nâng cao.
+            Nội dung khóa học bao gồm video hướng dẫn chi tiết, bài tập thực hành,
+            tài liệu tham khảo và dự án thực tế,
+            giúp bạn không chỉ hiểu lý thuyết mà còn áp dụng hiệu quả vào thực tiễn.</span>
+        </div>
+
+        <div class="col-5">
+          <img class="img-fluid rounded-end" src="../../assets/images/course-in.jpg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card content-panel mt-3" id="book" [class.active]="activeTab === 'book'" [@slideInOut]="activeTab === 'book' ? 'in' : 'out'">
+    <div class="card-body">
+      <div class="row g-0 d-flex justify-content-between">
+        <div class="card-text col-5 mt-4">
+          <h1 class="card-head">Ebook lập trình – Nguồn tri thức cho mọi lập trình viên!</h1>
+          <span class="card-detail">Tổng hợp những cuốn sách hay về lập trình, giúp bạn nắm vững kiến thức từ cơ bản đến nâng cao.
+             Ebook bao gồm nhiều chủ đề như thuật toán, cấu trúc dữ liệu,
+            lập trình hướng đối tượng, phát triển web, trí tuệ nhân tạo và nhiều lĩnh vực công nghệ khác.</span>
+        </div>
+        <div class="col-5">
+          <img class="img-fluid rounded-end" src="../../assets/images/ebook-in.jpg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="may-you-like pt-5">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="title-intro col-12 text-center">Có thể bạn sẽ thích</div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-center mt-5">
+    <div class="row row-cols-4 gx-3 gy-5 col-10 d-flex justify-content-between" style="gap: 30px">
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/angular1.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Angular material: Hướng dẫn cài đặt và tạo dự án angular.
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/angular2.jpg" alt="">
+          </div>
+          <div class="card-text">
+            AngularJs: Định nghĩa các hoạt động, ưu và nhược điểm so với Angular 2+.
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/spring.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Tìm hiểu về Spring Framework cơ bản cho nguời mới bắt đầu.
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/htmlcss.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Top những câu hỏi phỏng vấn phổ biến nhất về HTML và CSS.
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/it-blg.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Là IT thì mình cứ viết đi - Cuộc thi viết blog năm 2025 do ITViet Blog tổ chức.
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/ts.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Hiểu rõ hơn về TypeScript
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
 <div class="service-container">
   <div class="title">
     <h1>Dịch vụ</h1>
@@ -165,5 +425,6 @@
     </div>
   </div>
 </div>
+<div class="space"></div>
 <app-footer></app-footer>
 </body>

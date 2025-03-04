@@ -1,16 +1,19 @@
 body {
-  background-color: #FFF3DF;
-  height: 100px;
+  //background-color: #FFF3DF;
+  //background: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-color: #ffffff;
+  height: 80px;
 }
 
 .navbar1 {
-  width: 75%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
-  background-color: #fff3df;
-  height: 100px;
+  //background-color: #fff3df;
+  background-color: #ffffff;
+  height: 80px;
   margin: 0 auto;
   flex-wrap: nowrap;
 }
@@ -66,8 +69,8 @@ body {
 }
 
 .auth-buttons button{
-  background-color: #FFF3DF;
-  border: none;
+  //background-color: #FFF3DF;
+  background-color: #ffffff;  border: none;
   cursor: pointer;
 }
 
