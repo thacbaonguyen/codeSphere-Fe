@@ -1,14 +1,11 @@
 
-.pt-header{
-  //background-color: #FFF1DC;
-}
 .title{
   font-family: "Raleway", serif;
   font-weight: 800;
 }
 
 .pt-header{
-  padding-top: 100px;
+  padding-top: 140px;
 }
 
 .text-search{
@@ -36,7 +33,7 @@
   overflow: hidden;
 }
 .table th {
-  padding: 15px 12px;
+  padding: 20px 12px;
   font-weight: 500;
 }
 
@@ -44,3 +41,12 @@
   padding: 16px 12px;
   vertical-align: middle;
 }
+.text-button{
+  text-decoration: none;
+  color: #000000;
+}
+.text-button:hover{
+  color: #006dd3;
+  text-decoration: underline;
+}
+

@@ -1,0 +1,141 @@
+<div class="app-container">
+  <app-header></app-header>
+  <div class="container pt-header">
+    <div class="row h-50 justify-content-between">
+      <div class="col-5">
+        <div class="title fs-2">Bài tập</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content mt-5">
+    <div class="card full">
+      <div class="card-body">
+        <div class="card-title text-danger">{{ exerciseDetail.title.toUpperCase() }}</div>
+        <div class="card-text" [innerHTML]="exerciseDetail.paper | markdown">
+        </div>
+        <br>
+        <p class="fw-bold text-black">Ví dụ</p>
+        <div class="table-responsive col-11">
+          <table class="table table-light table-bordered border-secondary">
+            <thead class="border-bottom-0 border-secondary">
+            <tr>
+              <th>Input</th>
+              <th>Output</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <pre>{{ exerciseDetail.input }}</pre>
+              </td>
+              <td>
+                <pre>{{ exerciseDetail.output }}</pre>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="limit card-text">
+          <p>
+            Giới hạn thời gian: {{ exerciseDetail.timeLimit }} s
+          </p>
+          <p>
+
+            Giới hạn bộ nhớ: {{ exerciseDetail.memoryLimit }} Kb
+          </p>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <div class="col-lg-4 col-md-7 col-sm-9 d-flex justify-content-between">
+            <div class="col-8 ">
+              <input type="file" class="form-control" id="formFile" (change)="onFileSelected($event)">
+            </div>
+            <div class="col-3">
+                <div class="upload-box">
+                  <button class="btn button-list" (click)="showList()">Danh sách</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <div class="col-lg-2 col-md-3 col-sm-4">
+            <button class="submit btn btn-primary w-100" [disabled]="!file" (click)="submitStorageFile()">Lưu trữ</button>
+          </div>
+        </div>
+
+        <div class="card-text mt-3">
+          <div class="fs-3 fw-bold">Bình luận</div>
+          <div class="cmt-guide">Các bạn có thể đặt câu hỏi về bài tập, chia sẻ cách giải bài tập, nhưng không nên chia
+            sẻ mã nguồn bài giải trực tiếp.
+          </div>
+        </div>
+
+        <div class="container mt-4">
+          <div class="card border-custom">
+            <div class="card-body">
+              <div class="card-text">
+                <textarea [(ngModel)]="commentMessage" class="w-100 form-control"
+                          cdkTextareaAutosize
+                          cdkAutosizeMinRows="4"
+                          placeholder=" Nhập bình luận"></textarea>
+              </div>
+
+              <div class="d-flex justify-content-end mt-3">
+                <div class="col-lg-1 col-md-3 col-sm-3 bg-primary">
+                  <button class="btn btn-primary w-100" [disabled]="!commentMessage" (click)="insertComment()">Bình luận</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngFor="let cmt of comments" class="mt-5">
+            <div class="card border-custom">
+
+              <div class="d-flex justify-content-center">
+                <div class="col-11">
+                  <div class=" mt-2 d-flex justify-content-start">
+                    <div class=" rounded-circle box">
+                      <img src="../../assets/images/u-default.png" alt="" class="rounded-circle img">
+                    </div>
+                    <div class="ms-2">
+                      <p class="full-name">{{ cmt.fullName }}</p>
+                      <p class="username text-black-50"> @{{ cmt.author }}</p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="avatar card-body d-flex justify-content-center pb-0">
+                <div class="card-text border-custom-item col-11 d-flex justify-content-between ">
+                  <div>
+                    <pre class="ms-2 mt-2 pre-content text-start">{{ cmt.content }}</pre>
+                  </div>
+
+                  <p class="me-2 mt-2">{{ cmt.createdAt | date}}</p>
+                </div>
+
+              </div>
+
+              <div class="avatar-2 card-body d-flex justify-content-center">
+                <div  class="col-11">
+                  <button *ngIf="cmt.author === subCmt" class="btn btn-link col-lg-1 col-md-2 col-sm-3" (click)="editComment(cmt)">Edit</button>
+                  <button class="btn btn-link col-lg-1 col-md-3 col-sm-3" (click)="viewHistories(cmt.id)">Lịch sử</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

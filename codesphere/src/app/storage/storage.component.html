@@ -1,0 +1,21 @@
+<div *ngIf="storages.length < 1">
+  <p class="align-content-center">Bạn chưa có file lưu trữ bài giải nào</p>
+</div>
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center"
+    *ngFor="let storage of storages">
+    {{storage.fileName}}
+    <div>
+      <button mat-icon-button>
+        <mat-icon (click)="viewFile(storage)">visibility</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon color="primary" (click)="deleteFile(storage)">delete</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon color="primary" (click)="downloadFile(storage)">save_alt</mat-icon>
+      </button>
+    </div>
+
+  </li>
+</ul>

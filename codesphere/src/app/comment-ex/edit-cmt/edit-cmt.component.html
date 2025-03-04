@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="">
+    <label for="content">Nội dung mới</label>
+    <textarea [(ngModel)]="newComment" type="text" class="form-control mt-2" id="content"
+      cdkTextareaAutosize
+              cdkAutosizeMinRows="4"
+    cdkAutosizeMaxRows="7">
+
+    </textarea>
+
+    <div class="col-12 d-flex justify-content-between">
+      <button class="btn btn-primary mt-3" (click)="submit()" [disabled]="!newComment">Sửa</button>
+      <button class="btn btn-danger mt-3 " (click)="closeDialog()">Đóng</button>
+    </div>
+
+  </div>
+</div>

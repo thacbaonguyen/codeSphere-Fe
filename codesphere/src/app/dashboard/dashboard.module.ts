@@ -47,6 +47,7 @@ import {SharedModule} from "../shared/shared.module";
 
     ],
     exports: [
+        MarkdownPipe,
         // PaginationComponent
     ],
     declarations: [DashboardComponent,

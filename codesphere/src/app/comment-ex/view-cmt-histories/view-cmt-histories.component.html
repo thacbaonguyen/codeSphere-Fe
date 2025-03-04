@@ -1,0 +1,12 @@
+<div *ngIf="!cmtHistories">
+  <p>Bình luận chưa có lịch sử sửa đổi</p>
+</div>
+<div *ngIf="cmtHistories" class="col-11">
+  <h1>Lịch sử chỉnh sửa</h1>
+</div>
+<div  *ngFor="let cmt of cmtHistories" class="card border-1 mt-3">
+  <div  class="card-body d-flex justify-content-between">
+    <div class="card-text">{{ cmt.content }}</div>
+    <div class="card-text">{{ cmt.updatedAt }}</div>
+  </div>
+</div>

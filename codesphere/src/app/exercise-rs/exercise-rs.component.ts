@@ -140,6 +140,7 @@ export class ExerciseRsComponent implements OnInit {
         console.log("response.data", this.exerciseList)
       },
       error: (err: any)=>{
+        this.ngxUiLoader.stop()
         this.error = "Error loading exercises";
         console.error(this.error, err)
       }
@@ -167,5 +168,9 @@ export class ExerciseRsComponent implements OnInit {
     this.currentPage = pageNumber;
     this.loadAllExercise();
     window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+
+  viewDetails(exercise: Exercise){
+    this.router.navigate(['/exercise/question/details', exercise.code])
   }
 }

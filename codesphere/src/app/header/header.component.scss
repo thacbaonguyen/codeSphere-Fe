@@ -3,7 +3,7 @@ body {
   height: 100px;
 }
 
-.navbar {
+.navbar1 {
   width: 75%;
   display: flex;
   justify-content: space-between;
@@ -37,10 +37,7 @@ body {
   gap: 50px;
 }
 .menu {
-  list-style: none;
-  display: flex;
   gap: 20px;
-  //margin-left: 350px;
   font-family: "Raleway";
 }
 
@@ -52,9 +49,7 @@ body {
 .menu a {
   text-decoration: none;
   color: #817382;
-  font-weight: 500;
   font-weight: bold;
-  // padding-left: 20px;
   padding-right: 10px;
 }
 
@@ -65,7 +60,9 @@ body {
 .auth-buttons {
   display: flex;
   gap: 10px;
+  position: relative;
   //margin-right: 100px;
+
 }
 
 .auth-buttons button{
@@ -74,9 +71,6 @@ body {
   cursor: pointer;
 }
 
-.auth-buttons {
-  position: relative;
-}
 
 .dropdown-menu {
   position: absolute;
@@ -184,28 +178,6 @@ a{
     display: block;
   }
 
-  .menu {
-    position: fixed;
-    top: 100px;
-    left: -100%;
-    flex-direction: column;
-    background-color: #fff3df;
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
-  }
-
-  .menu.active {
-    left: 0;
-  }
-
-  .menu a {
-    padding: 1rem;
-    display: block;
-  }
-
   .auth-buttons {
     margin-right: 0;
   }
@@ -225,4 +197,15 @@ a{
     padding: 6px 12px;
     font-size: 12px;
   }
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+    padding: 0.5rem;
+  }
+
 }

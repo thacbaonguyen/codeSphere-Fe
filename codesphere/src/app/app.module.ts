@@ -24,6 +24,12 @@ import {TokenInterceptorInterceptor} from "./services/interceptor/token-intercep
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ExerciseRsComponent } from './exercise-rs/exercise-rs.component';
 import {SharedModule} from "./shared/shared.module";
+import { ExerciseDetailsComponent } from './exercise-details/exercise-details.component';
+import {DashboardModule} from "./dashboard/dashboard.module";
+import { StorageComponent } from './storage/storage.component';
+import { ViewStorageComponent } from './storage/view-storage/view-storage.component';
+import { EditCmtComponent } from './comment-ex/edit-cmt/edit-cmt.component';
+import { ViewCmtHistoriesComponent } from './comment-ex/view-cmt-histories/view-cmt-histories.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -72,6 +78,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ChangePasswordComponent,
     UnauthorizedComponent,
     ExerciseRsComponent,
+    ExerciseDetailsComponent,
+    StorageComponent,
+    ViewStorageComponent,
+    EditCmtComponent,
+    ViewCmtHistoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +96,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatIconModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     SharedModule,
+    DashboardModule,
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
