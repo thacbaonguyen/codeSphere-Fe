@@ -148,22 +148,24 @@
     </div>
     <div class="tab-item col-2  text-center" (click)="selectTab('blog')" [class.active]="activeTab === 'blog'">BLOGS
     </div>
-    <div class="tab-item col-2  text-center" (click)="selectTab('course')" [class.active]="activeTab === 'course'">KHOÁ HỌC
+    <div class="tab-item col-2  text-center" (click)="selectTab('course')" [class.active]="activeTab === 'course'">KHOÁ
+      HỌC
     </div>
     <div class="tab-item col-2  text-center" (click)="selectTab('book')" [class.active]="activeTab === 'book'">SÁCH
     </div>
   </div>
 
-  <div class="card content-panel mt-3" id="exercise" [class.active]="activeTab === 'exercise'" [@slideInOut]="activeTab === 'exercise' ? 'in' : 'out'">
+  <div class="card content-panel mt-3" id="exercise" [class.active]="activeTab === 'exercise'"
+       [@slideInOut]="activeTab === 'exercise' ? 'in' : 'out'">
     <div class="card-body">
-      <div class="row g-0 d-flex justify-content-between">
-        <div class="card-text col-5 mt-4">
+      <div class="row g-0 d-flex justify-content-between card-rs-box-custom">
+        <div class="card-text col-5 mt-4 card-rs-text-custom">
           <h1 class="card-head">Bài tập lập trình – Thực hành, nâng cao kỹ năng!</h1>
           <span class="card-detail">Bộ sưu tập bài tập phong phú từ cơ bản đến nâng cao, giúp bạn củng cố kiến thức và phát triển tư duy lập
             trình một cách bài bản. Các bài tập bao gồm nhiều chủ đề như thuật toán, cấu trúc dữ liệu, lập trình hướng
             đối tượng, thiết kế hệ thống và nhiều hơn nữa.</span>
         </div>
-        <div class="col-5">
+        <div class="col-5 card-rs-image-custom" >
           <img class="img-fluid rounded-end" src="../../assets/images/code-ex.jpg" alt="">
         </div>
       </div>
@@ -171,16 +173,17 @@
     </div>
   </div>
 
-  <div class="card content-panel mt-3" id="blog" [class.active]="activeTab === 'blog'" [@slideInOut]="activeTab === 'blog' ? 'in' : 'out'">
+  <div class="card content-panel mt-3" id="blog" [class.active]="activeTab === 'blog'"
+       [@slideInOut]="activeTab === 'blog' ? 'in' : 'out'">
     <div class="card-body">
-      <div class="row g-0 d-flex justify-content-between">
-        <div class="card-text col-5 mt-4">
+      <div class="row g-0 d-flex justify-content-between card-rs-box-custom">
+        <div class="card-text col-5 mt-4 card-rs-text-custom">
           <h1 class="card-head">Blog lập trình – Học hỏi, chia sẻ, phát triển!</h1>
           <span class="card-detail">Nơi tổng hợp những bài viết chuyên sâu về lập trình, công nghệ và phát triển phần mềm.
           Tại đây, bạn sẽ tìm thấy các hướng dẫn chi tiết, mẹo hay trong lập trình, phân tích xu hướng công nghệ, cũng như
           kinh nghiệm thực tiễn từ các lập trình viên dày dặn.</span>
         </div>
-        <div class="col-5">
+        <div class="col-5 card-rs-image-custom">
           <img class="img-fluid rounded-end" src="../../assets/images/blog-in.jpg" alt="">
         </div>
       </div>
@@ -188,10 +191,11 @@
     </div>
   </div>
 
-  <div class="card content-panel mt-3" id="course" [class.active]="activeTab === 'course'" [@slideInOut]="activeTab === 'course' ? 'in' : 'out'">
+  <div class="card content-panel mt-3" id="course" [class.active]="activeTab === 'course'"
+       [@slideInOut]="activeTab === 'course' ? 'in' : 'out'">
     <div class="card-body">
-      <div class="row g-0 d-flex justify-content-between">
-        <div class="card-text col-5 mt-4">
+      <div class="row g-0 d-flex justify-content-between card-rs-box-custom">
+        <div class="card-text col-5 mt-4 card-rs-text-custom">
           <h1 class="card-head">Khóa học lập trình – Học từ nền tảng đến chuyên sâu!</h1>
           <span class="card-detail">Các khóa học được thiết kế bài bản, giúp bạn từng bước làm chủ lập trình từ cơ bản đến nâng cao.
             Nội dung khóa học bao gồm video hướng dẫn chi tiết, bài tập thực hành,
@@ -199,7 +203,7 @@
             giúp bạn không chỉ hiểu lý thuyết mà còn áp dụng hiệu quả vào thực tiễn.</span>
         </div>
 
-        <div class="col-5">
+        <div class="col-5 card-rs-image-custom">
           <img class="img-fluid rounded-end" src="../../assets/images/course-in.jpg" alt="">
         </div>
       </div>
@@ -207,16 +211,17 @@
     </div>
   </div>
 
-  <div class="card content-panel mt-3" id="book" [class.active]="activeTab === 'book'" [@slideInOut]="activeTab === 'book' ? 'in' : 'out'">
+  <div class="card content-panel mt-3" id="book" [class.active]="activeTab === 'book'"
+       [@slideInOut]="activeTab === 'book' ? 'in' : 'out'">
     <div class="card-body">
-      <div class="row g-0 d-flex justify-content-between">
-        <div class="card-text col-5 mt-4">
+      <div class="row g-0 d-flex justify-content-between card-rs-box-custom">
+        <div class="card-text col-5 mt-4 card-rs-text-custom">
           <h1 class="card-head">Ebook lập trình – Nguồn tri thức cho mọi lập trình viên!</h1>
           <span class="card-detail">Tổng hợp những cuốn sách hay về lập trình, giúp bạn nắm vững kiến thức từ cơ bản đến nâng cao.
              Ebook bao gồm nhiều chủ đề như thuật toán, cấu trúc dữ liệu,
             lập trình hướng đối tượng, phát triển web, trí tuệ nhân tạo và nhiều lĩnh vực công nghệ khác.</span>
         </div>
-        <div class="col-5">
+        <div class="col-5 card-rs-image-custom">
           <img class="img-fluid rounded-end" src="../../assets/images/ebook-in.jpg" alt="">
         </div>
       </div>
@@ -231,9 +236,16 @@
     <div class="title-intro col-12 text-center">Có thể bạn sẽ thích</div>
   </div>
 
+  <div class="row d-flex justify-content-center">
+    <div class="mt-1 col-12 text-center"
+         style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 18px; color: #7c7c7c">
+      Hãy xem những bài viết đang được quan tâm nhất trên CodeSphere ngay bây giờ
+    </div>
+  </div>
+
   <div class="col-12 d-flex justify-content-center mt-5">
     <div class="row row-cols-4 gx-3 gy-5 col-10 d-flex justify-content-between" style="gap: 30px">
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/angular1.jpg" alt="">
@@ -241,10 +253,13 @@
           <div class="card-text">
             Angular material: Hướng dẫn cài đặt và tạo dự án angular.
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
         </div>
       </div>
 
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/angular2.jpg" alt="">
@@ -252,10 +267,13 @@
           <div class="card-text">
             AngularJs: Định nghĩa các hoạt động, ưu và nhược điểm so với Angular 2+.
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
         </div>
       </div>
 
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/spring.jpg" alt="">
@@ -263,10 +281,13 @@
           <div class="card-text">
             Tìm hiểu về Spring Framework cơ bản cho nguời mới bắt đầu.
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
         </div>
       </div>
 
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/htmlcss.jpg" alt="">
@@ -274,10 +295,13 @@
           <div class="card-text">
             Top những câu hỏi phỏng vấn phổ biến nhất về HTML và CSS.
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
         </div>
       </div>
 
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/it-blg.jpg" alt="">
@@ -285,10 +309,13 @@
           <div class="card-text">
             Là IT thì mình cứ viết đi - Cuộc thi viết blog năm 2025 do ITViet Blog tổ chức.
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
         </div>
       </div>
 
-      <div class="card card-item col-3">
+      <div class="card card-item-2 col-3">
         <div class="card-body">
           <div>
             <img class="mt-0" src="../../assets/images/ts.jpg" alt="">
@@ -296,135 +323,183 @@
           <div class="card-text">
             Hiểu rõ hơn về TypeScript
           </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item-2 col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/ts.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Hiểu rõ hơn về TypeScript
+          </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-item-2 col-3">
+        <div class="card-body">
+          <div>
+            <img class="mt-0" src="../../assets/images/ts.jpg" alt="">
+          </div>
+          <div class="card-text">
+            Hiểu rõ hơn về TypeScript
+          </div>
+          <div [@slideInOut]="'in'" class="btn btn-view-now">
+            <button class="btn w-100 h-50">Xem ngay</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="top-for-you pt-5">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="title-intro col-12 text-center">CÁC KHÓA HỌC HÀNG ĐẦU DÀNH CHO BẠN</div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="mt-1 col-12 text-center"
+         style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 18px; color: #7c7c7c">
+      Khám phá các khóa học được ưa chuộng nhất trong thời gian qua
+    </div>
+  </div>
+
+  <div [@slideAnimation]="animationState" class="col-12 d-flex justify-content-center mt-5">
+    <div class="row row-cols-4 gx-3 gy-5 col-10 d-flex justify-content-between">
+
+      <div *ngFor="let article of paginatedArticles" class="card card-item-3 col-3 pt-3">
+        <div class="card-body article-card">
+          <a [routerLink]="article.link" class="article-link">
+            <div class="article-image">
+              <img class="mt-0" [src]="article.image" [alt]="article.title">
+            </div>
+            <div class="card-text article-content">
+              <div class="article-category">-{{ article.category }}</div>
+              <h3 class="article-title">{{ article.title }}</h3>
+            </div>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-
+  <div class="pagination-dots">
+    <span
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      class="dot"
+      [class.active]="currentPage === i + 1"
+      (click)="goToPage(i + 1)"
+    ></span>
+  </div>
 
 </div>
 
-<div class="service-container">
-  <div class="title">
-    <h1>Dịch vụ</h1>
-  </div>
-  <div class="service">
-    <div class="item item-1">
-      <img src="../../assets/images/sach.svg" alt=""/>
-      <h2>Bài tập lập trình</h2>
-      <p>
-        Cung cấp các bài tập lập trình đa ngôn ngữ( Java, Python, C++... Đủ
-        các dạng bài tập từ cơ bản đến nâng cao, giúp bạn cải thiện kỹ năng
-        một cách hiệu quả
-      </p>
-      <ul>
-        <li>Đa ngôn ngữ</li>
-        <li>Kho bài tập đa dạng</li>
-        <li>Chính xác</li>
-      </ul>
-    </div>
-    <div class="item item-2">
-      <img src="../../assets/images/luu.svg" alt=""/>
-      <h2>Lưu trữ bài giải</h2>
-      <p>
-        Với mỗi bài giải, chúng tôi cung cấp kho lưu trữ cho các bạn ngay trên
-        trang web, giúp bạn tiết kiệm thời gian và bộ nhớ khi cần thiết
-      </p>
-      <ul>
-        <li>Lưu trữ miễn phí</li>
-        <li>Nhanh gọn</li>
-        <li>Tiện lợi</li>
-      </ul>
-    </div>
-    <div class="item item-3">
-      <img src="../../assets/images/cong.svg" alt=""/>
-      <h2>Đóng góp bài tập</h2>
-      <p>
-        Ngoài ra, nếu bạn có bài tập nào hay, đừng ngần ngại đóng góp cho
-        chúng tôi. Mọi đóng góp của bạn làm cho cộng đồng ngày càng phát triển
-        hơn
-      </p>
-      <ul>
-        <li>Phát triển cộng đồng</li>
-        <li>Vinh danh</li>
-        <li>Đóng góp</li>
-      </ul>
-    </div>
-    <div class="item item-4">
-      <img src="../../assets/images/blog.svg" alt=""/>
-      <h2>Blogs</h2>
-      <p>
-        Cung cấp các bài tập lập trình đa ngôn ngữ( Java, Python, C++... Đủ
-        các dạng bài tập từ cơ bản đến nâng cao, giúp bạn cải thiện kỹ năng
-        một cách hiệu quả
-      </p>
-      <ul>
-        <li>Chia sẻ kiến thức</li>
-        <li>Nâng cao trình độ</li>
-        <li>Thảo luận</li>
-      </ul>
-    </div>
-    <div class="item item-5">
-      <img src="../../assets/images/sach.svg" alt=""/>
-      <h2>Sách</h2>
-      <p>
-        Với mỗi bài giải, chúng tôi cung cấp kho lưu trữ cho các bạn ngay trên
-        trang web, giúp bạn tiết kiệm thời gian và bộ nhớ khi cần thiết
-      </p>
-      <ul>
-        <li>Tài liệu văn bản</li>
-        <li>Phong phú</li>
-      </ul>
-    </div>
-    <div class="item item-6">
-      <img src="../../assets/images/edu.svg" alt=""/>
-      <h2>Khóa học</h2>
-      <p>
-        Ngoài ra, nếu bạn có bài tập nào hay, đừng ngần ngại đóng góp cho
-        chúng tôi. Mọi đóng góp của bạn làm cho cộng đồng ngày càng phát triển
-        hơn
-      </p>
-      <ul>
-        <li>Học tập qua video</li>
-        <li>Miễn phí và có phí</li>
-        <li>Nền tảng số</li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="contact-container">
-  <div class="contact-title">
-    <h1>Liên hệ</h1>
-  </div>
-  <div class="contact-us">
-    <img class="map" src="../../assets/images/map.png" alt="">
-    <div class="contact-text">
-      <h2>Liên hệ với chúng tôi</h2>
-      <div class="location-container">
-        <h3>Ha Dong, Ha Noi, Viet Nam</h3>
+<div class="join-us d-flex justify-content-center">
+  <div class="card card-group col-10 pt-3 pb-5">
+    <div class="card-body card-box-custom d-flex justify-content-around">
+      <div class="card-text card-intro-custom col-5">
+        <h1>Tham gia cộng đồng
+          "LẬP TRÌNH PTIT"</h1>
+        <span>Cộng đồng chia sẻ kinh nghiệm và kết nối với những người yêu lập trình.
+          Cùng nhau khám phá những ý tưởng sáng tạo và biến Canva thành công cụ thiết kế tuyệt vời cho mọi dự án.</span>
+        <div class="btn-div pt-3">
+          <button class="btn"><a href="https://www.facebook.com/groups/169179915881514" style="text-decoration: none; color: #000000">
+            THAM GIA CỘNG ĐỒNG</a>
+          </button>
+        </div>
       </div>
-      <h3>Thứ 2 - Thứ 7</h3>
-      <h3>7:00 PM - 18:00 PM</h3>
-      <br>
-      <div class="media-icon">
-        <a href="https://www.facebook.com/HocvienPTIT" target="_blank"><img class="fb"
-                                                                            src="../../assets/images/facebook.svg"
-                                                                            alt=""></a>
-        <a
-          href="https://www.instagram.com/explore/locations/1330486813692392/hoc-vien-cong-nghe-buu-chinh-vien-thong-ptit/?next=%2Fkorean.konbu%2F"
-          target="_blank"><img class="ig" src="../../assets/images/ig.svg"
-                               alt=""></a>
-        <a href="https://www.facebook.com/thbaonguyen.25.11" target="_blank"><img class="email"
-                                                                                  src="../../assets/images/email.svg"
-                                                                                  alt=""></a>
-        <!-- <img class="fb" src="../../assets/images/facebook.svg" alt="">
-        <img class="ig" src="../../assets/images/ig.svg" alt="">
-        <img class="email" src="../../assets/images/email.svg" alt=""> -->
+      <div class="col-6 card-show-custom">
+        <img class="img-fluid rounded-end" src="../../assets/images/group-fb.png" alt="">
       </div>
     </div>
   </div>
 </div>
+
+<div class="register-role pb-5">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="title-intro col-12 text-center">ĐĂNG KÝ TRỞ THÀNH BLOGGER NGAY</div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="mt-1 col-lg-6 col-md-8 col-sm-11 text-center"
+         style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 18px; color: #7c7c7c">
+      Các bài viết trên CodeSphere mang lại cho bạn những kiến thức, kinh nghiệm mới. Xem qua các nội dung để khơi dậy
+      niềm đam mê của bạn. Còn chần chờ gì mà không đăng ký để trở thành Blogger ngay hôm nay.
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center" style="gap: 15px">
+      <div class="btn-1">
+        <button class="btn">KHÁM PHÁ NGAY</button>
+      </div>
+      <div class="btn-2">
+        <button class="btn ">ĐĂNG KÝ BLOGGER</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="pt-5 my-address pb-5" style="background-color: #ffffff">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="title-intro col-12 text-center">LIÊN HỆ VỚI CHÚNG TÔI</div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="mt-1 col-lg-6 col-md-8 col-sm-11 text-center"
+         style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 18px; color: #7c7c7c">
+      Nếu có thắc mắc hay phát hiện ra lỗi, xin vui lòng liên hệ với chúng tôi
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center pt-3 mt-3" >
+    <div class="card card-contact-custom col-9 ">
+      <div class="card-body card-body-custom d-flex justify-content-between">
+        <div class="col-6 card-image-custom">
+          <img class="img-fluid rounded-start" src="../../assets/images/map.png" alt="">
+        </div>
+        <div class="card-text card-contact-text-custom col-4">
+          <h1>Thông tin liên hệ</h1>
+          <p>Km 10 Nguyễn Trãi, Hà Đông, Hanoi, Vietnam</p>
+          <p>Thời gian làm việc: Thứ 2 - Thứ 7</p>
+          <div class="d-flex justify-content-start" style="gap: 15px">
+            <a href="https://www.facebook.com/HocvienPTIT" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2aa4f4"></stop><stop offset="1" stop-color="#007ad9"></stop></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/explore/locations/1330486813692392/hoc-vien-cong-nghe-buu-chinh-vien-thong-ptit/?next=%2Fkorean.konbu%2F" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fd5"></stop><stop offset=".328" stop-color="#ff543f"></stop><stop offset=".348" stop-color="#fc5245"></stop><stop offset=".504" stop-color="#e64771"></stop><stop offset=".643" stop-color="#d53e91"></stop><stop offset=".761" stop-color="#cc39a4"></stop><stop offset=".841" stop-color="#c837ab"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4168c9"></stop><stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path><circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle><path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/thbaonguyen.25.11" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#e0e0e0" d="M5.5,40.5h37c1.933,0,3.5-1.567,3.5-3.5V11c0-1.933-1.567-3.5-3.5-3.5h-37C3.567,7.5,2,9.067,2,11v26C2,38.933,3.567,40.5,5.5,40.5z"></path><path fill="#d9d9d9" d="M26,40.5h16.5c1.933,0,3.5-1.567,3.5-3.5V11c0-1.933-1.567-3.5-3.5-3.5h-37C3.567,7.5,2,9.067,2,11L26,40.5z"></path><path fill="#eee" d="M6.745,40.5H42.5c1.933,0,3.5-1.567,3.5-3.5V11.5L6.745,40.5z"></path><path fill="#e0e0e0" d="M25.745,40.5H42.5c1.933,0,3.5-1.567,3.5-3.5V11.5L18.771,31.616L25.745,40.5z"></path><path fill="#ca3737" d="M42.5,9.5h-37C3.567,9.5,2,9.067,2,11v26c0,1.933,1.567,3.5,3.5,3.5H7V12h34v28.5h1.5c1.933,0,3.5-1.567,3.5-3.5V11C46,9.067,44.433,9.5,42.5,9.5z"></path><path fill="#f5f5f5" d="M42.5,7.5H24H5.5C3.567,7.5,2,9.036,2,11c0,1.206,1.518,2.258,1.518,2.258L24,27.756l20.482-14.497c0,0,1.518-1.053,1.518-2.258C46,9.036,44.433,7.5,42.5,7.5z"></path><path fill="#e84f4b" d="M43.246,7.582L24,21L4.754,7.582C3.18,7.919,2,9.297,2,11c0,1.206,1.518,2.258,1.518,2.258L24,27.756l20.482-14.497c0,0,1.518-1.053,1.518-2.258C46,9.297,44.82,7.919,43.246,7.582z"></path>
+              </svg>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <div class="space"></div>
 <app-footer></app-footer>
 </body>
