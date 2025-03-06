@@ -9,26 +9,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     QuillModule.forRoot({
-      customModules: [
-        {
-          implementation: {},
-          path: 'modules/toolbar'
-        }
-      ],
-      customOptions: [{
-        import: 'formats/font',
-        whitelist: ['mirza', 'roboto', 'aref', 'serif', 'sansserif', 'monospace']
-      }],
       modules: {
         toolbar: [
           ['bold', 'italic', 'underline', 'strike'],
-          [{ header: [1, 2, 3, 4, 5, 6, false] }],
-          [{ list: 'ordered' }, { list: 'bullet' }],
-          [{ color: [] }, { background: [] }],
-          [{ font: [] }],
-          [{ align: [] }],
-          ['link', 'image'],
-          ['clean']
+          ['blockquote', 'code-block'],
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'size': ['small', false, 'large', 'huge'] }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': ['mirza', 'roboto', 'aref', 'serif', 'sansserif', 'monospace'] }],
+          [{ 'align': [] }],
+          ['clean'],
+          ['link', 'image']
         ]
       }
     })

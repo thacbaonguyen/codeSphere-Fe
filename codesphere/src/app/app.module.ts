@@ -30,6 +30,9 @@ import { StorageComponent } from './storage/storage.component';
 import { ViewStorageComponent } from './storage/view-storage/view-storage.component';
 import { EditCmtComponent } from './comment-ex/edit-cmt/edit-cmt.component';
 import { ViewCmtHistoriesComponent } from './comment-ex/view-cmt-histories/view-cmt-histories.component';
+import { BlogRsComponent } from './blog-rs/blog-rs.component';
+import {SharedQuillModule} from "./shared/quill/quill.module";
+import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -83,6 +86,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ViewStorageComponent,
     EditCmtComponent,
     ViewCmtHistoriesComponent,
+    BlogRsComponent,
+    BlogFeaturedComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +102,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     SharedModule,
     DashboardModule,
+    SharedQuillModule
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],

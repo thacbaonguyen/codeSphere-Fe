@@ -20,6 +20,8 @@ import {ContributeQueueComponent} from "./dashboard/pages/contribute/contribute-
 import {AccessQueueComponent} from "./dashboard/pages/access-queue/access-queue.component";
 import {ExerciseRsComponent} from "./exercise-rs/exercise-rs.component";
 import {ExerciseDetailsComponent} from "./exercise-details/exercise-details.component";
+import { BlogRsComponent } from './blog-rs/blog-rs.component';
+import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 
 const routes: Routes = [
   {
@@ -137,6 +139,14 @@ const routes: Routes = [
   {
     path: 'exercise/question/details/:code',
     component: ExerciseDetailsComponent
+  },
+  {
+    path: 'blog',
+    component: BlogRsComponent
+  },
+  {
+    path: 'blog/featured',
+    component: BlogFeaturedComponent
   },
   {
     path: '**',

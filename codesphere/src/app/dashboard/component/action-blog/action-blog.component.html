@@ -124,7 +124,6 @@
         <label class="editor-label">Nội dung</label>
         <quill-editor
           #editor
-          [modules]="quillConfig"
           (onEditorCreated)="onEditorCreated($event)"
           (onContentChanged)="onContentChanged($event)"
         ></quill-editor>

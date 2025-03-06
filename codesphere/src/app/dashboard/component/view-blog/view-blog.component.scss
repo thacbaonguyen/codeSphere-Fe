@@ -27,6 +27,11 @@
   }
 }
 
+::ng-deep .content pre {
+  background-color: #1E242A;
+  color: #9FCFF6;
+}
+
 .excerpt{
   font-style: italic;
 }

@@ -4,13 +4,26 @@ import {ConfirmationComponent} from "../material-component/dialog/confirmation/c
 import {Router} from "@angular/router";
 import {jwtDecode} from "jwt-decode";
 import {ChangePasswordComponent} from "../material-component/dialog/change-password/change-password.component";
-
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  // @Input() backgroundColor: string = '#ffffff';
+  @Input() set backgroundColor(value: string) {
+    if (value) {
+      document.documentElement.style.setProperty('--button-color', value);
+      document.documentElement.style.setProperty('--bs-body-bg', value);
+      
+    }
+  }
+
+  @Input() set SvgColor(value: string){
+    document.documentElement.style.setProperty('--svg-color', value);
+  }
+
   isMenuOpen = false;
   userRoles: string[] = [];
 
@@ -19,7 +32,8 @@ export class HeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.getUserRoles()
+    this.getUserRoles();
+    console.log("backcolor", this.backgroundColor)
   }
   // close menu khi bam ra ngoai
   @HostListener('document:click', ['$event'])

@@ -14,6 +14,8 @@ import {Location} from "@angular/common";
   styleUrls: ['./exercise-rs.component.scss']
 })
 export class ExerciseRsComponent implements OnInit {
+  parentColor: string = '#ffffff';
+  svgColor: string = '#000000';
 
   subjects: Subjects[] | null = null;
 
@@ -39,72 +41,62 @@ export class ExerciseRsComponent implements OnInit {
               private subjectService: SubjectService,
               private ngxUiLoader: NgxUiLoaderService,
               private router: Router,
-              private route: ActivatedRoute,
-              private location: Location) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        if (event.navigationTrigger === 'popstate') {
-          // Khi người dùng bấm nút back/forward, tải lại dữ liệu dựa trên URL mới
-          setTimeout(() => this.loadFromParams(), 0);
-        }
-      }
-    });
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.loadAllSubject();
     this.route.queryParams.subscribe(params => {
-      this.loadFromParams(params);
+      this.searchQuery = params['search'] || '';
+      this.currentPage = parseInt(params['page']) || 1;
+      if( params['order'] && params['by']){
+        this.selectedFilter.order = params['order'];
+        this.selectedFilter.by = params['by'];
+      }
+      this.subjectFilter = params['subject'] || 'Java'
+      
+      this.loadAllExercise()
     });
   }
 
-  loadFromParams(params?: any) {
-    if (!params) {
-      params = this.route.snapshot.queryParams;
-    }
+  search(){
+    this.currentPage = 1;
+    this.updateUrlParams({
+      search: this.searchQuery,
+      subject: this.subjectFilter,
+      page: this.currentPage,
+      order: this.selectedFilter.order,
+      by: this.selectedFilter.by
+    })
+  }
 
-    this.searchQuery = params['search'] || '';
-    this.currentPage = parseInt(params['page']) || 1;
-    this.subjectFilter = params['subject'] || 'Java';
-
-      if (params['order']){
-        this.selectedFilter.order = params['order']
-      }
-      if (params['by']){
-        this.selectedFilter.by = params['by']
-      }
-
-    this.loadAllExercise();
+  onPageChange(page: number){
+    this.currentPage = page;
+    this.updateUrlParams({
+      search: this.searchQuery,
+      subject: this.subjectFilter,
+      page: this.currentPage,
+      order: this.selectedFilter.order,
+      by: this.selectedFilter.by
+    });
   }
 
 
-  updateUrlParams() {
+  updateUrlParams(params: any) {
     const queryParams: any = {};
-
-    if (this.searchQuery) {
-      queryParams.search = this.searchQuery;
-    }
-
-    if (this.currentPage > 1) {
-      queryParams.page = this.currentPage;
-    }
-
-    if (this.selectedFilter?.order) {
-      queryParams.order = this.selectedFilter.order;
-    }
-
-    if (this.selectedFilter?.by) {
-      queryParams.by = this.selectedFilter.by;
-    }
-
-    if (this.subjectFilter) {
-      queryParams.subject = this.subjectFilter;
-    }
-
+    
+    if (params.search) queryParams['search'] = params.search;
+    if (params.subject) queryParams['subject'] = params.subject;
+    if (params.page) queryParams['page'] = params.page;
+    if (params.order) queryParams['order'] = params.order;
+    if (params.by) queryParams['by'] = params.by;
+    
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: "merge"});
+      queryParamsHandling: null
+    });
+
   }
 
   loadAllSubject(){
@@ -136,7 +128,6 @@ export class ExerciseRsComponent implements OnInit {
         this.loadTotalRecord(data)
         this.exerciseList = response.data
 
-        this.updateUrlParams()
         console.log("response.data", this.exerciseList)
       },
       error: (err: any)=>{
@@ -158,17 +149,7 @@ export class ExerciseRsComponent implements OnInit {
       }
     })
   }
-  search(){
-    this.currentPage = 1;
-    this.loadAllExercise()
-    console.log(this.selectedFilter.order, this.selectedFilter.by)
-  }
 
-  onPageChange(pageNumber: number){
-    this.currentPage = pageNumber;
-    this.loadAllExercise();
-    window.scrollTo({top: 0, behavior: 'smooth'})
-  }
 
   viewDetails(exercise: Exercise){
     this.router.navigate(['/exercise/question/details', exercise.code])
