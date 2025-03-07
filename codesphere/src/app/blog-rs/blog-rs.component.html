@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div class="container pb-5">
+  <div class="container " style="padding-bottom: 80px;">
     <div class="col-10 search-box-custom d-flex justify-content-between">
       <div class="search col-6 d-flex">
         <div class="col">
@@ -41,58 +41,77 @@
           />
         </div>
       </div>
-      <div class="col-2 search-btn-custom">
-        <button class="btn btn-primary w-100 h-100" [disabled]="(!isSearching && !isTagSearching)" (click)="(!searchQuery && tagQuery ? searchTag() : search())">Tìm kiếm</button>
+      <div class="col-2 search-btn-custom ">
+        <button
+          class="btn btn-primary w-100 h-100 pb-1 pt-1"
+          [disabled]="!isSearching && !isTagSearching"
+          (click)="!searchQuery && tagQuery ? searchTag() : search()"
+        >
+          Tìm kiếm
+        </button>
       </div>
-
     </div>
   </div>
 
-
-  <div class="blog-box-custom  mt-5" style="background-color: #ffffff">
-    
-
-    <div class="container d-flex">
-        <div class="featured-start col-6 text-start">Ghim</div>
-        <div class="featured-end col-6 text-end"><a style="cursor: pointer;" (click)="redirectToFeatured()">Xem tất cả</a></div>
+  <div class="blog-box-custom mt-5" style="background-color: #ffffff">
+    <div class="title-blog-box-custom col-10 mt-4" style="margin: 0 auto">
+      <div class="featured-start text-start">Ghim</div>
+      <div class="featured-end text-end">
+        <a style="cursor: pointer" (click)="redirectToFeatured()">Xem tất cả</a>
+      </div>
     </div>
+
     <div
-      class="card-blog-box-custom col-11 d-flex justify-content-center mt-4"
-      style="margin: 0 auto; gap: 70px; flex-wrap: wrap;"
+      class="card-blog-box-custom col-10 mt-4"
+      style="margin: 0 auto; gap: 70px; flex-wrap: wrap"
     >
-      <div class="card card-blog-custom col-3 pb-2" *ngFor="let blog of featuredList">
+      <div
+        class="card card-blog-custom col-12 pb-2"
+        *ngFor="let blog of featuredList"
+      >
         <div class="card-body">
-            <div class="mt-2">
-                <img *ngIf="!blog.image" src="../../assets/images/thumb-default.png" alt="">
-                <img *ngIf="blog.image" [src]="blog.image" alt="">
-              </div>
-              <div class="card-title mt-3"><a href="">{{ blog.title }}</a></div>
+          <div class="mt-2">
+            <img
+              *ngIf="!blog.image"
+              src="../../assets/images/thumb-default.png"
+              alt=""
+            />
+            <img *ngIf="blog.image" [src]="blog.image" alt="" />
+          </div>
+          <div class="card-title mt-3">
+            <a href="">{{ blog.title }}</a>
+          </div>
           <div class="card-text card-desc-custom mt-3">
             {{ blog.excerpt }}
           </div>
 
-          <div class="mt-3 col-12 d-flex justify-content-start flex-wrap pb-3" style="gap: 15px;">
-                <button *ngFor="let tag of blog.tagNames" class="btn btn-tag-custom" (click)="findTag(tag)">{{ tag }}</button>
-          </div>   
+          <div
+            class="mt-3 col-12 d-flex justify-content-start flex-wrap pb-3"
+            style="gap: 15px"
+          >
+            <button
+              *ngFor="let tag of blog.tagNames"
+              class="btn btn-tag-custom"
+              (click)="findTag(tag)"
+            >
+              {{ tag }}
+            </button>
+          </div>
 
           <div class="read-now-box col-11 d-flex justify-content-end mt-2">
             <div><a class="read-now" href="">Bắt đầu đọc -></a></div>
           </div>
-
         </div>
       </div>
     </div>
-    
-    <div class="col-10 d-flex justify-content-end pb-5" style="margin: 0 auto;">
-      
-  </div>
 
-    <div class="container d-flex">
-      <div class="featured-start col-6 text-start" style="margin-top: 45px;">Bài viết mới</div>
-      <div class="featured-end col-6 d-flex justify-content-end">
+    <div class="title-blog-box-custom col-10 mt-2" style="margin: 0 auto">
+      <div class="featured-start text-start" style="margin-top: 45px">Bài viết mới</div>
+      <div class="featured-end d-flex justify-content-end">
         <div class="filter col-lg-4 col-sm-8 filter-custom">
           <label for="filter">Bộ lọc</label>
-          <select id="filter"
+          <select
+            id="filter"
             [(ngModel)]="selectedFilter"
             class="form-select col-12"
             (change)="onFilterChange()"
@@ -101,42 +120,59 @@
             <option [ngValue]="defaultFilter" disabled selected>
               -- Chọn bộ lọc --
             </option>
-            <option *ngFor="let option of filterOptions" [ngValue]="option.value">
+            <option
+              *ngFor="let option of filterOptions"
+              [ngValue]="option.value"
+            >
               {{ option.viewValue }}
             </option>
           </select>
         </div>
       </div>
-  </div>
+    </div>
+
     <div
-      class="card-blog-box-custom col-11 d-flex justify-content-center mt-4"
-      style="margin: 0 auto; gap: 70px; flex-wrap: wrap;"
+      class="card-blog-box-custom col-10 mt-4"
+      style="margin: 0 auto; gap: 70px; flex-wrap: wrap"
     >
-      <div class="card card-blog-custom col-3 pb-4" *ngFor="let blog of blogList">
+      <div class="card card-blog-custom pb-4" *ngFor="let blog of blogList">
         <div class="card-body">
-            <div class="mt-2">
-              <img *ngIf="!blog.image" src="../../assets/images/thumb-default.png" alt="">
-              <img *ngIf="blog.image" [src]="blog.image" alt="">
-              </div>
-              <div class="card-title mt-3"><a href="">{{ blog.title }}</a></div>
+          <div class="mt-2">
+            <img
+              *ngIf="!blog.image"
+              src="../../assets/images/thumb-default.png"
+              alt=""
+            />
+            <img *ngIf="blog.image" [src]="blog.image" alt="" />
+          </div>
+          <div class="card-title mt-3">
+            <a href="">{{ blog.title }}</a>
+          </div>
           <div class="card-text card-desc-custom mt-2">
             {{ blog.excerpt }}
           </div>
 
-          <div class="mt-3 col-12 d-flex justify-content-start flex-wrap pb-2" style="gap: 15px;">
-            <button *ngFor="let tag of blog.tagNames" class="btn btn-tag-custom" (click)="findTag(tag)">{{ tag }}</button>
-          </div>  
+          <div
+            class="mt-3 col-12 d-flex justify-content-start flex-wrap pb-2"
+            style="gap: 15px"
+          >
+            <button
+              *ngFor="let tag of blog.tagNames"
+              class="btn btn-tag-custom"
+              (click)="findTag(tag)"
+            >
+              {{ tag }}
+            </button>
+          </div>
           <div class="read-now-box col-11 d-flex justify-content-end mt-2">
             <div><a class="read-now" href="">Bắt đầu đọc -></a></div>
           </div>
-          
         </div>
       </div>
     </div>
-
   </div>
 
-  <app-pagination 
+  <app-pagination
     [totalRecords]="totalRecord"
     [pageSize]="pageSize"
     [currentPage]="currentPage"

@@ -14,7 +14,7 @@ import {Location} from "@angular/common";
   styleUrls: ['./exercise-rs.component.scss']
 })
 export class ExerciseRsComponent implements OnInit {
-  parentColor: string = '#ffffff';
+  parentColor: string = 'linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%)';
   svgColor: string = '#000000';
 
   subjects: Subjects[] | null = null;

@@ -1,29 +1,51 @@
 <div class="app-container">
-  <app-header [backgroundColor]="parentColor" [SvgColor]="svgColor"></app-header>
-
+  <app-header [backgroundColor]="parentColor"
+   [SvgColor]="svgColor"
+   class="fixed-top"
+   >
+  </app-header>
+  <div class="exercise-title-container pb-2">
+    <div class="container pt-header">
+          <div class="title-1 fs-2">
+             Keep Coding – luyện tập tư duy lập trình
+          </div>
+          <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-title">Terminal</div>
+                <div class="terminal-controls">
+                    <div class="control close"></div>
+                    <div class="control minimize"></div>
+                    <div class="control maximize"></div>
+                </div>
+            </div>
+            <div class="text">console.log("Hello PTIT");</div>
+        </div>
+    </div>
+  </div>
+  
   <div class="container pt-header">
     <div class="row h-50 justify-content-between">
-      <div class="col-5">
-        <div class="title fs-2">Bài tập</div>
+      <div class="title-rs-container col-6">
+        <div class="title fs-2 mt-2">Bài tập</div>
       </div>
 
-      <div class="col-5 d-flex justify-content-between">
-        <div class="search col-6 d-flex">
-          <div class="col">
+      <div class="search-container col-6 d-flex justify-content-between">
+        <div class="search-box col-6 d-flex">
+          <div class="search-input col-10 ">
             <input [(ngModel)]="searchQuery" type="text" class="text-search form-control" placeholder="Tìm kiếm" (keyup.enter)="search()">
           </div>
-          <!--        <div class="col-2">-->
-          <!--          <button class="btn-primary">-->
-          <!--            Tìm-->
-          <!--          </button>-->
-          <!--        </div>-->
+                 <div class="search-button col-2">
+                   <button class="btn-primary w-100  h-100" (click)="search()">
+                     Tìm
+                   </button>
+                 </div>
         </div>
-        <div class="subject col-3">
+        <div class="subject col-2">
           <select [(ngModel)]="subjectFilter" class="form-select" (change)="search()">
             <option *ngFor="let sub of subjects" [value]="sub.name">{{ sub.name }}</option>
           </select>
         </div>
-        <div class="filter col-2">
+        <div class="filter col-3">
           <select [(ngModel)]="selectedFilter" class="form-select col-12" (change)="search()" required >
             <option [ngValue]="null" disabled selected>-- Chọn bộ lọc --</option>
             <option *ngFor="let option of filterOptions" [ngValue]="option.value">{{ option.viewValue }}</option>
@@ -49,12 +71,12 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of exerciseList; let i = index">
-            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td style="border-left: #b3b3b3 solid 2px;">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
             <td><button class="btn btn-link text-button" (click)="viewDetails(item)">{{ item.code }}</button> </td>
             <td><button class="btn btn-link text-button" (click)="viewDetails(item)">{{ item.title }}</button></td>
             <td>{{ item.description }}</td>
             <td>{{ item.topic }}</td>
-            <td>{{ item.level }}</td>
+            <td style="border-right: #b3b3b3 solid 2px;">{{ item.level }}</td>
           </tr>
 
 
