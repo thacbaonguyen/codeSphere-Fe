@@ -22,6 +22,7 @@ import {ExerciseRsComponent} from "./exercise-rs/exercise-rs.component";
 import {ExerciseDetailsComponent} from "./exercise-details/exercise-details.component";
 import { BlogRsComponent } from './blog-rs/blog-rs.component';
 import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 
 const routes: Routes = [
   {
@@ -143,6 +144,10 @@ const routes: Routes = [
   {
     path: 'blog',
     component: BlogRsComponent
+  },
+  {
+    path: 'blog/blog-details/:slug',
+    component: BlogDetailsComponent
   },
   {
     path: 'blog/featured',

@@ -172,17 +172,6 @@ export class BlogRsComponent implements OnInit {
   }
 
   loadAllBlogs() {
-      // const queryParams: any = {};
-      // if(this.searchQuery) queryParams['search'] = this.searchQuery;
-      // if(this.selectedFilter.order) queryParams['order'] = this.selectedFilter.order;
-      // if(this.selectedFilter.by) queryParams['by'] = this.selectedFilter.by;
-      // if(this.currentPage) queryParams['page'] = this.currentPage;
-
-      // this.router.navigate([], {
-      //   relativeTo: this.route,
-      //   queryParams: queryParams,
-      //   queryParamsHandling: 'merge'
-      // })
 
       var data = {
         search: this.searchQuery,
@@ -256,7 +245,9 @@ export class BlogRsComponent implements OnInit {
       }
     }
 
-  
+    viewBlogDetails(blog: Blog){
+      this.router.navigate(['/blog/blog-details', blog.slug])
+    }
 
     redirectToFeatured(){
       this.router.navigate(['/blog/featured'])

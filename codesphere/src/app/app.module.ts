@@ -33,6 +33,7 @@ import { ViewCmtHistoriesComponent } from './comment-ex/view-cmt-histories/view-
 import { BlogRsComponent } from './blog-rs/blog-rs.component';
 import {SharedQuillModule} from "./shared/quill/quill.module";
 import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -88,6 +89,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ViewCmtHistoriesComponent,
     BlogRsComponent,
     BlogFeaturedComponent,
+    BlogDetailsComponent,
   ],
   imports: [
     BrowserModule,

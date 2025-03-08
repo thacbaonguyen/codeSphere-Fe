@@ -142,6 +142,7 @@ export class ExerciseDetailsComponent implements OnInit {
       next: (response: any)=>{
         this.snackbar.openSnackBar(response?.message, '');
         // this.loadExerciseDetails(this.exerciseDetail.code);
+        this.commentMessage = '';
         this.ngOnInit()
       },
       error: (err: any)=>{
