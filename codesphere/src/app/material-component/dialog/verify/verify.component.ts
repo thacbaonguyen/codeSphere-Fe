@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MatDialogRef} from "@angular/material/dialog";
@@ -15,7 +15,7 @@ import {GlobalConstants} from "../../../shared/global-constants";
 })
 export class VerifyComponent implements OnInit {
 
-  verifyForm: any = FormGroup;
+  verifyForm: any = UntypedFormGroup;
   responseMessage: any;
   email: string = '';
   otpPlus:any = '';
@@ -26,7 +26,7 @@ export class VerifyComponent implements OnInit {
   canResend:any = false;
   interval:any;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private userService: UserService,
               private snackbar: SnackbarService,
               public matDialogRef: MatDialogRef<VerifyComponent>,

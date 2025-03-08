@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
@@ -18,9 +18,9 @@ import {VerifyForgotPasswordComponent} from "../verify-forgot-password/verify-fo
 export class ForgotPasswordComponent implements OnInit {
 
   responseMessage:any;
-  forgotPasswordForm:any = FormGroup;
+  forgotPasswordForm:any = UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private userService: UserService,
               private snackbar: SnackbarService,
               public matDialogRef: MatDialogRef<ForgotPasswordComponent>,

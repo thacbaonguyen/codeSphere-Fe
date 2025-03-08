@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedService} from "../../../services/shared.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {Router} from "@angular/router";
@@ -16,11 +16,11 @@ import {GlobalConstants} from "../../../shared/global-constants";
 export class SetPasswordComponent implements OnInit {
   email: string = '';
   responseMessage:any;
-  setPasswordForm: any = FormGroup;
+  setPasswordForm: any = UntypedFormGroup;
   showPassword: boolean = true;
   showRetypePassword: boolean = true;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private userService: UserService,
     private snackbar: SnackbarService,
     private router: Router,

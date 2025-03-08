@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ExerciseService} from "../../../services/exercise/exercise.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
@@ -19,14 +19,14 @@ export class ActionExerciseComponent implements OnInit {
   onEditEvent = new EventEmitter();
   detailsData: ExerciseDetail | null = null;
   matDialogAction: string = 'add';
-  exerciseForm: any = FormGroup;
+  exerciseForm: any = UntypedFormGroup;
   responseMessage: string = '';
 
   selectedSubject : Subjects[] | null = null;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) private matDialogData: any,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private exerciseService: ExerciseService,
     private snackbar: SnackbarService,
     private ngxUiLoader: NgxUiLoaderService,

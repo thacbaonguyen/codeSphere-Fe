@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {SnackbarService} from "../services/snackbar.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
@@ -16,11 +16,11 @@ import {SignupComponent} from "../signup/signup.component";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm:any = FormGroup;
+  loginForm:any = UntypedFormGroup;
   responseMessage:any;
   showPassword:any = true;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private userService: UserService,
               private snackbar: SnackbarService,
               private ngxUiLoader: NgxUiLoaderService,

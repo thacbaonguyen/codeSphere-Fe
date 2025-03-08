@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {ExerciseService} from "../services/exercise/exercise.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
@@ -14,13 +14,61 @@ import {CommentEx} from "../models/comment-ex";
 import {AuthService} from "../services/auth/auth.service";
 import {ViewCmtHistoriesComponent} from "../comment-ex/view-cmt-histories/view-cmt-histories.component";
 import {EditCmtComponent} from "../comment-ex/edit-cmt/edit-cmt.component";
+import { CodeService } from '../services/coding/code.service';
 
 @Component({
   selector: 'app-exercise-details',
   templateUrl: './exercise-details.component.html',
   styleUrls: ['./exercise-details.component.scss']
 })
-export class ExerciseDetailsComponent implements OnInit {
+export class ExerciseDetailsComponent implements OnInit, AfterViewInit {
+  editorOptions = {
+    theme: 'vs-dark',
+    language: 'java',
+    fontSize: 14,
+    automaticLayout: true
+  };
+
+  languages = [
+    { id: 62, name: 'Java (OpenJDK 13)', value: 'java' },
+    { id: 71, name: 'Python (3.8.1)', value: 'python' },
+    { id: 63, name: 'JavaScript (Node.js 12.14.0)', value: 'javascript' },
+    { id: 54, name: 'C++ (GCC 9.2.0)', value: 'cpp' }
+  ];
+  onLanguageChange(event: any) {
+    const selectedLang = this.languages.find(lang => lang.value === event);
+    if (selectedLang) {
+      this.editorOptions = {
+        ...this.editorOptions,
+        language: selectedLang.value
+      };
+
+      this.codeIDE = this.getStarterCode(selectedLang.value);
+    }
+  }
+  
+  getStarterCode(language: string): string {
+    switch(language) {
+      case 'java':
+        return 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}';
+      case 'python':
+        return 'print("Hello World")';
+      case 'javascript':
+        return 'console.log("Hello World");';
+      case 'cpp':
+        return '#include <iostream>\n\nint main() {\n\tstd::cout << "Hello World" << std::endl;\n\treturn 0;\n}';
+      default:
+        return '';
+    }
+  }
+  codeIDE: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}';
+  stdin: string = ''; 
+  output: string = '';
+  isRunning: boolean = false;
+  selectedLanguage: string = 'java';
+  //
+  parentColor: string = 'linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%)';
+  svgColor: string = '#000000';
   code: any;
   exerciseDetail: ExerciseDetail | any;
   responseMessage: any;
@@ -37,6 +85,8 @@ export class ExerciseDetailsComponent implements OnInit {
 
   cmtHistories: any;
 
+  isShowIDE: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private exerciseService: ExerciseService,
               private ngxUiLoader: NgxUiLoaderService,
@@ -44,7 +94,8 @@ export class ExerciseDetailsComponent implements OnInit {
               private snackbar: SnackbarService,
               private matDialog: MatDialog,
               private commentService: CommentService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+            private codeService: CodeService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('code')){
@@ -52,6 +103,10 @@ export class ExerciseDetailsComponent implements OnInit {
     }
     this.loadExerciseDetails(this.code);
     this.getSubCmt()
+  }
+
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
   }
 
   loadExerciseDetails(code: string){
@@ -179,6 +234,88 @@ export class ExerciseDetailsComponent implements OnInit {
       matDialogRef.close();
       this.ngOnInit()
     })
+  }
+
+  // IDE action
+
+  showOrHideIDE(){
+    this.isShowIDE = !this.isShowIDE;
+  }
+  //chay code truc tuyen
+  runCode(): void {
+    this.isRunning = true;
+    this.output = 'Đang chạy...';
+    
+    const languageId = this.codeService.getLanguageId(this.editorOptions.language);
+    
+    this.codeService.submitCode(languageId, this.codeIDE, this.stdin)
+      .subscribe(
+        (response) => {
+          if (response && response.token) {
+            this.checkStatus(response.token);
+          } else {
+            this.output = 'Khong nhận được token';
+            this.isRunning = false;
+          }
+        },
+        (error: any) => {
+          console.error("Err1", error)
+          this.output = 'Lỗi khi gửi code: ' + JSON.stringify(error);
+          this.isRunning = false;
+        }
+      );
+  }
+
+  private checkStatus(token: string): void {
+    setTimeout(() => {
+      this.codeService.getSubmission(token)
+        .subscribe(
+          (response) => {
+            console.log("ok reponse", response)
+            if (response.status && response.status.id <= 2) {
+              this.checkStatus(token);
+              console.log("check status", response.status)
+            } else {
+              this.processResult(response);
+              this.isRunning = false;
+            }
+          },
+          (error: any) => {
+            console.error("err3", error)
+            this.output = 'Lỗi khi kiểm tra kết quả: ' + JSON.stringify(error);
+            this.isRunning = false;
+          }
+        );
+    }, 1000);
+  }
+
+  private processResult(result: any): void {
+    try {
+      console.log('data api', result);
+  
+      if (result.stdout) {
+        this.output = atob(result.stdout);
+      } else if (result.stderr) {
+        this.output = 'Lỗi: ' + atob(result.stderr);
+      } else if (result.compile_output) {
+        this.output = 'Lỗi biên dịch: ' + atob(result.compile_output);
+      } else {
+        this.output = 'Không có kết quả từ máy chủ';
+      }
+
+      if (result.status && result.status.description) {
+        this.output += `\nTrạng thái: ${result.status.description}`;
+      }
+      if (result.time) {
+        this.output += `\nThời gian: ${result.time}s`;
+      }
+      if (result.memory) {
+        this.output += `\nBộ nhớ: ${result.memory} KB`;
+      }
+    } catch (error) {
+      console.error('Lỗi khi xử lý kết quả:', error);
+      this.output = 'Đã xảy ra lỗi khi xử lý kết quả. Kiểm tra console để biết thêm chi tiết.';
+    }
   }
 
 }

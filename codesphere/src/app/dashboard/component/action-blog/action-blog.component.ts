@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, OnInit, ViewChild} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormArray, UntypedFormBuilder, FormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {BlogDetail} from "../../../models/blog-detail";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SnackbarService} from "../../../services/snackbar.service";
@@ -38,7 +38,7 @@ export class ActionBlogComponent implements OnInit {
   onEditEvent = new EventEmitter();
   blogDetail: BlogDetail | null = null;
   matDialogAction: string = 'add';
-  blogForm: any = FormGroup;
+  blogForm: any = UntypedFormGroup;
   responseMessage: string = '';
 
   //
@@ -48,7 +48,7 @@ export class ActionBlogComponent implements OnInit {
   isDuplicate: boolean = false;
   //
   constructor(@Inject(MAT_DIALOG_DATA) private matDialogData: any,
-              private formBuilder: FormBuilder,
+              private formBuilder: UntypedFormBuilder,
               private blogService: BlogService,
               private snackbar: SnackbarService,
               private ngxUiLoader: NgxUiLoaderService,
@@ -122,7 +122,7 @@ export class ActionBlogComponent implements OnInit {
   }
 
   get tags() {
-    return this.blogForm.get('tags') as FormArray;
+    return this.blogForm.get('tags') as UntypedFormArray;
   }
 
   createTag() {

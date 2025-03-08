@@ -1,3 +1,6 @@
+.app-container{
+  background-color: #F9F9F9;
+}
 .pt-header {
   padding-top: 140px;
 }
@@ -131,4 +134,54 @@
 
 .full {
   padding-bottom: 100px;
+}
+
+.card-ide-custom{
+  .card-title{
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+    svg{
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+  .card-body{
+    padding-top: 0;
+  }
+}
+.editor-custom {
+  resize: vertical;
+  overflow: auto;
+  height: 300px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  border: none;
+  background-color: #F8F9FA;
+}
+.ide-custom{
+  height: 100%;
+}
+
+.input-section{
+  margin: 20px;
+  textarea{
+    width: 100%;
+  }
+}
+
+.output-section{
+  margin: 20px;
+  div{
+    border: #4D4D4D solid 1px;
+    min-height: 60px;
+    pre{
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.space{
+  padding-top: 150px;
 }

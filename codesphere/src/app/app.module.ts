@@ -34,6 +34,7 @@ import { BlogRsComponent } from './blog-rs/blog-rs.component';
 import {SharedQuillModule} from "./shared/quill/quill.module";
 import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { MonacoModule } from './shared/monaco/monaco.module';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -104,7 +105,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     SharedModule,
     DashboardModule,
-    SharedQuillModule
+    SharedQuillModule,
+    MonacoModule
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],

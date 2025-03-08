@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {ExerciseService} from "../services/exercise/exercise.service";
 import {SubjectService} from "../services/subject/subject.service";
 import {Subjects} from "../models/subject";
@@ -13,7 +13,7 @@ import {Location} from "@angular/common";
   templateUrl: './exercise-rs.component.html',
   styleUrls: ['./exercise-rs.component.scss']
 })
-export class ExerciseRsComponent implements OnInit {
+export class ExerciseRsComponent implements OnInit, AfterViewInit {
   parentColor: string = 'linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%)';
   svgColor: string = '#000000';
 
@@ -57,6 +57,10 @@ export class ExerciseRsComponent implements OnInit {
       
       this.loadAllExercise()
     });
+  }
+
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
   }
 
   search(){

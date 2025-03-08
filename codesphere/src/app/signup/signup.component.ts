@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {SnackbarService} from "../services/snackbar.service";
@@ -19,10 +19,10 @@ export class SignupComponent implements OnInit {
   showPassword = true;
   showRetypePassword = true;
   responseMessage: any;
-  signupForm: any = FormGroup;
+  signupForm: any = UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private userService: UserService,
     private snackbar: SnackbarService,
