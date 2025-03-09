@@ -15,6 +15,8 @@ import {AuthService} from "../services/auth/auth.service";
 import {ViewCmtHistoriesComponent} from "../comment-ex/view-cmt-histories/view-cmt-histories.component";
 import {EditCmtComponent} from "../comment-ex/edit-cmt/edit-cmt.component";
 import { CodeService } from '../services/coding/code.service';
+import { SubmissionResponse } from '../models/submission-response';
+import { SubmissionComponent } from '../submission/submission.component';
 
 @Component({
   selector: 'app-exercise-details',
@@ -86,6 +88,10 @@ export class ExerciseDetailsComponent implements OnInit, AfterViewInit {
   cmtHistories: any;
 
   isShowIDE: boolean = false;
+  showHistories: boolean = false;
+  submissionResponse: SubmissionResponse = <SubmissionResponse>{};
+
+  submissionResponseList: SubmissionResponse[] = [];
 
   constructor(private route: ActivatedRoute,
               private exerciseService: ExerciseService,
@@ -102,7 +108,8 @@ export class ExerciseDetailsComponent implements OnInit, AfterViewInit {
       this.code = this.route.snapshot.paramMap.get('code');
     }
     this.loadExerciseDetails(this.code);
-    this.getSubCmt()
+    this.getSubCmt();
+    this.loadSubmissionHistories()
   }
 
   ngAfterViewInit() {
@@ -241,6 +248,52 @@ export class ExerciseDetailsComponent implements OnInit, AfterViewInit {
   showOrHideIDE(){
     this.isShowIDE = !this.isShowIDE;
   }
+
+  showOrHideHistory(){
+    this.showHistories = !this.showHistories;
+  }
+  // gade code
+
+  gradeSubmission(){
+    const languageId = this.codeService.getLanguageId(this.editorOptions.language);
+    const data = {
+      exerciseId: this.exerciseDetail.id,
+      languageId: languageId,
+      sourceCode: this.codeIDE
+    }
+    console.log("data submit", data);
+    this.codeService.gradeSubmission(data).subscribe({
+      next: (response: any)=>{
+        this.submissionResponse = response.data;
+        this.loadSubmissionHistories()
+        console.log("grade submit", this.submissionResponse)
+      }
+    })
+  }
+
+  loadSubmissionHistories(){
+    console.log("check route")
+    this.codeService.getAllSubmissionHistories(this.code).subscribe({
+      next:(response: any)=>{
+        this.submissionResponseList = response.data;
+        console.log("all histories", this.submissionResponseList)
+        console.log("all histories 2", response.data)
+      },
+      error: (err: any)=>{
+        console.log("error load ding submit histories", err)
+      }
+    })
+  }
+
+  viewSubmission(submission: SubmissionResponse){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = "800px";
+    matDialogConfig.data = {
+      submission: submission
+    }
+     this.matDialog.open(SubmissionComponent, matDialogConfig);
+  }
+
   //chay code truc tuyen
   runCode(): void {
     this.isRunning = true;

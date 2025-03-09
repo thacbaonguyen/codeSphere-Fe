@@ -56,4 +56,8 @@ export class ExerciseService {
   viewDetailExercise(code: string): Observable<ApiResponse<ExerciseDetail>>{
     return this.httpClient.get<ApiResponse<ExerciseDetail>>(this.url + `/exercise/question/${code}`)
   }
+
+  viewTestCaseDetail(code: string){
+    return this.httpClient.get(this.url + `/exercise/question/testcases/${code}`)
+  }
 }

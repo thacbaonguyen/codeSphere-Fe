@@ -1,0 +1,61 @@
+.card {
+  transition: all 0.6s ease-in-out;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.source-code{
+    background-color: #2a313a;
+    color: #73B6F2;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-text {
+  display: flex;
+  align-items: center;
+}
+
+.expand-toggle {
+  display: none;
+}
+.more {
+  cursor: pointer;
+  z-index: 10;
+}
+
+.more svg {
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+.expand-toggle:checked ~ .card-body .more svg {
+  transform: rotate(180deg);
+}
+.hidden-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 15px;
+}
+.expand-toggle:checked ~ .hidden-content {
+  max-height: 500px; 
+  padding: 15px;
+}
+
+.equal-custom{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+.output, .expected{
+    width: 47%;
+    background-color: #2a313a;
+    color: #D5BF6D;
+    border-radius: 7px;
+    pre, p{
+        margin-top: 7px;
+        margin-left: 7px;
+    }
+}

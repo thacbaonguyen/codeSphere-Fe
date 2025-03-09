@@ -1,11 +1,16 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiResponse } from 'src/app/models/api-response';
+import { SubmissionResponse } from 'src/app/models/submission-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CodeService {
+
+  url = environment.apiUrl;
 
   private apiUrl = 'https://judge0-ce.p.rapidapi.com'; // URL của Judge0 API
   private headers = new HttpHeaders({
@@ -55,5 +60,15 @@ export class CodeService {
     };
     
     return languageMap[language.toLowerCase() as keyof typeof languageMap] || 62;
+  }
+
+  gradeSubmission(data : any): Observable<ApiResponse<SubmissionResponse>>{
+    return this.httpClient.post<ApiResponse<SubmissionResponse>>(this.url + "/judge0/submission/grade", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  getAllSubmissionHistories(code: string):Observable<ApiResponse<SubmissionResponse[]>>{
+    return this.httpClient.get<ApiResponse<SubmissionResponse[]>>(this.url + `/exercise/submission/histories/${code}`)
   }
 }

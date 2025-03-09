@@ -96,6 +96,35 @@
         </mat-error>
       </mat-form-field>
 
+      <div formArrayName="testCases" style="width: 90%; margin: 0 auto;" class="pb-3">
+        <div *ngFor="let testCase of testCases.controls; let i = index" [formGroupName]="i" class="test-case">
+          <h4>Test Case {{i + 1}}</h4>
+          
+          <div class=" d-flex" style="gap: 10px;">
+            <mat-form-field appearance="outline">
+              <mat-label>Input</mat-label>
+              <textarea matInput formControlName="input" rows="4"></textarea>
+              <mat-error *ngIf="testCase.get('input')?.invalid">Input là bắt buộc</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Expected Output</mat-label>
+              <textarea matInput formControlName="expectedOutput" rows="4"></textarea>
+              <mat-error *ngIf="testCase.get('expectedOutput')?.invalid">Expected Output là bắt buộc</mat-error>
+            </mat-form-field>
+            
+            <button type="button" mat-icon-button color="warn" (click)="removeTestCase(i)" *ngIf="testCases.length > 1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          
+          <button type="button" mat-raised-button color="primary" (click)="addTestCase()">
+            <mat-icon>add</mat-icon> Thêm Test Case
+          </button>
+          </div>
+          
+      </div>
+
       <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
         <mat-label>Input</mat-label>
         <textarea matInput formControlName="input"

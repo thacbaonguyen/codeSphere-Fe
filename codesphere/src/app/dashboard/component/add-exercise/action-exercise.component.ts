@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormArray, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ExerciseService} from "../../../services/exercise/exercise.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
@@ -39,6 +39,7 @@ export class ActionExerciseComponent implements OnInit {
       paper: [null, [Validators.required]],
       input: [null, [Validators.required]],
       output: [null, [Validators.required]],
+      testCases: this.formBuilder.array([this.createTestCase()]),
       note: [null],
       subjectId: [null, [Validators.required]],
       description: [null],
@@ -57,6 +58,28 @@ export class ActionExerciseComponent implements OnInit {
     }
   }
 
+  // them test cases
+  createTestCase(){
+    return this.formBuilder.group({
+      input: [null, [Validators.required]],
+      expectedOutput: [null, [Validators.required]]
+    })
+  }
+
+  get testCases(){
+    return this.exerciseForm.get('testCases') as FormArray;
+  }
+
+  addTestCase(){
+    return this.testCases.push(this.createTestCase())
+  }
+
+  removeTestCase(index: number){
+    this.testCases.removeAt(index)
+  }
+
+  //
+
   loadAllSubject(){
     this.subjectService.getAllSubject().subscribe({
       next: (response: any)=>{
@@ -73,7 +96,22 @@ export class ActionExerciseComponent implements OnInit {
       next: (response: any)=>{
         this.detailsData = response.data;
         this.exerciseForm.patchValue(this.detailsData);
-        console.log("load details ex success:", this.detailsData)
+        this.exerciseService.viewTestCaseDetail(code).subscribe((rp: any) =>{
+          while (this.testCases.length) {
+            this.testCases.removeAt(0);
+          }
+          if (rp.data && rp.data.length) {
+            rp.data.forEach((testCase: { input: string; output: string }) => {
+              this.testCases.push(this.formBuilder.group({
+              input: [testCase.input, [Validators.required]],
+              expectedOutput: [testCase.output, [Validators.required]]
+              }));
+            });
+          } else {
+            this.testCases.push(this.createTestCase());
+          }
+        })
+        console.log("load details ex success:", this.exerciseForm.value)
       },
       error: (err: any)=>{
         console.error("load ex details failed:", err)
@@ -99,6 +137,7 @@ export class ActionExerciseComponent implements OnInit {
       code: formData.code,
       title: formData.title,
       paper: formData.paper,
+      testCases: formData.testCases,
       input: formData.input,
       output: formData.output,
       note: formData.note,
@@ -140,6 +179,7 @@ export class ActionExerciseComponent implements OnInit {
       code: formData.code,
       title: formData.title,
       paper: formData.paper,
+      testCases: formData.testCases,
       input: formData.input,
       output: formData.output,
       note: formData.note,

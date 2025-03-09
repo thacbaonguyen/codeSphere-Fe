@@ -69,7 +69,7 @@
             <th scope="col">Độ khó</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody >
           <tr *ngFor="let item of exerciseList; let i = index">
             <td style="border-left: #b3b3b3 solid 2px;">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
             <td><button class="btn btn-link text-button" (click)="viewDetails(item)">{{ item.code }}</button> </td>

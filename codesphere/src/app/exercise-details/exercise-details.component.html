@@ -149,9 +149,9 @@
                 
                 <button
                   class="btn btn-primary "
-                  style="width: 100px; background-color: #4caf50"
+                  style="width: 100px; background-color: #4caf50; margin-right: 20px;"
                   (click)="runCode()"
-                  [disabled]="isRunning"
+                  [disabled]="isRunning || !codeIDE"
                 >
                   <span *ngIf="!isRunning">Run</span>
                   <span *ngIf="isRunning">Running</span>
@@ -164,6 +164,39 @@
                   [options]="editorOptions"
                   [(ngModel)]="codeIDE"
                 ></ngx-monaco-editor>
+              </div>
+
+              <div class="grade d-flex justify-content-end" style="gap: 10px;">
+                <button class="btn" style="width: 100px; background-color: #476be0; color: #ffffff; margin-right: 20px;"
+                (click)="showOrHideHistory()"
+                >Lịch sử</button>
+                <button class="btn" style="width: 100px; background-color: #4caf50; color: #ffffff; margin-right: 20px;"
+                [disabled]="isRunning || !codeIDE"
+                (click)="gradeSubmission()"
+                >Chấm điểm</button>
+              </div>
+
+              <div *ngIf="showHistories" class="score table-responsive mt-5 col-11" style="margin: 0 auto;">
+                <table class="table table-borderless">
+                  <thead class="table-header" >
+                    <th >STT</th>
+                    <th>Trạng thái</th>
+                    <th>Số test đúng</th>
+                    <th>Điểm</th>
+                    <th>Xem</th>
+                  </thead>
+                  <tbody class="table-body">
+                    <tr *ngFor="let item of submissionResponseList; let i = index">
+                      <td style="border-left: #3f434d solid 1px;">{{i + 1}}</td>
+                    <td *ngIf="item.status === 'Accepted'" style="color: #449e47">{{ item.status }}</td>
+                    <td *ngIf="item.status === 'Error'" style="color: rgb(211, 46, 46)">{{ item.status }}</td>
+                    <td>{{ item.passCount }}/{{ item.totalTestCases }}</td>
+                    <td> {{ item.score }}</td>
+                    <td><button mat-icon-button (click)="viewSubmission(item)"><mat-icon color="primary">visibility</mat-icon></button></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
               </div>
 
               <div class="input-section">

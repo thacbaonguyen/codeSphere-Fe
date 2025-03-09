@@ -163,6 +163,29 @@
   height: 100%;
 }
 
+.table-header{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  th{
+    border: #3f434d solid 1px;
+    text-align: center;
+  }
+}
+.table-body{
+  tr{
+    td{
+      border: #3f434d solid 0 1px 1px 1px;
+      border-right: #3f434d solid 1px;
+      border-bottom: #3f434d solid 1px;
+      text-align: center;
+      font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+  
+}
 .input-section{
   margin: 20px;
   textarea{
@@ -185,3 +208,4 @@
 .space{
   padding-top: 150px;
 }
+

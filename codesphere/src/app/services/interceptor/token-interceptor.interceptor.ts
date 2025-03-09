@@ -37,6 +37,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 403) {
+          console.error("403 err")
           // neu loi 403 -> rf token
           return this.handle403Error(request, next);
         }
@@ -51,6 +52,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
    * @param next
    */
   handle403Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.error("err rf1")
     if (!this.isRefreshing) {
       this.isRefreshing = true; // bat dau qua trinh rf tk. khi request khác truy đưuọc gọi mà gặp lỗi 403 thì rơi xuống dòng 78-> đợi rf tk
       this.refreshTokenSubject.next(null);
@@ -60,6 +62,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         //api rf tk
         return this.userService.refreshToken(currentToken).pipe(
           switchMap((response: any) => {
+            
             this.isRefreshing = false; // rf tk success
             this.refreshTokenSubject.next(response.data.token); //emit token mới cho các rq đang đợi ở dòng 78
 
@@ -68,12 +71,15 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
           }),
           // bắt err
           catchError((err: HttpErrorResponse) => {
+            console.error("err rf")
             this.isRefreshing = false; //  rf failed
             return this.handleLoginDialog(request, next); // mở dialog login
           })
         );
       }
       // k có tk trong localstorage -> login
+      console.log("log handle login")
+      this.isRefreshing = false;
       return this.handleLoginDialog(request, next);
     }
     // dang trong qtrinh rf tk nên các rq khác sẽ đợi đến khi có tk mới

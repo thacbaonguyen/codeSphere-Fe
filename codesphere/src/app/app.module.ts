@@ -35,6 +35,7 @@ import {SharedQuillModule} from "./shared/quill/quill.module";
 import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { MonacoModule } from './shared/monaco/monaco.module';
+import { SubmissionComponent } from './submission/submission.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -91,6 +92,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BlogRsComponent,
     BlogFeaturedComponent,
     BlogDetailsComponent,
+    SubmissionComponent,
   ],
   imports: [
     BrowserModule,

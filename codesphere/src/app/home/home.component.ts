@@ -284,7 +284,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   redirectToBlogs() {
-    this.router.navigate(['/blog']);
+    this.userService.checkToken().subscribe({
+      next: (response: any) => {
+        this.router.navigate(['/blog']);
+      },
+      error: (err: any) => {
+        console.log('error', err);
+      },
+    });
+    
   }
 
   getBlogsFeatured() {

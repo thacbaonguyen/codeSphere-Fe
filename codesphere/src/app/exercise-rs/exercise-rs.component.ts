@@ -5,8 +5,7 @@ import {Subjects} from "../models/subject";
 import {FilterOptions} from "../models/filter-options";
 import {Exercise} from "../models/exercise";
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
-import {Location} from "@angular/common";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-exercise-rs',
