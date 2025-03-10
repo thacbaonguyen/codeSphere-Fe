@@ -214,9 +214,9 @@ export class ExerciseDetailsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  getSubCmt(){
-    this.subCmt = this.authService.subAcc()
-  }
+    getSubCmt(){
+      this.subCmt = this.authService.subAcc()
+    }
 
 
 

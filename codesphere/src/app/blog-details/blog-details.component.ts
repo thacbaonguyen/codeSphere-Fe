@@ -6,6 +6,9 @@ import { SnackbarService } from '../services/snackbar.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DomSanitizer, Meta, SafeHtml } from '@angular/platform-browser';
 import { Blog } from '../models/blog';
+import { AuthService } from '../services/auth/auth.service';
+import { CommentBlogService } from '../services/comment-blog/comment-blog.service';
+import { CommentBlogHistoryService } from '../services/cmt-blog-history/comment-blog-history.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -28,31 +31,42 @@ export class BlogDetailsComponent implements OnInit, AfterViewInit {
   pageTitle: string;
 
   isLiked: boolean = false;
+  subCmt: string = '';
   constructor(private blogService: BlogService,
     private route: ActivatedRoute,
     private snackbar: SnackbarService,
+    private router: Router,
     private ngxUiLoader: NgxUiLoaderService,
     private sanitizer: DomSanitizer,
-    private meta: Meta
+    private meta: Meta,
+    private authService: AuthService,
+    private commentService: CommentBlogService,
+    private commentHistory: CommentBlogHistoryService
   ) {
       this.pageUrl = encodeURIComponent(window.location.href);
       this.pageTitle = encodeURIComponent(document.title);
    }
 
   ngOnInit(): void {
+
     if( this.route.snapshot.paramMap.get('slug')){
       this.slug = this.route.snapshot.paramMap.get('slug')
     }
     this.loadBlogDetails(this.slug);
-    this.loadBlogRelate()
+    this.loadBlogRelate();
+    this.getSubCmt()
   }
 
   ngAfterViewInit() {
     window.scrollTo(0, 0);
   }
 
+  getSubCmt(){
+    this.subCmt = this.authService.subAcc()
+  }
+
   loadBlogDetails(slug: string){
-    // this.ngxUiLoader.start();
+    this.ngxUiLoader.start();
     this.blogService.viewBlogDetail(slug).subscribe({
       next: (response: any)=>{
         this.ngxUiLoader.stop();
@@ -82,10 +96,6 @@ export class BlogDetailsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  loadAllComment(){
-
-  }
-
   likeAction(){
     this.isLiked = !this.isLiked;
   }
@@ -97,6 +107,42 @@ export class BlogDetailsComponent implements OnInit, AfterViewInit {
 
   private openShareWindow(url: string): void {
     window.open(url, 'share-window', 'height=450, width=550, toolbar=0, menubar=0, directories=0, scrollbars=0');
+  }
+
+  viewBlogDetail(blog: Blog){
+    this.router.navigate([`/blog/blog-details`,  blog.slug]);
+    this.ngOnInit();
+    this.ngAfterViewInit()
+  }
+
+  insertComment( cmtId: number | null){
+    const data = {
+      blogId: this.blogDetails.id,
+      parentId: cmtId,
+      content: this.commentMessage
+    }
+
+    this.commentService.insertComment(data).subscribe({
+      next: (response: any)=>{
+
+      }
+    })
+  }
+
+  loadAllCommentBlog(blog: Blog){
+    
+  }
+
+  updateComment(blog: Blog){
+
+  }
+
+  deleteComment(blog: Blog){
+
+  }
+
+  loadCommentHistory(blog: Blog){
+
   }
 
 }

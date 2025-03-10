@@ -5,7 +5,7 @@
     class="app-header fixed-top"
   ></app-header>
 
-  <div class="container" style="margin: 0 auto; margin-top: 100px">
+  <div class="container container-blog" style="margin: 0 auto; margin-top: 100px">
     <div class="mark d-flex justify-content-between flex-wrap">
       <div class="view">
         <svg
@@ -224,12 +224,102 @@
       <div class="relate-box">
         <h2 class="mb-0" style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; color: #dd5664;">Đọc tiếp</h2>
         <div class="relate pt-0 pb-0 mt-3" *ngFor="let blog of blogRelate">
-          <p class="pt-1">{{ blog.title }}</p>
+          <a class="pt-1" (click)="viewBlogDetail(blog)">{{ blog.title }}</a>
         </div>
       </div>
       
     </div>
   </div>
+
+  <div class="container">
+    <div class="card col-12 mt-5">
+      <div class="card-body">
+        <div class="card-text mt-3">
+          <div class="fs-3 " style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif; font-size: 25px; font-weight: 500;">Bình luận</div>
+          <div class="cmt-guide mt-2" style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif;">
+            Các độc giả có thể thảo luận về chủ đề này ở bên dưới
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-text">
+          <textarea
+            [(ngModel)]="commentMessage"
+            class="w-100 form-control"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="4"
+            placeholder=" Nhập bình luận"
+          ></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+          <div class="col-lg-1 col-md-3 col-sm-3 bg-primary">
+            <button
+              class="btn btn-primary w-100"
+              [disabled]="!commentMessage"
+              (click)="insertComment(null)"
+            >
+              Bình luận
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div *ngFor="let cmt of comments" class="mt-5">
+        <div class="card border-custom">
+          <div class="d-flex justify-content-center">
+            <div class="col-11">
+              <div class="mt-2 d-flex justify-content-start">
+                <div class="rounded-circle box">
+                  <img
+                    src="../../assets/images/u-default.png"
+                    alt=""
+                    class="rounded-circle img"
+                  />
+                </div>
+                <div class="ms-2">
+                  <p class="full-name">{{ cmt.fullName }}</p>
+                  <p class="username text-black-50">{{ cmt.author }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="avatar card-body d-flex justify-content-center pb-0">
+            <div
+              class="card-text border-custom-item col-11 d-flex justify-content-between"
+            >
+              <div>
+                <pre class="ms-2 mt-2 pre-content text-start">{{
+                  cmt.content
+                }}</pre>
+              </div>
+
+              <p class="me-2 mt-2">{{ cmt.createdAt | date }}</p>
+            </div>
+          </div>
+
+          <div class="avatar-2 card-body d-flex justify-content-center">
+            <div class="col-11">
+              <button
+                *ngIf="cmt.author === subCmt"
+                class="btn btn-link col-lg-1 col-md-2 col-sm-3"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-link col-lg-1 col-md-3 col-sm-3"
+              >
+                Lịch sử
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  
 
   <div class="space"></div>
   <app-footer></app-footer>

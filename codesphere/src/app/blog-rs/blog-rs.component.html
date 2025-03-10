@@ -79,7 +79,7 @@
             <img *ngIf="blog.image" [src]="blog.image" alt="" />
           </div>
           <div class="card-title mt-3">
-            <a href="">{{ blog.title }}</a>
+            <a (click)="viewBlogDetails(blog)" style="cursor: pointer;">{{ blog.title }}</a>
           </div>
           <div class="card-text card-desc-custom mt-3">
             {{ blog.excerpt }}
@@ -146,7 +146,7 @@
             <img *ngIf="blog.image" [src]="blog.image" alt="" />
           </div>
           <div class="card-title mt-3">
-            <a href="">{{ blog.title }}</a>
+            <a (click)="viewBlogDetails(blog)" style="cursor: pointer;">{{ blog.title }}</a>
           </div>
           <div class="card-text card-desc-custom mt-2">
             {{ blog.excerpt }}
