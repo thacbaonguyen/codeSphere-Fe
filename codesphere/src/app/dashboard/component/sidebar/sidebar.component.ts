@@ -84,8 +84,8 @@ export class SidebarComponent implements OnInit {
         title: 'Khóa học',
         icon: 'play_circle_filled',
         children: [
-          { title: 'Danh sách khóa', path: '/codesphere/courses/list' },
-          { title: 'Chi tiết khóa', path: '/codesphere/courses/overview' }
+          { title: 'Danh sách khóa', path: '/codesphere/dashboard/courses/list' },
+          { title: 'Chi tiết khóa', path: '/codesphere/dashboard/courses/details/1' }
         ],
         roles: ['ADMIN', 'MANAGER'],
         type: 'action'

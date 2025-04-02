@@ -189,7 +189,7 @@ export class ActionBlogComponent implements OnInit {
     this.ngxUiLoader.start();
     const formData = this.blogForm.value;
 
-    // Tạo object data chứa thông tin blog
+    // object data
     const blogData = {
       id: this.matDialogData.data.id,
       title: formData.title,

@@ -1,0 +1,232 @@
+<app-dashboard-header
+  parentTitle='Chi tiết khóa học'
+  childTitle='Quản lý nội dung khóa học'
+></app-dashboard-header>
+
+<div class="mat-card d-flex mt-5">
+  <div class="col-8 video-player-fullscreen">
+    <div class="title-course-line">
+      <p class="title-course-bar">{{ courseDetail.title }}</p>
+    </div>
+
+    <div class="screen-player-video">
+      <vg-player (onPlayerReady)="onPlayerReady($event)"
+                 (mouseenter)="onMouseEnter()"
+                 (mouseleave)="onMouseLeave()">
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering vgFor="singleVideo"></vg-buffering>
+        <vg-scrub-bar [ngClass]="{'scrub-bar-hidden': !isScrubBarVisible}">
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+        <vg-controls [ngClass]="{'scrub-bar-hidden': !isScrubBarVisible}">
+          <vg-play-pause></vg-play-pause>
+          <vg-playback-button></vg-playback-button>
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-scrub-bar style="pointer-events: none"></vg-scrub-bar>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          <!--          <vg-track-selector></vg-track-selector>-->
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video #media [vgMedia]="$any(media)" [src]="url" id="singleVideo" preload="auto" crossorigin>
+        </video>
+      </vg-player>
+    </div>
+
+    <div class="d-flex navigation-line">
+      <div class="col-2 navigation-bar" (click)="selectTab('overview')"
+           [ngClass]="{'active-tab': selectedTab === 'overview'}">
+        Tổng quan
+      </div>
+      <div class="col-2 navigation-bar" (click)="selectTab('notification')"
+           [ngClass]="{'active-tab': selectedTab === 'notification'}">
+        Thông báo
+      </div>
+      <div class="col-2 navigation-bar" (click)="selectTab('reviews')"
+           [ngClass]="{'active-tab': selectedTab === 'reviews'}">
+        Đánh giá
+      </div>
+      <div class="col-2 navigation-bar" (click)="selectTab('qa')" [ngClass]="{'active-tab': selectedTab === 'qa'}">
+        Hỏi đáp
+      </div>
+      <div class="col-2 navigation-bar lesson-mobile" (click)="selectTab('lesson')" [ngClass]="{'active-tab': selectedTab === 'lesson'}">
+        Bài học
+      </div>
+    </div>
+
+    <div class="ms-3 mt-5 pb-5 card" *ngIf="selectedTab === 'overview'">
+      <div class="card-body">
+        <div class="overview-title">{{ courseDetail.title }}</div>
+        <div class="overview-rating d-flex " style="gap: 15px">
+          <div class="rating text-center d-flex flex-column mb-0">
+            <p class="fw-bold mb-0">{{ courseDetail.rating }}
+              <svg height="20" width="20" version="1.1" id="Capa_1"
+                   xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve"
+                   fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;"
+                                                   d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+            </p>
+            <p style="color: #5E6077">Xếp hạng</p>
+          </div>
+          <div class="duration text-center d-flex flex-column">
+            <p class="fw-bold">{{ courseDetail.duration }} giờ</p>
+            <p style="color: #5E6077">Thời lượng</p>
+          </div>
+          <div class="section-count text-center d-flex flex-column">
+            <p class="fw-bold">{{ courseDetail.sectionCount }} chương </p>
+            <p style="color: #5E6077">Chương</p>
+          </div>
+          <div class="video-count text-center d-flex flex-column">
+            <p class="fw-bold">{{ courseDetail.videoCount }} bài</p>
+            <p style="color: #5E6077">Video</p>
+          </div>
+        </div>
+        <div class="course-create-time mb-3 d-flex gap-2"><p class="fw-bold">Thời gian
+          tạo: </p>  {{ courseDetail.createdAt | date }}
+        </div>
+        <div class="course-category mb-3 d-flex gap-2"><p class="fw-bold">Danh mục: </p> {{ courseDetail.category }}</div>
+        <div class="course-description mb-3">
+          <p class="fw-bold">Mô tả</p>
+          <img [src]="courseDetail.image" alt="" class="w-50">
+          <div class="content" [innerHTML]="sanitizedContent">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="selectedTab === 'notification'" class="ms-3 mt-5 text-center pb-5">
+      <h1 style="font-family: 'Montserrat', sans-serif">Chưa có thông báo nào được đăng</h1>
+      <p>Giảng viên chưa thêm bất kỳ thông báo nào vào khóa học này. Thông báo được sử dụng để cho bạn biết về nội dung
+        cập nhật hoặc bổ sung cho khóa học.</p>
+      <button class="btn btn-secondary mt-4">Tạo thông báo </button>
+    </div>
+    <div *ngIf="selectedTab === 'reviews'" class="col-lg-10 mt-5 pb-5" style="margin: 0 auto">
+      <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bold">Phản hồi của học viên</h1>
+
+      <div class="stars d-flex gap-3 mb-2">
+        <p class="total-rating">{{ courseDetail.rating }}</p>
+        <svg height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve"
+             fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;"
+                                             d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+
+      </div>
+      <span class="rating-text" style="color: #c4710d">Xếp hạng khóa học</span>
+      <p class="mt-3 fw-bold" style="font-size: 20px">Đánh giá</p>
+      <div class="card mt-5">
+        <div class="card-body">
+          <div *ngFor="let review of courseDetail.courseReviews" class="d-flex gap-2 review-line">
+            <div class="avatar-user bg-secondary mt-2">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="text-center mt-2">{{ review.author.substring(0, 3) }}</p>
+              </div>
+            </div>
+
+            <div class="username-user mt-2 col-8">
+              <div class="header-review d-flex justify-content-between ">
+                <p>{{ review.author }}</p>
+                <p>{{review.createdAt | date}}</p>
+              </div>
+
+              <div class="stars">
+  <span *ngFor="let star of stars; let i = index" class="star">
+    <ng-container *ngIf="i < review.rating; else emptyStar">
+      <svg height="10" width="10" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path style="fill:#ED8A19;"
+                d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path>
+        </g>
+      </svg>
+    </ng-container>
+    <ng-template #emptyStar>
+      <svg height="10" width="10" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path style="fill:#d4d4d3;"
+                d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path>
+        </g>
+      </svg>
+    </ng-template>
+  </span>
+                <p>{{review.content}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedTab === 'qa'" class="ms-3 mt-5 text-center pb-5">
+      <h1 style="font-family: 'Montserrat', sans-serif">Tính năng hỏi đáp đang được phát triển, sẽ sớm được ra mắt</h1>
+      <p>Học viên có thể đưa ra các câu hỏi dành cho giảng viên, giảng viên sẽ đưa ra phản hồi về các câu trả lời của bạn ở phần này </p>
+    </div>
+    <div *ngIf="selectedTab === 'lesson'" class="lesson-mobile ms-3 mt-5 pb-5">
+      <div class="ps-2" >
+        <div class="btn text-center w-100 action-add-section" (click)="addSection()"><p>Thêm chương mới</p></div>
+        <div *ngFor="let section of courseDetail.sections; let i = index">
+          <div class="section-title-line d-flex justify-content-between btn" (click)="toggleSection(i)"
+               [ngClass]="{'section-title': expandedSections[i]}">
+            <p class="section-bar w-100 text-start"
+            >
+              Phần {{ section.orderIndex }}: {{ section.title }}
+            </p>
+
+            <svg fill="#000000" height="20" width="20" version="1.1" id="Layer_1"
+                 [ngClass]="{'expand-icon': expandedSections[i]}"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330.002 330.002" xml:space="preserve"
+                 transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier"> <path id="XMLID_105_"
+                                                 d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"></path> </g></svg>
+          </div>
+          <div class="video-list"
+               [ngClass]="{'expanded': expandedSections[i], 'collapsed': !expandedSections[i]}">
+            <div *ngFor="let video of section.videos">
+              <p class="video-title-line" (click)="playVideo(video)"
+                 [ngClass]="{'video-title': video === currentVideo}">Bài {{ video.orderIndex }}: {{ video.title }}</p>
+            </div>
+            <button class="btn btn-primary mb-2 mt-2" (click)="addVideo()">Thêm video mới</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 ps-2 lesson-full-screen">
+    <div class="btn text-center w-100 action-add-section" (click)="addSection()" ><p>Thêm chương mới</p></div>
+    <div *ngFor="let section of courseDetail.sections; let i = index">
+      <div class="section-title-line d-flex justify-content-between btn" (click)="toggleSection(i)"
+           [ngClass]="{'section-title': expandedSections[i]}">
+        <p class="section-bar w-100 text-start"
+        >
+          Phần {{ section.orderIndex }}: {{ section.title }}
+        </p>
+
+        <svg fill="#000000" height="20" width="20" version="1.1" id="Layer_1"
+             [ngClass]="{'expand-icon': expandedSections[i]}"
+             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330.002 330.002" xml:space="preserve"
+             transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier"> <path id="XMLID_105_"
+                                             d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"></path> </g></svg>
+      </div>
+      <div class="video-list "
+           [ngClass]="{'expanded': expandedSections[i], 'collapsed': !expandedSections[i]}">
+        <div *ngFor="let video of section.videos">
+          <p class="video-title-line" (click)="playVideo(video)"
+             [ngClass]="{'video-title': video === currentVideo}">Bài {{ video.orderIndex }}: {{ video.title }}</p>
+        </div>
+        <button class="btn btn-primary mb-2 mt-2" (click)="addVideo()">Thêm video mới</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<mat-dialog-content class="mat-dialog-show">
+    <div class="title-container">
+        <p *ngIf="matDialogAction === 'add'">Thêm khóa học</p>
+        <p *ngIf="matDialogAction === 'edit'">Sửa khóa học</p>
+        <div class="close" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </div>
+    </div>
+
+    <form action="" [formGroup]="courseForm">
+        <div fxFlex fxLayout="column">
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline first">
+                <mat-label>Danh mục</mat-label>
+                <mat-select formControlName="categoryId">
+                    <mat-option *ngFor="let cate of categories" [value]="cate.id">{{cate.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="courseForm.controls.categoryId.invalid && courseForm.controls.categoryId.touched">
+                    <span *ngIf="courseForm.controls.categoryId.errors.required">Danh mục không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+                <mat-label>Tiêu đề</mat-label>
+                <textarea matInput formControlName="title" cdkTextareaAutosize cdkAutosizeMinRows="3"
+                    cdkAutosizeMaxRows="10"></textarea>
+                <mat-error *ngIf="courseForm.controls.title.invalid && courseForm.controls.title.touched">
+                    <span *ngIf="courseForm.controls.title.errors.required">Tiêu đề không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+            <!--      upfile-->
+            <div class="image-upload-section">
+                <div class="upload-container" (click)="fileInput.click()" [class.has-image]="imagePreview">
+                    <!-- them class há-iamge khi imagePreview có giá tri -->
+                    <input #fileInput type="file" hidden accept="image/*" (change)="onImageSelected($event)">
+
+                    <ng-container *ngIf="!imagePreview">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <p>Click để chọn ảnh đại diện</p>
+                    </ng-container>
+
+                    <div *ngIf="imagePreview" class="image-preview">
+                        <img [src]="imagePreview" alt="Preview">
+                        <button type="button" mat-icon-button class="remove-image"
+                            (click)="removeSelectedImage(); $event.stopPropagation()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+          <div class="quill-editor-container mt-3">
+            <label class="editor-label">Mô tả</label>
+            <quill-editor
+              #editor
+              (onEditorCreated)="onEditorCreated($event)"
+              (onContentChanged)="onContentChanged($event)"
+            ></quill-editor>
+            <div
+              class="editor-error"
+              *ngIf="courseForm.controls.description.invalid && courseForm.controls.description.touched"
+            >
+      <span *ngIf="courseForm.controls.description.errors?.['required']">
+        Nội dung không được để trống
+      </span>
+            </div>
+          </div>
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline price-container">
+                <mat-label>Giá</mat-label>
+                <input type="text" matInput formControlName="price">
+                <mat-error *ngIf="courseForm.controls.price.invalid && courseForm.controls.price.touched">
+                    <span *ngIf="courseForm.controls.price.errors.required">Giá không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+                <mat-label>Giảm giá</mat-label>
+                <input type="text" matInput formControlName="discount">
+                <mat-error *ngIf="courseForm.controls.discount.invalid && courseForm.controls.discount.touched">
+                    <span *ngIf="courseForm.controls.discount.errors.required">Giảm giá không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+                <mat-label>Thời lượng</mat-label>
+                <input type="text" matInput formControlName="duration">
+                <mat-error *ngIf="courseForm.controls.duration.invalid && courseForm.controls.duration.touched">
+                    <span *ngIf="courseForm.controls.duration.errors.required">Thời lượng không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+                <mat-label>Trạng thái</mat-label>
+                <mat-select formControlName="active">
+                    <mat-option [value]="true">Xuất bản</mat-option>
+                    <mat-option [value]="false">Lưu trữ</mat-option>
+                </mat-select>
+                <mat-error *ngIf="courseForm.controls.active.invalid && courseForm.controls.active.touched">
+                    <span *ngIf="courseForm.controls.active.errors.required">Trạng thái không được để trống</span>
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+    </form>
+
+    <mat-dialog-actions>
+        <button *ngIf="matDialogAction === 'add'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="!courseForm.valid" (click)="handleSubmit()">Thêm khóa học
+        </button>
+        <button *ngIf="matDialogAction === 'edit'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="!courseForm.valid" (click)="handleSubmit()">Hoàn thành
+        </button>
+    </mat-dialog-actions>
+
+</mat-dialog-content>

@@ -23,6 +23,8 @@ import {ExerciseDetailsComponent} from "./exercise-details/exercise-details.comp
 import { BlogRsComponent } from './blog-rs/blog-rs.component';
 import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { CourseListComponent } from './dashboard/pages/course-list/course-list.component';
+import { CourseDetailComponent } from './dashboard/pages/course-detail/course-detail.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,22 @@ const routes: Routes = [
       {
         path: 'dashboard/blogs',
         component: BlogComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          allowedRoles: ['ADMIN', 'MANAGER']
+        }
+      },
+      {
+        path: 'dashboard/courses/list',
+        component: CourseListComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          allowedRoles: ['ADMIN', 'MANAGER']
+        }
+      },
+      {
+        path: 'dashboard/courses/details/:id',
+        component: CourseDetailComponent,
         canActivate: [RouteGuardService],
         data: {
           allowedRoles: ['ADMIN', 'MANAGER']
@@ -157,6 +175,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home'
   }
+  
 ];
 
 @NgModule({

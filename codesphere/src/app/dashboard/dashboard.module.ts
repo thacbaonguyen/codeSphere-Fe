@@ -31,6 +31,12 @@ import {SharedQuillModule} from "../shared/quill/quill.module";
 import { AccessQueueComponent } from './pages/access-queue/access-queue.component';
 import { ViewContributeComponent } from './component/view-contribute/view-contribute.component';
 import {SharedModule} from "../shared/shared.module";
+import { CourseListComponent } from './pages/course-list/course-list.component';
+import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
+import { ActionCourseComponent } from './component/action-course/action-course.component';
+import {SharedVideogularModule} from "../shared/videogular/videogular.module";
+import { SectionComponent } from './component/section/section.component';
+import { VideoComponent } from './component/video/video.component';
 
 
 @NgModule({
@@ -42,7 +48,8 @@ import {SharedModule} from "../shared/shared.module";
         FormsModule,
         ReactiveFormsModule,
         SharedQuillModule,
-      SharedModule
+      SharedModule,
+      SharedVideogularModule
         // QuillModule.forRoot()
 
     ],
@@ -72,7 +79,12 @@ import {SharedModule} from "../shared/shared.module";
         ActionBlogComponent,
         ViewBlogComponent,
         AccessQueueComponent,
-        ViewContributeComponent
+        ViewContributeComponent,
+        CourseListComponent,
+        CourseDetailComponent,
+        ActionCourseComponent,
+        SectionComponent,
+        VideoComponent
     ]
 })
 export class DashboardModule {

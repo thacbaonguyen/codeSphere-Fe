@@ -90,7 +90,7 @@ export class ExerciseRsComponent implements OnInit, AfterViewInit {
     
     if (params.search) queryParams['search'] = params.search;
     if (params.subject) queryParams['subject'] = params.subject;
-    if (params.page) queryParams['page'] = params.page;
+    this.currentPage = parseInt(params['page']) || 1;
     if (params.order) queryParams['order'] = params.order;
     if (params.by) queryParams['by'] = params.by;
     
