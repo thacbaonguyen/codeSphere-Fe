@@ -10,6 +10,9 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {SectionComponent} from "../../component/section/section.component";
 import {VideoComponent} from "../../component/video/video.component";
+import {SectionService} from "../../../services/section/section.service";
+import {SnackbarService} from "../../../services/snackbar.service";
+import {GlobalConstants} from "../../../shared/global-constants";
 
 @Component({
   selector: 'app-course-detail',
@@ -44,6 +47,8 @@ export class CourseDetailComponent implements OnInit {
     private videoService: VideoService,
     private sanitizer: DomSanitizer,
     private matDialog: MatDialog,
+    private sectionService: SectionService,
+    private snackbar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -86,7 +91,6 @@ export class CourseDetailComponent implements OnInit {
       next: (response: any) => {
         this.currentVideo.s3Url = response.data;
         this.url = response.data;
-        console.log("response", response.data.url);
       }
     })
     if (this.api) {
@@ -122,14 +126,80 @@ export class CourseDetailComponent implements OnInit {
   addSection() {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = '900px';
-    // matDialogConfig.disableClose = true;
+    matDialogConfig.data = {
+      action: 'add',
+      courseId: this.courseDetail.id
+    }
+    matDialogConfig.disableClose = true;
     const matDialogRef = this.matDialog.open(SectionComponent, matDialogConfig);
+    const subscription = matDialogRef.componentInstance.onAddEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      this.ngOnInit()
+    })
   }
 
-  addVideo() {
+  editSection(section: any) {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = '900px';
-    // matDialogConfig.disableClose = true;
+    matDialogConfig.data = {
+      data: section,
+      action: 'edit',
+      courseId: this.courseDetail.id
+    }
+    matDialogConfig.disableClose = true;
+    const matDialogRef = this.matDialog.open(SectionComponent, matDialogConfig);
+    const subscription = matDialogRef.componentInstance.onEditEvent.subscribe((response: any)=>{
+      matDialogRef.close();
+      this.ngOnInit()
+    })
+  }
+
+  addVideo(id: number) {
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = '900px';
+    matDialogConfig.data = {
+      action: 'add',
+      sectionId: id
+    }
+    matDialogConfig.disableClose = true;
     const matDialogRef = this.matDialog.open(VideoComponent, matDialogConfig);
+
+  }
+
+  editVideo(video: any  ) {
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width = '900px';
+    matDialogConfig.data = {
+      data: video,
+      action: 'edit'
+    }
+    matDialogConfig.disableClose = true;
+    const matDialogRef = this.matDialog.open(VideoComponent, matDialogConfig);
+  }
+
+  deleteSection(section: any){
+    this.sectionService.delete(section.id).subscribe({
+      next: (response: any)=>{
+        this.responseMessage = response.message;
+        this.snackbar.openSnackBar(this.responseMessage, '');
+        this.ngOnInit()
+      },
+      error: (err: any)=>{
+        this.snackbar.openSnackBar(err?.message, GlobalConstants.error)
+      }
+    })
+  }
+
+  deleteVideo(video: Video){
+    this.videoService.deleteVideo(video.id).subscribe({
+      next: (response: any)=>{
+        this.responseMessage = response.message;
+        this.snackbar.openSnackBar(this.responseMessage, '');
+        this.ngOnInit()
+      },
+      error: (err: any)=>{
+        this.snackbar.openSnackBar(err?.message, GlobalConstants.error)
+      }
+    })
   }
 }

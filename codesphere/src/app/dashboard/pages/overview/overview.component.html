@@ -82,13 +82,13 @@
     </div>
   </div>
   <!--  course-->
-  <div class="courses">
+  <div class="courses" (click)="navigateToCourses()">
     <div class="icon icon-course">
       <img class="icon-img" src="../../../../assets/logo-dashboard/course.svg" alt="">
     </div>
     <div class="text">
       <h1 class="title">Khóa học</h1>
-      <h1 class="result">15</h1>
+      <h1 class="result">{{ dashboard.courses }}</h1>
     </div>
   </div>
 </div>
@@ -108,8 +108,8 @@
     </div>
   </div>
 
-  <div class="contribute">
-    <div class="icon icon-contribute" (click)="navigateToContributes()">
+  <div class="contribute" (click)="navigateToContributes()">
+    <div class="icon icon-contribute" >
       <img class="icon-img" src="../../../../assets/logo-dashboard/contribute.svg" alt="">
     </div>
     <div class="text">

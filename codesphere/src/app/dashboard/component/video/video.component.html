@@ -1,1 +1,65 @@
-<p>video works!</p>
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p *ngIf="matDialogAction === 'add'">Thêm chương</p>
+    <p *ngIf="matDialogAction === 'edit'">Sửa chương</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+  <form action="" [formGroup]="videoForm">
+    <div fxFlex fxLayout="column">
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Tiêu đề</mat-label>
+        <textarea matInput formControlName="title" cdkTextareaAutosize cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="10"></textarea>
+        <mat-error *ngIf="videoForm.controls.title.invalid && videoForm.controls.title.touched">
+          <span *ngIf="videoForm.controls.title.errors.required">Tiêu đề không được để trống</span>
+          <span *ngIf="videoForm.controls.title.errors.pattern">Tiêu đề phải nhiều hơn 10 ký tự</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Thứ tự</mat-label>
+        <input type="text" matInput formControlName="orderIndex">
+        <mat-error *ngIf="videoForm.controls.orderIndex.invalid && videoForm.controls.orderIndex.touched">
+          <span *ngIf="videoForm.controls.orderIndex.errors.required">Thứ tự không được để trống</span>
+          <span *ngIf="videoForm.controls.orderIndex.errors.pattern">Thứ tự không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="matDialogAction == 'add'" class="video-input">
+        <label>Video</label>
+        <input #fileInput type="file" class="form-control video-choose mt-1" accept=".mp4, .mp3" (change)="onFileChange($event)">
+      </div>
+      <div class="d-flex justify-content-between mt-2" style="width: 90%; margin: 0 auto">
+        <div *ngIf="selectedFile">
+          <span>{{selectedFile?.name}}</span>
+          <span class="me-2 ms-2">--</span>
+          <span>{{fileSize}} MB</span>
+        </div>
+        <div *ngIf="selectedFile">
+          <span class="btn" (click)="removeFile()">Xóa</span>
+        </div>
+      </div>
+
+      <div style="margin: 0 auto; width: 90%" class="mt-2">
+        <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+      </div>
+
+
+    </div>
+
+  </form>
+
+  <mat-dialog-actions>
+    <button *ngIf="matDialogAction === 'add'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="(!videoForm.valid || !isSelectFile)" (click)="handleSubmit()">Thêm
+    </button>
+    <button *ngIf="matDialogAction === 'edit'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="!videoForm.valid" (click)="handleSubmit()">Hoàn thành
+    </button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

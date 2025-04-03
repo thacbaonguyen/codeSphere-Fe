@@ -1,0 +1,67 @@
+.title-container {
+  width: 90%;
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-between;
+
+  .close {
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    font-family: "Raleway", serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
+
+.full-width {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.first {
+  margin-top: 10px;
+}
+
+.black-outline {
+  ::ng-deep .mat-form-field-outline {
+    color: #cac9c9 !important;
+  }
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+}
+
+input {
+  color: #000000;
+}
+
+.mat-dialog-show {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.mat-dialog-actions {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px;
+
+}
+
+.submit-button {
+  background-color: #006dd3;
+  color: #ffffff;
+}
+

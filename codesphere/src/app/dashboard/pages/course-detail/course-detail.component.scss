@@ -54,6 +54,7 @@ p{
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: pointer;
+  border-bottom: #c5c5c5 solid 1px;
 }
 
 .video-title-line:hover{
@@ -112,6 +113,8 @@ vg-controls {
 .rating {
   display: flex;
   align-items: center;
+}
+.rating, .duration, .section-count, .video-count{
   gap: 10px;
 }
 
@@ -160,5 +163,17 @@ vg-controls {
 }
 .action-add-section:hover{
   background-color: #a3a2a2;
+}
+.more-icon {
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+.more-icon svg {
+  fill: #9e9e9e;
+}
+
+.more-icon:hover svg {
+  fill: #666;
 }
 

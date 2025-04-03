@@ -16,6 +16,7 @@ import {
 import { interval, Subscription } from 'rxjs';
 import { BlogService } from '../services/blog/blog.service';
 import { Blog } from '../models/blog';
+import {SnackbarService} from "../services/snackbar.service";
 interface Article {
   id: number;
   image: string;
@@ -172,7 +173,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private matDialog: MatDialog,
     private userService: UserService,
     private router: Router,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private snackbar: SnackbarService
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -292,7 +294,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log('error', err);
       },
     });
-    
+
   }
 
   getBlogsFeatured() {
@@ -308,5 +310,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.error('err load featured', err);
       },
     });
+  }
+
+  viewBlogDetails(blog: Blog){
+    this.router.navigate(['/blog/blog-details', blog.slug])
+  }
+  handleHasLogin(){
+    this.snackbar.openSnackBar("Bạn đã đăng nhập", '')
   }
 }

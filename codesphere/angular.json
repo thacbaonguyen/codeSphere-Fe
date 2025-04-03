@@ -44,7 +44,7 @@
               "./node_modules/quill/dist/quill.snow.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@videogular/ngx-videogular/styles/vg-styles.css",
+              "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "src/styles.scss"
             ],
             "scripts": [

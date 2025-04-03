@@ -53,8 +53,12 @@ export class OverviewComponent implements OnInit {
     this.router.navigate(['/codesphere/dashboard/books'])
   }
 
+  navigateToCourses(){
+    this.router.navigate(['/codesphere/dashboard/courses/list'])
+  }
+
   navigateToPermission(){
-    this.router.navigate(['/codesphere/dashboard/permissions'])
+    this.router.navigate(['/codesphere/dashboard/permissions/accepted'])
   }
 
   navigateToContributes(){

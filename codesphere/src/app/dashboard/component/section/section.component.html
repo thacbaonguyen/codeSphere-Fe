@@ -1,1 +1,53 @@
-<p>section works!</p>
+<mat-dialog-content class="mat-dialog-show">
+  <div class="title-container">
+    <p *ngIf="matDialogAction === 'add'">Thêm chương</p>
+    <p *ngIf="matDialogAction === 'edit'">Sửa chương</p>
+    <div class="close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+  <form action="" [formGroup]="sectionForm">
+    <div fxFlex fxLayout="column">
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Tiêu đề</mat-label>
+        <textarea matInput formControlName="title" cdkTextareaAutosize cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="10"></textarea>
+        <mat-error *ngIf="sectionForm.controls.title.invalid && sectionForm.controls.title.touched">
+          <span *ngIf="sectionForm.controls.title.errors.required">Tiêu đề không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Mô tả</mat-label>
+        <textarea matInput formControlName="description" cdkTextareaAutosize cdkAutosizeMinRows="3"
+                  cdkAutosizeMaxRows="10"></textarea>
+        <mat-error *ngIf="sectionForm.controls.description.invalid && sectionForm.controls.description.touched">
+          <span *ngIf="sectionForm.controls.description.errors.required">Mô tả không được để trống</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+        <mat-label>Thứ tự</mat-label>
+        <input type="text" matInput formControlName="orderIndex">
+        <mat-error *ngIf="sectionForm.controls.orderIndex.invalid && sectionForm.controls.orderIndex.touched">
+          <span *ngIf="sectionForm.controls.orderIndex.errors.required">Thứ tự không được để trống</span>
+          <span *ngIf="sectionForm.controls.orderIndex.errors.pattern">Thứ tự không hợp lệ</span>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+  </form>
+
+  <mat-dialog-actions>
+    <button *ngIf="matDialogAction === 'add'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="!sectionForm.valid" (click)="handleSubmit()">Thêm
+    </button>
+    <button *ngIf="matDialogAction === 'edit'" mat-raised-button class="submit-button" type="submit"
+            [disabled]="!sectionForm.valid" (click)="handleSubmit()">Hoàn thành
+    </button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

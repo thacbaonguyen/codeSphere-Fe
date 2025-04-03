@@ -112,7 +112,6 @@ private courseCateService: CourseCategoryService) {
     this.courseService.getCourseDetail(id).subscribe({
       next: (response: any)=>{
         this.courseForm.patchValue(response.data);
-        console.log("data form", this.courseForm.value)
       }
     })
   }
@@ -156,11 +155,8 @@ private courseCateService: CourseCategoryService) {
       discount: formData.discount,
       courseCategoryId: formData.categoryId
     }
-    console.log("data add new course", data)
-
     this.courseService.insert(data).subscribe({
       next: (response: any)=>{
-        console.log(response.data)
         if (this.selectedFile  && response.data.id){
           const imageFormData = new FormData();
           imageFormData.append('thumbnail', this.selectedFile);
@@ -197,7 +193,6 @@ private courseCateService: CourseCategoryService) {
       discount: formData.discount,
       courseCategoryId: formData.categoryId
     }
-    console.log("data update course", data)
 
     this.courseService.updateCourse(this.matDialogData.data.id, data).subscribe({
       next: (response: any)=>{

@@ -68,10 +68,18 @@
         Đăng ký tài khoản để tận hưởng những ưu đãi cho thành viên.
       </div>
       <div class="col-3">
-        <button class="btn btn-sign w-100" (click)="handleSignupAction()">
-          Đăng ký
-        </button>
+        <ng-container *ngIf="!token; else noTokenTemplate">
+          <button class="btn btn-sign w-100" (click)="handleSignupAction()">
+            Đăng ký
+          </button>
+        </ng-container>
+        <ng-template #noTokenTemplate>
+          <button class="btn btn-sign w-100" (click)="handleHasLogin()">
+            Đăng ký
+          </button>
+        </ng-template>
       </div>
+
     </div>
   </div>
 
@@ -361,7 +369,7 @@
               {{ blog.title }}
             </div>
             <div [@slideInOut]="'in'" class="btn btn-view-now">
-              <button class="btn w-100 h-50">Xem ngay</button>
+              <button class="btn w-100 h-50" (click)="viewBlogDetails(blog)">Xem ngay</button>
             </div>
           </div>
         </div>

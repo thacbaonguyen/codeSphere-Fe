@@ -20,13 +20,11 @@ import { ContributeAcceptedComponent } from './pages/contribute/contribute-accep
 import { ContributeQueueComponent } from './pages/contribute/contribute-queue/contribute-queue.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './component/dashboard-header/dashboard-header.component';
-import { PaginationComponent } from '../shared/pagination/pagination.component';
 import { ActionExerciseComponent } from './component/add-exercise/action-exercise.component';
 import { ViewExerciseComponent } from './component/view-exercise/view-exercise.component';
 import {MarkdownPipe} from "../shared/markdown.pipe";
 import { ActionBlogComponent } from './component/action-blog/action-blog.component';
 import { ViewBlogComponent } from './component/view-blog/view-blog.component';
-// import {QuillModule} from "ngx-quill";
 import {SharedQuillModule} from "../shared/quill/quill.module";
 import { AccessQueueComponent } from './pages/access-queue/access-queue.component';
 import { ViewContributeComponent } from './component/view-contribute/view-contribute.component';
