@@ -29,6 +29,15 @@
                 </mat-error>
             </mat-form-field>
 
+          <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+            <mat-label>Tóm tắt</mat-label>
+            <textarea matInput formControlName="excerpt" cdkTextareaAutosize cdkAutosizeMinRows="3"
+                      cdkAutosizeMaxRows="10"></textarea>
+            <mat-error *ngIf="courseForm.controls.excerpt.invalid && courseForm.controls.excerpt.touched">
+              <span *ngIf="courseForm.controls.excerpt.errors.required">Tóm tắt không được để trống</span>
+            </mat-error>
+          </mat-form-field>
+
             <!--      upfile-->
             <div class="image-upload-section">
                 <div class="upload-container" (click)="fileInput.click()" [class.has-image]="imagePreview">
@@ -62,7 +71,7 @@
               *ngIf="courseForm.controls.description.invalid && courseForm.controls.description.touched"
             >
       <span *ngIf="courseForm.controls.description.errors?.['required']">
-        Nội dung không được để trống
+        Mô tả không được để trống
       </span>
             </div>
           </div>
@@ -86,7 +95,7 @@
 
             <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
                 <mat-label>Thời lượng</mat-label>
-                <input type="text" matInput formControlName="duration">
+                <input type="number" matInput formControlName="duration">
                 <mat-error *ngIf="courseForm.controls.duration.invalid && courseForm.controls.duration.touched">
                     <span *ngIf="courseForm.controls.duration.errors.required">Thời lượng không được để trống</span>
                 </mat-error>

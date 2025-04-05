@@ -1,6 +1,7 @@
 export interface CourseBrief {
     id: number,
     title: string,
+    excerpt: string,
     description: string,
     thumbnail: string,
     createdAt: string,

@@ -1,0 +1,226 @@
+
+<div class="app-container" [ngClass]= "{'app-opacity': isOpacity && isMobileView}">
+  <app-header [backgroundColor]="parentColor"
+              [SvgColor]="svgColor"
+              class="fixed-top"
+  >
+  </app-header>
+  <div class="container pt-header pb-5">
+    <div class="row h-50 justify-content-between">
+      <div class="col-12">
+        <div class="title fs-2">
+          CourseSphere - Kho tài nguyên khóa học vô tận
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container " style="padding-bottom: 80px;">
+    <div class="col-10 search-box-custom d-flex justify-content-between">
+      <div class="search col-6 d-flex">
+        <div class="col">
+          <input
+            [(ngModel)]="searchQuery"
+            type="text"
+            (input)="showSearchButton()"
+            class="text-search form-control"
+            placeholder="Tìm kiếm"
+            (keyup.enter)="search()"
+          />
+        </div>
+      </div>
+
+      <div class="search col-3 d-flex">
+        <div class="col">
+          <select [(ngModel)]="categoryId" name="" id="cate" class="text-search form-control" (ngModelChange)="search()">
+            <option value="" class="disabled">Danh mục</option>
+            <option [value]="cate.id" *ngFor="let cate of courseCategory">{{cate.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2 search-btn-custom ">
+        <button
+          class="btn btn-primary w-100 h-100 pb-1 pt-1"
+          [disabled]="!isSearching"
+          (click)="search()"
+        >
+          Tìm kiếm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="video-table-container mt-5 mb-3" [ngClass]= "{'body-opacity': isOpacity && isMobileView}">
+  <div class="overlay" *ngIf="isHideFilter && isMobileView" (click)="closeFilterOnOutsideClick($event)"></div>
+  <div class="filter-container d-flex gap-3">
+    <div class="filter d-flex btn gap-2" (click)="hideFilter()">
+      <svg style="margin-top: 12px;" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"
+           fill="#000">
+        <path d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z"/>
+      </svg>
+      <div style="margin-top: 10px;">
+        <p>Bộ lọc</p>
+      </div>
+
+    </div>
+    <div class="sort-by">
+      <label for="sort" class="ms-2" style="font-size: 13px; font-weight: 500; color: #636363">Sắp xếp theo</label>
+        <select [(ngModel)]="selectedOption" class="form-select" name="sort-by" id="sort" style="border: none " (ngModelChange)="search()">
+          <option value="">Mặc định</option>
+          <option [value]="option.viewValue" *ngFor="let option of filterOptions">{{ option.viewValue }}</option>
+        </select>
+    </div>
+  </div>
+
+  <div class="content-container d-flex mt-4" >
+    <div class="#filterSide filter-side col-3" [ngClass]="{'expand-filter': isHideFilter}">
+      <div class="sidebar-side-action">
+        <div class="d-flex">
+          <a routerLink="/home"><img class="logo" src="../../assets/svg-icon/codesphere.svg" alt=""></a>
+          <a routerLink="/home"><h2 class="text-logo">CodeSphere</h2></a>
+        </div>
+        <mat-icon class="sidebar-close-icon">close</mat-icon>
+      </div>
+
+      <div class="line-horizon line-horizon-logo"><span></span></div>
+      <p class="filter-title">Xếp hạng</p>
+      <div class="rating d-flex flex-column gap-2">
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio1">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/half-star-svgrepo-com.svg" alt="">
+          <label class="form-check-label " for="radio1">
+            Từ 4.5 trở lên
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio2" checked>
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/none-star.svg" alt="">
+          <label class="form-check-label " for="radio2">
+            Từ 4 trở lên
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio3">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/half-star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/none-star.svg" alt="">
+          <label class="form-check-label " for="radio3">
+            Từ 3.5 trở lên
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio4" checked>
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
+          <img src="../../assets/svg-icon/none-star.svg" alt="">
+          <img src="../../assets/svg-icon/none-star.svg" alt="">
+          <label class="form-check-label " for="radio4">
+            Từ 3 trở lên
+          </label>
+        </div>
+      </div>
+
+      <div class="line-horizon"><span></span></div>
+      <p class="filter-title">Thời lượng video</p>
+      <div class="rating d-flex flex-column gap-2">
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox1">
+          <label class="form-check-label " for="checkbox1">
+            0 - 5 giờ
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2">
+          <label class="form-check-label " for="checkbox2">
+            5 - 10 giờ
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox3">
+          <label class="form-check-label " for="checkbox3">
+            10 - 20 giờ
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox4">
+          <label class="form-check-label " for="checkbox4">
+            Hơn 20 giờ
+          </label>
+        </div>
+      </div>
+
+      <div class="line-horizon"><span></span></div>
+      <p class="filter-title">Giá</p>
+      <div class="rating d-flex flex-column gap-2">
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="price1">
+          <label class="form-check-label " for="price1">
+            Có phí
+          </label>
+        </div>
+        <div class="form-check d-flex justify-content-start">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="price2">
+          <label class="form-check-label " for="price2">
+            Miễn phí
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="course-list-container col-9" [ngClass]="{'expand-course-list': isHideFilter}">
+      <div class="course-list" *ngFor="let course of courseBrief">
+        <div class="d-flex gap-3">
+          <div class="thumbnail">
+            <img [src]="course.image" alt="">
+          </div>
+          <div class="content-show">
+            <div class="title-price d-flex justify-content-between">
+              <p class="title-course">{{ course.title }}</p>
+              <div class="d-flex gap-1">
+                <p class="price-course">{{ course.price }}
+                </p>
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88" width="10.79" height="17">
+                  <title>vietnamese-dong</title>
+                  <path d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
+                </svg>
+              </div>
+
+
+            </div>
+            <div class="excerpt-course">
+              <p>{{ course.excerpt }}</p>
+            </div>
+            <div class="rating-course d-flex justify-content-start gap-1">
+              <p class="rate-course">{{ course.rating }}</p>
+              <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin: 0; margin-top: -4px">
+            </div>
+            <div class="count-course">
+              <p>Tổng số {{ course.duration }} giờ - {{ course.sectionCount }} chương - {{ course.videoCount }} bài
+                học</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="line-course-horizon w-100"><span></span></div>
+      </div>
+      <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalRecords]="totalRecord" (pageChange)="onPageChange($event)">
+      </app-pagination>
+    </div>
+  </div>
+
+</div>
+
+<div class="space"></div>
+<app-footer class="footer"></app-footer>

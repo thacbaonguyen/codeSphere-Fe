@@ -25,6 +25,8 @@ import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { CourseListComponent } from './dashboard/pages/course-list/course-list.component';
 import { CourseDetailComponent } from './dashboard/pages/course-detail/course-detail.component';
+import {CourseRsComponent} from "./course-rs/course-rs.component";
+import {CourseDetailsComponent} from "./course-details/course-details.component";
 
 const routes: Routes = [
   {
@@ -172,10 +174,19 @@ const routes: Routes = [
     component: BlogFeaturedComponent
   },
   {
+    path: 'courses',
+    component: CourseRsComponent
+  },
+  {
+    path: 'course/course-details/:id',
+    component: CourseDetailsComponent
+  },
+  {
     path: '**',
     redirectTo: 'home'
-  }
-  
+  },
+
+
 ];
 
 @NgModule({

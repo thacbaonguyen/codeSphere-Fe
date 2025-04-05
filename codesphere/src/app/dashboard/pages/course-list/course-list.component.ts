@@ -119,33 +119,32 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  loadAllCourse(){
-    this.ngxUiLoader.start();
-    var data = {
-      search: this.searchQuery,
-      page: this.currentPage,
-      pageSize: 10,
-      order: this.selectedFilter?.order,
-      by: this.selectedFilter?.by,
-    }
-    this.courseService.getAll(data).subscribe({
-      next: (response: any)=>{
-        console.log("load all", response.data.content)
-        this.dataSource.data = response.data.content;
-        this.currentPage = response.data.number + 1;
-        this.totalRecord = response.data.totalElements;
-        this.pageSize = response.data.size;
-        this.totalPage = response.data.totalPages;
-        this.ngxUiLoader.stop()
-        console.log(response.data)
-      },
-      error: (err: any)=>{
-        this.error = "Error loading courses";
-        this.ngxUiLoader.stop();
-        console.error(this.error, err)
+    loadAllCourse(){
+      this.ngxUiLoader.start();
+      var data = {
+        search: this.searchQuery,
+        page: this.currentPage,
+        pageSize: 10,
+        order: this.selectedFilter?.order,
+        by: this.selectedFilter?.by,
       }
-    })
-  }
+      this.courseService.getAll(data).subscribe({
+        next: (response: any)=>{
+          this.dataSource.data = response.data.content;
+          this.currentPage = response.data.number + 1;
+          this.totalRecord = response.data.totalElements;
+          this.pageSize = response.data.size;
+          this.totalPage = response.data.totalPages;
+          this.ngxUiLoader.stop()
+          console.log(response.data)
+        },
+        error: (err: any)=>{
+          this.error = "Error loading courses";
+          this.ngxUiLoader.stop();
+          console.error(this.error, err)
+        }
+      })
+    }
 
   loadAllCourseByCategory(){
     this.ngxUiLoader.start();

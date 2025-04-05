@@ -1,0 +1,237 @@
+.app-container {
+  background: #aa4b6b;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.title {
+  font-family: "Raleway", serif;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 36px !important;
+  line-height: 40px;
+}
+
+.pt-header {
+  padding-top: 140px;
+}
+
+.text-search {
+  border-radius: 4px 0 0 4px;
+}
+
+@media (max-width: 768px) {
+  .search-box-custom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .search {
+    width: 48%;
+  }
+  .search-btn-custom {
+    width: 30%;
+    margin-top: 10px;
+  }
+}
+.video-table-container{
+  width: 80%;
+  margin: 0 auto;
+}
+.expand-filter{
+  transform: translateX(-100%);
+  display: none;
+}
+.expand-course-list{
+  width: 100%;
+}
+
+.filter{
+  width: 100px;
+  height: 60px;
+  border: rgb(145, 148, 172) solid 1px;
+  border-radius: 4px;
+}
+.sort-by{
+  width: 180px;
+  height: 60px;
+  border: rgb(145, 148, 172) solid 1px;
+  border-radius: 4px;
+}
+
+.line-horizon{
+  border-bottom: #1a1a1a solid 1px;
+  margin-top: 35px;
+  width: 80%;
+}
+.rating{
+  margin-top: 20px;
+}
+.filter-title{
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 25px;
+}
+.form-check{
+  img{
+    margin: 0 0 3px 0;
+  }
+  gap: 5px;
+  .form-check-label{
+    margin-top: 2px;
+    margin-left: 5px;
+  }
+}
+.course-list-container{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .line-course-horizon{
+    border-bottom: #1a1a1a solid 1px;
+    width: 90%;
+    margin-top: 10px;
+  }
+}
+.thumbnail{
+  width: 240px;
+  height: 135px;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content-show{
+  width: calc(100% - 240px);
+  .excerpt-course{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .title-course{
+    font-size: 18px;
+    font-weight: 500;
+    color: #555757;
+  }
+  .price-course{
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .count-course{
+    font-size: 12px;
+    color: #747575;
+  }
+}
+
+.rating-course{
+  .rate-course{
+    margin-bottom: 2px;
+  }
+}
+
+.sidebar-side-action{
+  display: none;
+}
+
+@media (max-width: 1368px) {
+  .video-table-container{
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1030px) {
+  .filter-side {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 33%;
+    height: 100vh;
+    background: white;
+    z-index: 1000;
+    box-shadow: -8px 5px 10px rgba(0, 0, 0, 0.1);
+    border-left: 2px solid rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+  }
+
+  .filter-side.expand-filter {
+    right: 0;
+  }
+  .expand-filter{
+    transform: translateX(0);
+  }
+  .expand-filter{
+    display: block;
+  }
+  .course-list-container{
+    width: 100%;
+  }
+  .sidebar-side-action{
+    display: flex;
+    justify-content: space-between;
+  }
+  .line-horizon-logo{
+    margin-top: 0;
+  }
+  .sidebar-close-icon{
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
+.app-opacity{
+  opacity: 0.4;
+  pointer-events: none;
+}
+.body-opacity {
+  .filter-container{
+    opacity: 0.4;
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .course-list-container{
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    pointer-events: auto;
+  }
+  body {
+    overflow: hidden;
+  }
+}
+
+.filter-side.expand-filter {
+  opacity: 1;
+  z-index: 1000;
+}
+.text-logo{
+  font-family: "Oxanium", serif !important;
+  font-size: 18px;
+  color: #F95C19;
+  margin-top: 7px;
+  font-weight: bold;
+}
+a{
+  text-decoration: none;
+}
+.logo{
+  width: 35px;
+  height: 35px;
+  margin: 0;
+}
+

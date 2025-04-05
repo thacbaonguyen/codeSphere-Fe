@@ -4,6 +4,7 @@ import { Section } from "./section";
 export interface CourseDetail {
     id: number,
     title: string,
+    excerpt: string,
     description: string,
     thumbnail: string,
     createdAt: string,

@@ -1,0 +1,216 @@
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {CourseBrief} from "../models/course-brief";
+import {CourseService} from "../services/course/course.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CourseCategoryService} from "../services/course-category/course-category.service";
+import {FilterOptions} from "../models/filter-options";
+
+@Component({
+  selector: 'app-course-rs',
+  templateUrl: './course-rs.component.html',
+  styleUrls: ['./course-rs.component.scss']
+})
+export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
+  parentColor: string = 'linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b)';
+  svgColor: string = '#000000';
+  courseBrief: CourseBrief[] = [];
+  searchQuery: string = '';
+  isSearching = false;
+  totalRecord: any;
+  courseCategory: any[] = [];
+  currentPage: number = 1;
+  pageSize: number = 50;
+  totalPage: number = 0;
+  categoryId: any;
+
+  isHideFilter: boolean = false;
+  isMobileView = false;
+  isOpacity: boolean = false;
+
+  selectedFilter : FilterOptions = <FilterOptions>{};
+  selectedOption: string = '';
+  filterOptions = [
+    {value: {order: 'desc', by: 'createdAt'}, viewValue: 'Thời gian tạo mới nhất'},
+    {value: {order: 'asc', by: 'createdAt'}, viewValue: 'Thời gian tạo cũ nhất'},
+    {value: {order: 'asc', by: 'duration'}, viewValue: 'Thời lượng tăng'},
+    {value: {order: 'desc', by: 'duration'}, viewValue: 'Thời lượng giảm'},
+    {value: {order: 'asc', by: 'price'}, viewValue: 'Giá tăng dần'},
+    {value: {order: 'desc', by: 'price'}, viewValue: 'Giá giảm dần'},
+  ]
+  constructor(private courseService: CourseService,
+              private courseCategoryService: CourseCategoryService,
+              private router: Router,
+              private route: ActivatedRoute,
+              ) { }
+
+  ngOnInit(): void {
+    this.checkScreenWidth();
+    window.addEventListener('resize', this.checkScreenWidth.bind(this));
+    this.loadAllCategory();
+    this.route.queryParams.subscribe(params => {
+      this.searchQuery = params['search'] || '';
+      this.currentPage = parseInt(params['page']) || 1;
+      if( params['order'] && params['by']){
+        this.selectedFilter.order = params['order'];
+        this.selectedFilter.by = params['by'];
+      }
+      const matchedOption = this.filterOptions.find(option =>
+        option.value.order === this.selectedFilter.order &&
+        option.value.by === this.selectedFilter.by
+      );
+      if (matchedOption) {
+        this.selectedOption = matchedOption.viewValue;
+      }
+      this.categoryId = params['categoryId'] || '';
+      if (!this.categoryId){
+        this.loadAllCourse()
+      }
+      else {
+        this.loadAllCourseByCategory()
+      }
+    });
+  }
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkScreenWidth.bind(this));
+  }
+
+  checkScreenWidth() {
+    if (window.innerWidth <= 1030){
+      this.isMobileView = true;
+    }
+    else {
+      this.isMobileView = false;
+      this.isHideFilter = false;
+      this.isOpacity = false;
+    }
+
+  }
+
+  showSearchButton() {
+    this.isSearching = !!this.searchQuery.trim();
+  }
+  search(){
+    this.currentPage = 1;
+    const selectedOption = this.filterOptions.find(option => option.viewValue === this.selectedOption);
+    if (selectedOption) {
+      this.selectedFilter = selectedOption.value;
+    } else {
+      this.selectedFilter = {
+        order: 'desc',
+        by: 'createdAt'
+      }
+    }
+    this.updateUrlParams({
+      search: this.searchQuery,
+      page: this.currentPage,
+      categoryId: this.categoryId,
+      order: this.selectedFilter.order,
+      by: this.selectedFilter.by
+    })
+  }
+  onPageChange(pageNumber: number){
+    this.currentPage = pageNumber;
+    this.updateUrlParams({
+      search: this.searchQuery,
+      page: this.currentPage,
+      categoryId: this.categoryId,
+      order: this.selectedFilter.order,
+      by: this.selectedFilter.by
+    });
+  }
+
+  updateUrlParams(params: any) {
+    const queryParams: any = {};
+
+    if (params.search) queryParams['search'] = params.search;
+    this.currentPage = parseInt(params['page']) || 1;
+    if (params.order) queryParams['order'] = params.order;
+    if (params.by) queryParams['by'] = params.by;
+    if(params.categoryId) queryParams['categoryId'] = params.categoryId;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: null
+    });
+
+  }
+
+  loadAllCategory(){
+    this.courseCategoryService.getAll().subscribe({
+      next: (response: any)=>{
+        this.courseCategory = response.data
+      },
+      error: (err)=>{
+        console.log("error load category course")
+      }
+    })
+  }
+
+  loadAllCourse(){
+    const data = {
+      search: this.searchQuery,
+      page: this.currentPage,
+      pageSize: 10,
+      order: this.selectedFilter?.order,
+      by: this.selectedFilter?.by,
+    }
+    this.courseService.getAll(data).subscribe({
+      next: (response: any)=>{
+        this.courseBrief = response.data.content
+        this.currentPage = response.data.number + 1;
+        this.totalRecord = response.data.totalElements;
+        this.pageSize = response.data.size;
+        this.totalPage = response.data.totalPages;
+        },
+      error: (err: any)=>{
+        console.error(err)
+      }
+    })
+  }
+
+  loadAllCourseByCategory(){
+    var data = {
+      search: this.searchQuery,
+      page: this.currentPage,
+      pageSize: 10,
+      order: this.selectedFilter?.order,
+      by: this.selectedFilter?.by,
+    }
+
+    this.courseService.getCourseByCategoryId(this.categoryId, data).subscribe({
+      next: (response: any)=>{
+        this.courseBrief = response.data.content
+        this.currentPage = response.data.number + 1;
+        this.totalRecord = response.data.totalElements;
+        this.pageSize = response.data.size;
+        this.totalPage = response.data.totalPages;
+      },
+      error: (err: any)=>{
+        console.error( err)
+      }
+    })
+  }
+
+  hideFilter(){
+    this.isHideFilter = !this.isHideFilter;
+    if (this.isHideFilter) {
+      document.body.classList.add('filter-open');
+      this.isOpacity = true;
+    } else {
+      this.isOpacity = false;
+      document.body.classList.remove('filter-open');
+    }
+  }
+
+  closeFilterOnOutsideClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (this.isHideFilter && !target.closest('.filter-side')) {
+      this.isHideFilter = false;
+      this.isOpacity = false;
+      document.body.classList.remove('filter-open');
+    }
+  }
+}

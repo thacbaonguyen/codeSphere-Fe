@@ -30,6 +30,7 @@ export class CourseService {
             params = params.set(key, `${value}`)
           }
         })
+
     return this.httpClient.get<ApiResponse<CourseBrief[]>>(this.url + '/all-courses', {
       params
     });

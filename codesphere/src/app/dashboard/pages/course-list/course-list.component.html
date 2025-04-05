@@ -54,8 +54,8 @@
       <div class="filter-option">
         <mat-form-field>
           <mat-label>Danh mục</mat-label>
-          <mat-select [(ngModel)]="categoryId" (selectionChange)="loadAllCourseByCategory()">
-            <mat-option *ngFor="let cour of courseCategory" [value]="cour.id">{{ cour.name.toUpperCase() }}</mat-option>
+          <mat-select [(ngModel)]="categoryId" (ngModelChange)="search()">
+            <mat-option [value]="cour.id" *ngFor="let cour of courseCategory" >{{ cour.name.toUpperCase() }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

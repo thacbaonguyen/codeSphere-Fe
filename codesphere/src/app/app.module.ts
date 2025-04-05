@@ -36,6 +36,8 @@ import { BlogFeaturedComponent } from './blog-featured/blog-featured.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { MonacoModule } from './shared/monaco/monaco.module';
 import { SubmissionComponent } from './submission/submission.component';
+import { CourseRsComponent } from './course-rs/course-rs.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -93,6 +95,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BlogFeaturedComponent,
     BlogDetailsComponent,
     SubmissionComponent,
+    CourseRsComponent,
+    CourseDetailsComponent,
   ],
   imports: [
     BrowserModule,

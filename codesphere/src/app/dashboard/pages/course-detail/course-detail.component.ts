@@ -185,7 +185,7 @@ export class CourseDetailComponent implements OnInit {
         this.ngOnInit()
       },
       error: (err: any)=>{
-        this.snackbar.openSnackBar(err?.message, GlobalConstants.error)
+        this.snackbar.openSnackBar(err.error?.message, GlobalConstants.error)
       }
     })
   }
@@ -198,7 +198,7 @@ export class CourseDetailComponent implements OnInit {
         this.ngOnInit()
       },
       error: (err: any)=>{
-        this.snackbar.openSnackBar(err?.message, GlobalConstants.error)
+        this.snackbar.openSnackBar(err.error?.message, GlobalConstants.error)
       }
     })
   }

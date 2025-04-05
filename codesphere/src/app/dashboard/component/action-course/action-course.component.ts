@@ -53,6 +53,7 @@ private courseCateService: CourseCategoryService) {
 
   this.courseForm = this.formBuilder.group({
         title: [null, [Validators.required]],
+        excerpt: [null, Validators.required],
         description: [null, [Validators.required]],
         price: [null, [Validators.required]],
         active: [null, [Validators.required]],
@@ -148,6 +149,7 @@ private courseCateService: CourseCategoryService) {
     var formData = this.courseForm.value;
     var data = {
       title: formData.title,
+      excerpt: formData.excerpt,
       description: formData.description,
       price: formData.price,
       isActive: formData.active,
@@ -186,6 +188,7 @@ private courseCateService: CourseCategoryService) {
     const formData = this.courseForm.value;
     const data = {
       title: formData.title,
+      excerpt: formData.excerpt,
       description: formData.description,
       price: formData.price,
       isActive: formData.active === 'true' || formData.active === true,
