@@ -27,7 +27,13 @@ export class CourseService {
     let params = new HttpParams();
         Object.entries(data).forEach(([key, value]) =>{
           if (value !== undefined && value !== null && value !== ''){
-            params = params.set(key, `${value}`)
+            if (key === 'duration' && Array.isArray(value)) {
+              value.forEach((duration: string) => {
+                params = params.append(key, duration);
+              });
+            } else {
+              params = params.set(key, `${value}`);
+            }
           }
         })
 
@@ -44,7 +50,13 @@ export class CourseService {
     let params = new HttpParams();
         Object.entries(data).forEach(([key, value]) =>{
           if (value !== undefined && value !== null && value !== ''){
-            params = params.set(key, `${value}`)
+            if (key === 'duration' && Array.isArray(value)) {
+              value.forEach((duration: string) => {
+                params = params.append(key, duration);
+              });
+            } else {
+              params = params.set(key, `${value}`);
+            }
           }
         })
     return this.httpClient.get<ApiResponse<CourseBrief[]>>(this.url + '/all-course/category/' + id, {

@@ -37,6 +37,15 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
     {value: {order: 'asc', by: 'price'}, viewValue: 'Giá tăng dần'},
     {value: {order: 'desc', by: 'price'}, viewValue: 'Giá giảm dần'},
   ]
+  //
+  rating: any;
+  isExtraShortChecked: boolean = false;
+  isShortChecked: boolean = false;
+  isMediumChecked: boolean = false;
+  isLongChecked: boolean = false;
+  isExtraLongChecked: boolean = false;
+  durations: string[] = [];
+  isFree: any;
   constructor(private courseService: CourseService,
               private courseCategoryService: CourseCategoryService,
               private router: Router,
@@ -54,6 +63,8 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.selectedFilter.order = params['order'];
         this.selectedFilter.by = params['by'];
       }
+      //
+      this.rating = params['rating'] || '';
       const matchedOption = this.filterOptions.find(option =>
         option.value.order === this.selectedFilter.order &&
         option.value.by === this.selectedFilter.by
@@ -61,6 +72,28 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       if (matchedOption) {
         this.selectedOption = matchedOption.viewValue;
       }
+      //
+      const durationParams = params['duration'];
+      if (Array.isArray(durationParams)) {
+        this.durations = durationParams;
+        this.isExtraShortChecked = durationParams.includes('extrashort');
+        this.isShortChecked = durationParams.includes('short');
+        this.isMediumChecked = durationParams.includes('medium');
+        this.isLongChecked = durationParams.includes('long');
+        this.isExtraLongChecked = durationParams.includes('extralong');
+      } else if (durationParams) {
+        this.durations = [durationParams];
+        this.isExtraShortChecked = durationParams === 'extrashort';
+        this.isShortChecked = durationParams === 'short';
+        this.isMediumChecked = durationParams === 'medium';
+        this.isLongChecked = durationParams === 'long';
+        this.isExtraLongChecked = durationParams === 'extralong';
+      } else {
+        this.durations = [];
+      }
+      //
+      this.isFree = params['isFree'] || '';
+      //
       this.categoryId = params['categoryId'] || '';
       if (!this.categoryId){
         this.loadAllCourse()
@@ -108,7 +141,10 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       page: this.currentPage,
       categoryId: this.categoryId,
       order: this.selectedFilter.order,
-      by: this.selectedFilter.by
+      by: this.selectedFilter.by,
+      rating: this.rating,
+      duration: this.durations.length ? this.durations : null,
+      isFree: this.isFree
     })
   }
   onPageChange(pageNumber: number){
@@ -118,7 +154,10 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       page: this.currentPage,
       categoryId: this.categoryId,
       order: this.selectedFilter.order,
-      by: this.selectedFilter.by
+      by: this.selectedFilter.by,
+      rating: this.rating,
+      duration: this.durations.length ? this.durations : null,
+      isFree: this.isFree
     });
   }
 
@@ -130,12 +169,38 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (params.order) queryParams['order'] = params.order;
     if (params.by) queryParams['by'] = params.by;
     if(params.categoryId) queryParams['categoryId'] = params.categoryId;
+    if (params.rating) queryParams['rating'] = params.rating;
+    if (params.duration && params.duration.length) {
+      queryParams['duration'] = params.duration;
+    }
+    if (params.isFree) queryParams['isFree'] = params.isFree;
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
       queryParamsHandling: null
     });
 
+  }
+
+  updateDurations() {
+    this.durations = [];
+
+    if (this.isExtraShortChecked) {
+      this.durations.push('extrashort');
+    }
+    if (this.isShortChecked) {
+      this.durations.push('short');
+    }
+    if (this.isMediumChecked) {
+      this.durations.push('medium');
+    }
+    if (this.isLongChecked) {
+      this.durations.push('long');
+    }
+    if (this.isExtraLongChecked) {
+      this.durations.push('extralong');
+    }
+    this.search();
   }
 
   loadAllCategory(){
@@ -156,6 +221,9 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       pageSize: 10,
       order: this.selectedFilter?.order,
       by: this.selectedFilter?.by,
+      rating: this.rating,
+      duration: this.durations,
+      isFree: this.isFree
     }
     this.courseService.getAll(data).subscribe({
       next: (response: any)=>{
@@ -178,6 +246,9 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       pageSize: 10,
       order: this.selectedFilter?.order,
       by: this.selectedFilter?.by,
+      rating: this.rating,
+      duration: this.durations,
+      isFree: this.isFree
     }
 
     this.courseService.getCourseByCategoryId(this.categoryId, data).subscribe({
@@ -212,5 +283,11 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isOpacity = false;
       document.body.classList.remove('filter-open');
     }
+  }
+
+  closeSideBarWithIcon(){
+    this.isHideFilter = false;
+    this.isOpacity = false;
+    document.body.classList.remove('filter-open');
   }
 }

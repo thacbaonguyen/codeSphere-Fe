@@ -150,6 +150,7 @@
     top: 0;
     right: -100%;
     width: 33%;
+    min-width: 280px;
     height: 100vh;
     background: white;
     z-index: 1000;
@@ -233,5 +234,25 @@ a{
   width: 35px;
   height: 35px;
   margin: 0;
+}
+.small-price{
+  display: none;
+}
+.big-price{
+  display: flex;
+}
+@media (max-width: 768px) {
+  .title-course{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .small-price{
+    display: flex;
+  }
+  .big-price{
+    display: none;
+  }
 }
 

@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../material-component/dialog/confirmation/confirmation.component";
 import {Router} from "@angular/router";
@@ -10,13 +10,13 @@ import { Input } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   // @Input() backgroundColor: string = '#ffffff';
   @Input() set backgroundColor(value: string) {
     if (value) {
       document.documentElement.style.setProperty('--button-color', value);
       document.documentElement.style.setProperty('--bs-body-bg', value);
-      
+
     }
   }
 
@@ -26,15 +26,35 @@ export class HeaderComponent implements OnInit {
 
   isMenuOpen = false;
   userRoles: string[] = [];
+  isMobileView = false;
+  isOpening: boolean = false;
 
   constructor(private elementRef: ElementRef,
               private matDialog: MatDialog,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.checkScreenWidth();
+    window.addEventListener('resize', this.checkScreenWidth.bind(this));
     this.getUserRoles();
     console.log("backcolor", this.backgroundColor)
   }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkScreenWidth.bind(this));
+  }
+
+  checkScreenWidth() {
+    if (window.innerWidth <= 992){
+      this.isMobileView = true;
+    }
+    else {
+      this.isMobileView = false;
+      this.isOpening = false;
+    }
+
+  }
+
   // close menu khi bam ra ngoai
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event){
@@ -88,6 +108,20 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
+  openSideBar(){
+    this.isOpening = !this.isOpening;
+  }
 
+  closeFilterOnOutsideClick(event: Event) {
+    const target = event.target as HTMLElement;
+    console.log("ok", !target.closest('.navbar-collapse'))
+    if (this.isOpening && !target.closest('.navbar-collapse')) {
+      this.isOpening = false;
+
+    }
+  }
+  closeSideBarWithIcon(){
+    this.isOpening = false;
+  }
 
 }
