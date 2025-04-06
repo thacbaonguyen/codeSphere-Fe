@@ -13,7 +13,7 @@ p{
   transition: max-height 0.3s ease;
 }
 .expanded {
-  max-height: 500px;
+  max-height: 100vh;
 }
 .collapsed {
   max-height: 0;

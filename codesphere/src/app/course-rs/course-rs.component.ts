@@ -290,4 +290,8 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isOpacity = false;
     document.body.classList.remove('filter-open');
   }
+
+  navigateCourseDetails(course: CourseBrief){
+    this.router.navigate(['/course/course-details', course.id, course.thumbnail])
+  }
 }

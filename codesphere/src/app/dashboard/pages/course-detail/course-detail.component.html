@@ -177,7 +177,7 @@
       <div class="ps-2">
         <div class="btn text-center w-100 action-add-section" (click)="addSection()"><p>Thêm chương mới</p></div>
         <div *ngFor="let section of courseDetail.sections; let i = index">
-          <div class="d-flex justify-content-between section-title-line" [ngClass]="{'section-title': expandedSections[i]}">
+            <div class="d-flex justify-content-between section-title-line" [ngClass]="{'section-title': expandedSections[i]}">
             <div class=" d-flex justify-content-between btn" style="width: 97%" (click)="toggleSection(i)"
                  >
               <p class="section-bar w-100 text-start"

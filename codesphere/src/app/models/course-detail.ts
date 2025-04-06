@@ -10,10 +10,13 @@ export interface CourseDetail {
     createdAt: string,
     duration: number,
     rating: number,
+    totalRate: number,
     sectionCount: number,
     videoCount: number,
     category: string,
     image: string,
     courseReviews: CourseReview[],
     sections: Section[],
+    price: number,
+    discount: number
 }

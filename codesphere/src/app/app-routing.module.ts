@@ -178,7 +178,7 @@ const routes: Routes = [
     component: CourseRsComponent
   },
   {
-    path: 'course/course-details/:id',
+    path: 'course/course-details/:id/:thumbnail',
     component: CourseDetailsComponent
   },
   {

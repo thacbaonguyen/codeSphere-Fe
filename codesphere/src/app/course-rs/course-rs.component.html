@@ -1,5 +1,4 @@
-
-<div class="app-container" [ngClass]= "{'app-opacity': isOpacity && isMobileView}">
+<div class="app-container" [ngClass]="{'app-opacity': isOpacity && isMobileView}">
   <app-header [backgroundColor]="parentColor"
               [SvgColor]="svgColor"
               class="fixed-top"
@@ -31,9 +30,10 @@
 
       <div class="search col-3 d-flex">
         <div class="col">
-          <select [(ngModel)]="categoryId" name="" id="cate" class="text-search form-control" (ngModelChange)="search()">
+          <select [(ngModel)]="categoryId" name="" id="cate" class="text-search form-control"
+                  (ngModelChange)="search()">
             <option value="" class="disabled">Danh mục</option>
-            <option [value]="cate.id" *ngFor="let cate of courseCategory">{{cate.name}}</option>
+            <option [value]="cate.id" *ngFor="let cate of courseCategory">{{ cate.name }}</option>
           </select>
         </div>
       </div>
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="video-table-container mt-5 mb-3" [ngClass]= "{'body-opacity': isOpacity && isMobileView}">
+<div class="video-table-container mt-5 mb-3" [ngClass]="{'body-opacity': isOpacity && isMobileView}">
   <div class="overlay" *ngIf="isHideFilter && isMobileView" (click)="closeFilterOnOutsideClick($event)"></div>
   <div class="filter-container d-flex gap-3">
     <div class="filter d-flex btn gap-2" (click)="hideFilter()">
@@ -65,14 +65,15 @@
     </div>
     <div class="sort-by">
       <label for="sort" class="ms-2" style="font-size: 13px; font-weight: 500; color: #636363">Sắp xếp theo</label>
-        <select [(ngModel)]="selectedOption" class="form-select" name="sort-by" id="sort" style="border: none " (ngModelChange)="search()">
-          <option value="">Mặc định</option>
-          <option [value]="option.viewValue" *ngFor="let option of filterOptions">{{ option.viewValue }}</option>
-        </select>
+      <select [(ngModel)]="selectedOption" class="form-select" name="sort-by" id="sort" style="border: none "
+              (ngModelChange)="search()">
+        <option value="">Mặc định</option>
+        <option [value]="option.viewValue" *ngFor="let option of filterOptions">{{ option.viewValue }}</option>
+      </select>
     </div>
   </div>
 
-  <div class="content-container d-flex mt-4" >
+  <div class="content-container d-flex mt-4">
     <div class="#filterSide filter-side col-3" [ngClass]="{'expand-filter': isHideFilter}">
       <div class="sidebar-side-action">
         <div class="d-flex">
@@ -86,7 +87,8 @@
       <p class="filter-title">Xếp hạng</p>
       <div class="rating d-flex flex-column gap-2">
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio1" value="4.5" (ngModelChange)="search()">
+          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio1"
+                 value="4.5" (ngModelChange)="search()">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
@@ -97,7 +99,8 @@
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio2" value="4" (ngModelChange)="search()">
+          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio2"
+                 value="4" (ngModelChange)="search()">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
@@ -108,7 +111,8 @@
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio3" value="3.5" (ngModelChange)="search()">
+          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio3"
+                 value="3.5" (ngModelChange)="search()">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
@@ -119,7 +123,8 @@
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio4" value="3" (ngModelChange)="search()">
+          <input [(ngModel)]="rating" class="form-check-input" type="radio" name="flexRadioDefault" id="radio4"
+                 value="3" (ngModelChange)="search()">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
@@ -135,35 +140,40 @@
       <p class="filter-title">Thời lượng video</p>
       <div class="rating d-flex flex-column gap-2">
         <div class="form-check d-flex justify-content-start">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox1" [(ngModel)]="isExtraShortChecked"
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox1"
+                 [(ngModel)]="isExtraShortChecked"
                  (change)="updateDurations()">
           <label class="form-check-label " for="checkbox1">
             0 - 5 giờ
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2" [(ngModel)]="isShortChecked"
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2"
+                 [(ngModel)]="isShortChecked"
                  (change)="updateDurations()">
           <label class="form-check-label " for="checkbox2">
             5 - 10 giờ
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox3" [(ngModel)]="isMediumChecked"
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox3"
+                 [(ngModel)]="isMediumChecked"
                  (change)="updateDurations()">
           <label class="form-check-label " for="checkbox3">
             10 - 15 giờ
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox4" [(ngModel)]="isLongChecked"
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox4"
+                 [(ngModel)]="isLongChecked"
                  (change)="updateDurations()">
           <label class="form-check-label " for="checkbox4">
             15 - 25 giờ
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox5" [(ngModel)]="isExtraLongChecked"
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox5"
+                 [(ngModel)]="isExtraLongChecked"
                  (change)="updateDurations()">
           <label class="form-check-label " for="checkbox5">
             Hơn 25 giờ
@@ -175,13 +185,15 @@
       <p class="filter-title">Giá</p>
       <div class="rating d-flex flex-column gap-2">
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="isFree" class="form-check-input" type="radio" name="flexRadioDefault" id="price1" value="false" (ngModelChange)="search()">
+          <input [(ngModel)]="isFree" class="form-check-input" type="radio" name="flexRadioDefault" id="price1"
+                 value="false" (ngModelChange)="search()">
           <label class="form-check-label " for="price1">
             Có phí
           </label>
         </div>
         <div class="form-check d-flex justify-content-start">
-          <input [(ngModel)]="isFree" class="form-check-input" type="radio" name="flexRadioDefault" id="price2" value="true" (ngModelChange)="search()">
+          <input [(ngModel)]="isFree" class="form-check-input" type="radio" name="flexRadioDefault" id="price2"
+                 value="true" (ngModelChange)="search()">
           <label class="form-check-label " for="price2">
             Miễn phí
           </label>
@@ -192,19 +204,21 @@
 
     <div class="course-list-container col-9" [ngClass]="{'expand-course-list': isHideFilter}">
       <div class="course-list" *ngFor="let course of courseBrief">
-        <div class="d-flex gap-3">
-          <div class="thumbnail">
+        <div class="d-flex gap-3 course-item">
+          <div class="thumbnail" (click)="navigateCourseDetails(course)">
             <img [src]="course.image" alt="">
           </div>
           <div class="content-show">
             <div class="title-price d-flex justify-content-between">
-              <p class="title-course">{{ course.title }}</p>
+              <p class="title-course" (click)="navigateCourseDetails(course)">{{ course.title }}</p>
               <div class="gap-1 big-price">
                 <p class="price-course ">{{ course.price }}
                 </p>
-                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88" width="10.79" height="17">
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88"
+                     width="10.79" height="17">
                   <title>vietnamese-dong</title>
-                  <path d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
+                  <path
+                    d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
                 </svg>
               </div>
 
@@ -224,17 +238,49 @@
             <div class="gap-1 small-price">
               <p class="price-course">{{ course.price }}
               </p>
-              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88" width="10.79" height="17">
+              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88"
+                   width="10.79" height="17">
                 <title>vietnamese-dong</title>
-                <path d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
+                <path
+                  d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
               </svg>
             </div>
+          </div>
+          <div class="popup">
+            <h4 class="title-popup">Những kiến thức bạn sẽ học</h4>
+            <ul class="ul-popup">
+              <li>Nhận diện nguyên nhân nói truyền cảm hứng</li>
+              <li>Vượt qua rào cản về âm thanh</li>
+              <li>Phương pháp tập luyện chuyển đổi âm thanh</li>
+            </ul>
+            <button class="btn btn-popup">
+              <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
+                   text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
+                   clip-rule="evenodd" viewBox="0 0 512 448.767" width="30px"
+                   height="30px">
+                <path fill="#FF9F00" fill-rule="nonzero"
+                      d="M151.147 259.198L107.13 87.975a16.315 16.315 0 01-.98-5.587c0-9.053 7.345-16.398 16.398-16.398h373.09c1.291.039 2.601.191 3.908.513 8.772 2.159 14.134 11.02 11.976 19.793l-42.43 171.666c-1.326 7.718-8.057 13.598-16.157 13.598h-285.97v-.071c-7.287.004-13.936-4.907-15.818-12.291z"/>
+                <path fill="#788F9B"
+                      d="M399.948 368.626c22.133 0 40.07 17.937 40.07 40.07 0 22.129-17.937 40.071-40.07 40.071-22.129 0-40.07-17.942-40.07-40.071 0-22.133 17.941-40.07 40.07-40.07zm-175.675 0c22.129 0 40.07 17.937 40.07 40.07 0 22.129-17.941 40.071-40.07 40.071-22.133 0-40.074-17.942-40.074-40.071 0-22.133 17.941-40.07 40.074-40.07z"/>
+                <path fill="#869AA5" fill-rule="nonzero"
+                      d="M16.394 32.787C7.341 32.787 0 25.446 0 16.393 0 7.341 7.341 0 16.394 0h42.663l1.638.082c14.904.272 28.467 3.192 39.875 10.292 12.486 7.769 21.807 19.889 26.725 37.982 16.577 71.081 39.406 142.274 56.468 213.373 7.116 28.125 12.98 42.606 22.199 48.8 7.738 5.199 20.368 6.467 39.981 6.486 9.83.008 19.512-.206 29.338-.206h173.84c9.052 0 16.393 7.341 16.393 16.394 0 9.052-7.341 16.393-16.393 16.393H273.484c-9.67 0-19.286.117-28.956.066-25.33-.144-42.532-2.422-56.756-11.984-17.381-11.673-26.538-31.508-35.754-68.012L95.659 56.934c-2.547-9.375-6.84-15.32-12.377-18.765-5.937-3.694-13.846-5.25-22.996-5.428l-1.229.046H16.394z"/>
+                <path fill="#788F9B" fill-rule="nonzero"
+                      d="M0 16.393C0 7.341 7.341 0 16.394 0h42.663l1.638.082c14.904.272 28.467 3.192 39.875 10.292 12.486 7.769 21.807 19.889 26.725 37.982 16.577 71.081 39.406 142.274 56.468 213.373 7.116 28.125 12.98 42.606 22.199 48.8 8.177 5.494 21.814 6.595 43.383 6.478 8.143-.035 16.06-.198 24.206-.198h175.57c9.052 0 16.393 7.341 16.393 16.394H260.622c-62.713 1.104-76.396-2.87-92.724-67.507L111.477 52.645c-7.469-27.475-27.187-36.104-52.42-36.252H0z"/>
+                <path fill="#8FA3AD"
+                      d="M399.948 390.214c10.207 0 18.481 8.275 18.481 18.482 0 10.207-8.274 18.478-18.481 18.478-10.207 0-18.478-8.271-18.478-18.478s8.271-18.482 18.478-18.482zm-175.679 0c10.207 0 18.481 8.275 18.481 18.482 0 10.207-8.274 18.478-18.481 18.478-10.207 0-18.478-8.271-18.478-18.478s8.271-18.482 18.478-18.482z"/>
+                <path fill="#BA7400" fill-rule="nonzero"
+                      d="M226.668 138.914c-.42-6.338 4.375-11.825 10.713-12.245 6.338-.42 11.824 4.374 12.244 10.713l4.122 61.246c.42 6.338-4.374 11.825-10.713 12.245-6.338.42-11.824-4.375-12.244-10.713l-4.122-61.246zm150.84-1.532c.42-6.339 5.906-11.133 12.244-10.713 6.339.42 11.133 5.907 10.713 12.245l-4.122 61.246c-.42 6.338-5.906 11.133-12.245 10.713-6.337-.42-11.132-5.907-10.712-12.245l4.122-61.246zm-75.467.766c0-6.362 5.164-11.525 11.525-11.525 6.362 0 11.526 5.163 11.526 11.525v61.246c0 6.362-5.164 11.526-11.526 11.526-6.361 0-11.525-5.164-11.525-11.526v-61.246z"/>
+              </svg>
+              Thêm vào giỏ hàng
 
+            </button>
           </div>
         </div>
         <div class="line-course-horizon w-100"><span></span></div>
+
       </div>
-      <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalRecords]="totalRecord" (pageChange)="onPageChange($event)">
+      <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalRecords]="totalRecord"
+                      (pageChange)="onPageChange($event)">
       </app-pagination>
     </div>
   </div>
