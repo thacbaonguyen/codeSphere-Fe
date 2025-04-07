@@ -11,5 +11,6 @@ export interface CourseBrief {
     sectionCount: number,
     videoCount: number,
     category: string,
-    image: string
+    image: string,
+    totalRate: number
 }

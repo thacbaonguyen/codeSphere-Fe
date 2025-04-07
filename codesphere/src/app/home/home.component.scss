@@ -9,6 +9,9 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
+app-header.fixed-top {
+  z-index: 1000 !important;
+}
 
 .navbar {
   display: flex;
@@ -518,7 +521,7 @@ body {
       }
       100% {
         opacity: 1;
-        transform: translateY(0); 
+        transform: translateY(0);
       }
     }
   }

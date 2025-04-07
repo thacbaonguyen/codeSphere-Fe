@@ -4,6 +4,9 @@ import {CourseService} from "../services/course/course.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CourseCategoryService} from "../services/course-category/course-category.service";
 import {FilterOptions} from "../models/filter-options";
+import {CartService} from "../services/cart/cart.service";
+import {SnackbarService} from "../services/snackbar.service";
+import {GlobalConstants} from "../shared/global-constants";
 
 @Component({
   selector: 'app-course-rs',
@@ -13,6 +16,7 @@ import {FilterOptions} from "../models/filter-options";
 export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
   parentColor: string = 'linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b)';
   svgColor: string = '#000000';
+  responseMessage: string = '';
   courseBrief: CourseBrief[] = [];
   searchQuery: string = '';
   isSearching = false;
@@ -50,6 +54,8 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
               private courseCategoryService: CourseCategoryService,
               private router: Router,
               private route: ActivatedRoute,
+              private cartService: CartService,
+              private snackbar: SnackbarService
               ) { }
 
   ngOnInit(): void {
@@ -293,5 +299,21 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   navigateCourseDetails(course: CourseBrief){
     this.router.navigate(['/course/course-details', course.id, course.thumbnail])
+  }
+
+  addCourseToCart(courseId: number){
+    const data = {
+      courseId: courseId
+    }
+    this.cartService.insertCourse(data).subscribe({
+      next: (response: any)=>{
+        this.responseMessage = response.message;
+        this.snackbar.openSnackBar(this.responseMessage, '');
+      },
+      error: (err: any)=>{
+        this.responseMessage = err.error.message;
+        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+      }
+    })
   }
 }

@@ -1,0 +1,57 @@
+*{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  //background: #e3e3e3;
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#444cf7 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #444cf7 2px, #e5e5f7 2px) -1px 0;
+  background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+}
+.container{
+  background: #fff;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  box-shadow: 0 -4px 8px rgba(6, 17, 118, .08), 0 -4px 12px rgba(6, 17, 118, .24);
+
+}
+.card-body{
+  margin: 0 auto;
+  text-align: center;
+}
+.notification{
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+.btn-action{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 50px;
+  .continue-shopping{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    background: rgb(109, 40, 210);
+  }
+  .continue-shopping:hover{
+    background: #892DE1;
+  }
+  .back-home{
+    background: #fff;
+    border: rgb(109, 40, 210) solid 1px;
+    color: rgb(109, 40, 210);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .back-home:hover{
+    background: #EDE5F9;
+  }
+}

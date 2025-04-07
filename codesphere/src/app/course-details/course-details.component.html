@@ -43,8 +43,8 @@
           </svg>
         </div>
         <div class="course-intro-content-text-box-action ">
-          <button class="btn to-cart">Chuyển đến giỏ hàng</button>
-          <button class="btn buy-now">Mua ngay</button>
+          <button class="btn to-cart" (click)="addCourseToCart(courseDetail.id)">Chuyển đến giỏ hàng</button>
+          <button class="btn buy-now" (click)="createPayment()">Mua ngay</button>
         </div>
 
         <div class="course-intro-content-text-box-coupon mt-4 mb-5">
@@ -188,7 +188,7 @@
       </div>
 
       <div class="box-action d-flex flex-column gap-2">
-        <button class="btn to-cart">Chuyển đến giỏ hàng</button>
+        <button class="btn to-cart" (click)="addCourseToCart(courseDetail.id)">Chuyển đến giỏ hàng</button>
         <button class="btn buy-now">Mua ngay</button>
       </div>
 

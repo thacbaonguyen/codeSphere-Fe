@@ -38,6 +38,9 @@ import { MonacoModule } from './shared/monaco/monaco.module';
 import { SubmissionComponent } from './submission/submission.component';
 import { CourseRsComponent } from './course-rs/course-rs.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CartComponent } from './cart/cart.component';
+import { SuccessComponent } from './payment/success/success.component';
+import { CancelComponent } from './payment/cancel/cancel.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -97,6 +100,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SubmissionComponent,
     CourseRsComponent,
     CourseDetailsComponent,
+    CartComponent,
+    SuccessComponent,
+    CancelComponent,
   ],
   imports: [
     BrowserModule,

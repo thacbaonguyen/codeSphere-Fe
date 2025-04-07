@@ -1,10 +1,15 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {CourseService} from "../services/course/course.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {CourseDetail} from "../models/course-detail";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {Video} from "../models/video";
+import {GlobalConstants} from "../shared/global-constants";
+import {CartService} from "../services/cart/cart.service";
+import {SnackbarService} from "../services/snackbar.service";
+import {OrderService} from "../services/payment/order.service";
+import {Payment} from "../models/payment";
 
 @Component({
   selector: 'app-course-details',
@@ -15,6 +20,7 @@ export class CourseDetailsComponent implements OnInit {
   @ViewChild('footer') footer!: ElementRef;
   isFooterVisible = false;
 
+  responseMessage: string = '';
   parentColor: string = 'linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b)';
   svgColor: string = '#000000';
   courseId!: number;
@@ -26,10 +32,17 @@ export class CourseDetailsComponent implements OnInit {
   isShowHeaderFixed = false;
   stars: number[] = [1, 2, 3, 4, 5];
 
+  randomString: string = '';
+  paymentResponse: Payment | null = null;
+
   constructor(private courseService: CourseService,
               private route: ActivatedRoute,
               private ngxUiLoaderService: NgxUiLoaderService,
               private sanitizer: DomSanitizer,
+              private cartService: CartService,
+              private snackbar: SnackbarService,
+              private router: Router,
+              private orderService: OrderService
               ) { }
 
   ngOnInit(): void {
@@ -62,6 +75,32 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
 
+  createPayment(){
+    this.generateRandomString()
+    const data = {
+      productName: this.courseDetail.title,
+      description: this.randomString,
+      returnUrl: 'http://localhost:4200/success',
+      cancelUrl: 'http://localhost:4200/cancel'
+    }
+    this.orderService.createPaymentLink(data).subscribe({
+      next: (response: any)=>{
+        this.paymentResponse = response.data;
+        if (this.paymentResponse?.checkoutUrl){
+          window.location.href = this.paymentResponse?.checkoutUrl;
+        }
+      },
+      error: (err: any)=>{
+        this.responseMessage = err.error.message;
+        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+      }
+    })
+  }
+
+  generateRandomString() {
+    this.randomString = Math.random().toString(36).substring(2, 12); // Lấy 10 ký tự
+  }
+
   toggleSection(index: number) {
     this.expandedSections[index] = !this.expandedSections[index];
   }
@@ -76,6 +115,23 @@ export class CourseDetailsComponent implements OnInit {
       const windowHeight = window.innerHeight;
       this.isFooterVisible = footerPosition.top <= windowHeight && footerPosition.bottom >= 0;
     }
+  }
+
+  addCourseToCart(courseId: number){
+    const data = {
+      courseId: courseId
+    }
+    this.cartService.insertCourse(data).subscribe({
+      next: (response: any)=>{
+        this.responseMessage = response.message;
+        this.snackbar.openSnackBar(this.responseMessage, '');
+        this.router.navigate(['/cart'])
+      },
+      error: (err: any)=>{
+        this.responseMessage = err.error.message;
+        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+      }
+    })
   }
 
 }

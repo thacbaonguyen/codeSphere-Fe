@@ -1,0 +1,137 @@
+<div class="app-container">
+  <app-header [backgroundColor]="parentColor"
+              [SvgColor]="svgColor"
+              class="fixed-top"
+  >
+  </app-header>
+  <div class="container pt-header pb-5">
+    <div class="row h-50 justify-content-between">
+      <div class="col-12">
+        <div class="title fs-2">
+          CourseSphere - Kho tài nguyên khóa học vô tận
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing-cart-content">
+  <h4 class="landing-cart-content-title">Giỏ hàng</h4>
+  <p class="landing-cart-content-subtitle">{{ count }} sản phẩm trong giỏ hàng</p>
+
+  <div *ngIf="count === 0">
+    <div class="card card-cart-empty">
+      <div class="card-body">
+        <div class="svg-empty">
+          <img src="../../assets/svg-icon/16309906_v916-nunny-128.svg" alt="">
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="continue-shopping">
+            <p>Giỏ hàng của bạn đang trống. Hãy tiếp tục mua sắm để tìm một khóa học!</p>
+            <button class="btn" (click)="navigateToCourses()">Tiếp tục mua sắm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-cart-content-course-container" *ngIf="count !== 0">
+    <div class="landing-cart-content-course">
+      <div class="landing-cart-content-course-item" *ngFor="let cart of carts">
+        <div class="item-thumbnail" (click)="navigateCourseDetails(cart.courseBriefDTO)">
+          <img [src]="cart.courseBriefDTO.image" alt="">
+        </div>
+        <div class="item-content">
+          <div class="item-content-info">
+            <p class="item-content-title" (click)="navigateCourseDetails(cart.courseBriefDTO)">{{ cart.courseBriefDTO.title }}</p>
+            <div class="item-content-rating d-flex gap-2">
+              <div class="item-content-rating-star d-flex gap-1">
+                <p class="star-count">{{ cart.courseBriefDTO.rating }} </p>
+                <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin: 0; margin-bottom: 14px;">
+              </div>
+              <p>({{ cart.courseBriefDTO.totalRate }} xếp hạng)</p>
+            </div>
+            <p class="item-content-duration">Tổng số {{ cart.courseBriefDTO.duration }} giờ
+              - {{ cart.courseBriefDTO.sectionCount }} chương - {{ cart.courseBriefDTO.videoCount }} bài giảng</p>
+            <button class="action-show-btn" (click)="deleteCourseInCart(cart.courseBriefDTO.id)">
+              <span class="action-show">Xóa</span>
+            </button>
+
+          </div>
+          <div class="item-content-action">
+            <button class="action-delete-btn" (click)="deleteCourseInCart(cart.courseBriefDTO.id)">
+              <span class="action-delete">Xóa</span>
+            </button>
+
+            <p class="price ">{{ cart.courseBriefDTO.price }}
+              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88"
+                   width="8" height="13" fill="#808080">
+                <title>vietnamese-dong</title>
+                <path
+                  d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
+              </svg>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="landing-cart-content-course-total">
+      <p class="total">Tổng:</p>
+      <p class="total-price">{{ totalPrice | number}}
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.03 122.88"
+             width="17" height="17" fill="#676767">
+          <title>vietnamese-dong</title>
+          <path
+            d="M68.59,101.2H50.51V91.12c-.53,0-7,11.77-22.12,11.77q-13.09,0-20.75-9.26T0,68.53q0-16.8,8.6-27.06T31.19,31.19q13.45,0,19,10h.33V22.39H28.45V10.15H50.51V0H68.59V10.15H78V22.39H68.59V101.2ZM50.76,62.08a16.93,16.93,0,0,0-4.42-12,14.53,14.53,0,0,0-11.13-4.8,14.51,14.51,0,0,0-12.35,6.09c-3,4.06-4.51,9.59-4.51,16.64q0,9.69,4.26,15.19c2.85,3.66,6.8,5.49,11.89,5.49a14.42,14.42,0,0,0,11.81-5.76q4.57-5.76,4.45-14.35V62.08Zm17.12,60.8H2.42V111.22H67.88v11.66Z"/>
+        </svg>
+      </p>
+      <button class="btn go-to-pay" (click)="createPayment()">Tiến hành thanh toán
+        <svg fill="#fff" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <g data-name="Layer 2">
+              <g data-name="arrow-forward">
+                <rect width="20" height="20" transform="rotate(-90 12 12)" opacity="0"></rect>
+                <path
+                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <p class="note">Bạn sẽ không bị tính phí ngay bây giờ</p>
+      <div class="line"><span></span></div>
+      <div class="coupon d-flex gap-2">
+        <input type="text" class="form-control coupon-input" placeholder="Nhập coupon">
+        <button class="btn ">Áp dụng</button>
+      </div>
+    </div>
+
+    <div class="cart-slider-menu">
+      <div class="cart-slider-button">
+        <button class="btn " (click)="createPayment()">Tiến hành thanh toán
+          <svg fill="#fff" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <g data-name="Layer 2">
+                <g data-name="arrow-forward">
+                  <rect width="20" height="20" transform="rotate(-90 12 12)" opacity="0"></rect>
+                  <path
+                    d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </button>
+        <p >Bạn sẽ không bị tính phí ngay bây giờ</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div class="space"></div>
+<app-footer class="footer"></app-footer>

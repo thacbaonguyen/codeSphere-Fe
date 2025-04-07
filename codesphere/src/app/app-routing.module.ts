@@ -27,6 +27,9 @@ import { CourseListComponent } from './dashboard/pages/course-list/course-list.c
 import { CourseDetailComponent } from './dashboard/pages/course-detail/course-detail.component';
 import {CourseRsComponent} from "./course-rs/course-rs.component";
 import {CourseDetailsComponent} from "./course-details/course-details.component";
+import {CartComponent} from "./cart/cart.component";
+import {SuccessComponent} from "./payment/success/success.component";
+import {CancelComponent} from "./payment/cancel/cancel.component";
 
 const routes: Routes = [
   {
@@ -180,6 +183,18 @@ const routes: Routes = [
   {
     path: 'course/course-details/:id/:thumbnail',
     component: CourseDetailsComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
+    path: 'success',
+    component: SuccessComponent,
+  },
+  {
+    path: 'cancel',
+    component: CancelComponent,
   },
   {
     path: '**',

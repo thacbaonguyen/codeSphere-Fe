@@ -41,11 +41,13 @@ mat-label{
 .black-snackbar {
   background: black !important;
   color: white !important;
+  z-index: 10000 !important;
 }
 
 .green-snackbar {
   background: #00ff7f !important;
   color: black !important;
+  z-index: 10000 !important;
 }
 
 img {

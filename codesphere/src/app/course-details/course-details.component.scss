@@ -8,6 +8,9 @@
 *{
   font-family: "Baloo 2", Arial, Helvetica, sans-serif;
 }
+app-header.fixed-top {
+  z-index: 1000 !important;
+}
 .title {
   font-family: "Raleway", serif;
   font-weight: 800;
