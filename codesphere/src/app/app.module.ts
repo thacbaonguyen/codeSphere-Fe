@@ -41,6 +41,12 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { CartComponent } from './cart/cart.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { CancelComponent } from './payment/cancel/cancel.component';
+import { ListComponent } from './access-course/list/list.component';
+import { DetailComponent } from './access-course/detail/detail.component';
+import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
+import {VgControlsModule} from "@videogular/ngx-videogular/controls";
+import {VgCoreModule} from "@videogular/ngx-videogular/core";
+import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
@@ -103,6 +109,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CartComponent,
     SuccessComponent,
     CancelComponent,
+    ListComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +126,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SharedModule,
     DashboardModule,
     SharedQuillModule,
-    MonacoModule
+    MonacoModule,
+    VgBufferingModule,
+    VgControlsModule,
+    VgCoreModule,
+    VgOverlayPlayModule
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],

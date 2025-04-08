@@ -129,7 +129,10 @@ export class CourseDetailsComponent implements OnInit {
       },
       error: (err: any)=>{
         this.responseMessage = err.error.message;
-        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error);
+        if (err.error?.code === 409){
+          this.router.navigate(['/cart'])
+        }
       }
     })
   }

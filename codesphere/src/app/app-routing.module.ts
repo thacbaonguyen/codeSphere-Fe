@@ -30,6 +30,8 @@ import {CourseDetailsComponent} from "./course-details/course-details.component"
 import {CartComponent} from "./cart/cart.component";
 import {SuccessComponent} from "./payment/success/success.component";
 import {CancelComponent} from "./payment/cancel/cancel.component";
+import {ListComponent} from "./access-course/list/list.component";
+import {DetailComponent} from "./access-course/detail/detail.component";
 
 const routes: Routes = [
   {
@@ -195,6 +197,14 @@ const routes: Routes = [
   {
     path: 'cancel',
     component: CancelComponent,
+  },
+  {
+    path: 'my-courses',
+    component: ListComponent,
+  },
+  {
+    path: 'my-courses/:id/:thumbnail',
+    component: DetailComponent,
   },
   {
     path: '**',

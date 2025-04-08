@@ -46,7 +46,7 @@
             <p class="item-content-title" (click)="navigateCourseDetails(cart.courseBriefDTO)">{{ cart.courseBriefDTO.title }}</p>
             <div class="item-content-rating d-flex gap-2">
               <div class="item-content-rating-star d-flex gap-1">
-                <p class="star-count">{{ cart.courseBriefDTO.rating }} </p>
+                <p class="star-count">{{ cart.courseBriefDTO.rating | number:'1.2-2'}} </p>
                 <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin: 0; margin-bottom: 14px;">
               </div>
               <p>({{ cart.courseBriefDTO.totalRate }} xếp hạng)</p>

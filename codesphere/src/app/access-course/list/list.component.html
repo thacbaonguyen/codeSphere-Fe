@@ -1,0 +1,66 @@
+<div class="app-container">
+  <app-header [backgroundColor]="parentColor"
+              [SvgColor]="svgColor"
+              class="fixed-top"
+  >
+  </app-header>
+</div>
+
+<div class="landing-course-content" >
+  <div class="landing-course-content-header">
+    <div class="landing-course-content-header-text">
+      <p>Học tập</p>
+    </div>
+  </div>
+
+  <div *ngIf="count === 0" class="landing-course-content-body-empty">
+    <div class="card card-cart-empty">
+      <div class="card-body">
+        <div class="svg-empty">
+          <img src="../../assets/svg-icon/16309906_v916-nunny-128.svg" alt="">
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="continue-shopping">
+            <p>Bạn chưa có khóa học nào. Hãy tiếp tục mua sắm để tìm một khóa học!</p>
+            <button class="btn" (click)="navigateToCourses()">Tiếp tục mua sắm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-course-content-body" *ngIf="count > 0">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <p class="card-body-title">Bắt đầu học tập ngay hôm nay</p>
+          <p class="card-body-subtitle">Bây giờ, hãy xem (các) khóa học của bạn.</p>
+        </div>
+        <div>
+          <p class="card-body-overview">Tổng cộng</p>
+          <p class="card-body-total">{{count}} khóa học</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="landing-course-content-item-list">
+      <div class="in-list">
+        <div class="landing-course-content-item" *ngFor="let course of courseBrief" (click)="navigateCourseDetails(course)">
+          <div class="item">
+            <div class="image-thumb">
+              <img [src]="course.image" alt="">
+            </div>
+            <div class="title">
+              <p>{{course.title}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="space"></div>
+<app-footer class="footer"></app-footer>

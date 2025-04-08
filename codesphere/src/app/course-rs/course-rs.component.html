@@ -228,7 +228,7 @@
               <p>{{ course.excerpt }}</p>
             </div>
             <div class="rating-course d-flex justify-content-start gap-1">
-              <p class="rate-course">{{ course.rating }}</p>
+              <p class="rate-course">{{ course.rating | number:'1.2-2'}}</p>
               <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin: 0; margin-top: -4px">
             </div>
             <div class="count-course">

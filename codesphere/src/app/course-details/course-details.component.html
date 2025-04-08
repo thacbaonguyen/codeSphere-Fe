@@ -26,7 +26,7 @@
         <p class="course-intro-content-text-title">{{ courseDetail.title }}</p>
         <p class="course-intro-content-text-excerpt">{{ courseDetail.excerpt }}</p>
         <div class="course-intro-content-text-rating d-flex gap-2">
-          <p>{{ courseDetail.rating }}</p>
+          <p>{{ courseDetail.rating | number:'1.2-2'}}</p>
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="">
           <p>({{ courseDetail.totalRate }} đánh giá) </p>
         </div>
@@ -293,7 +293,7 @@
       <p class="slider-menu-title">{{ courseDetail.title }}</p>
       <div class="d-flex gap-2 slider-menu-rating">
         <div class="slider-menu-sta d-flex gap-2">
-          <p>{{ courseDetail.rating }}</p>
+          <p>{{ courseDetail.rating | number:'1.2-2'}}</p>
           <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin:0; margin-bottom: 14px">
         </div>
         <p>({{ courseDetail.totalRate }} xếp hạng)</p>
@@ -375,7 +375,7 @@
   <div class="landing-course-rating">
     <div class="d-flex gap-2 landing-course-rating-title">
       <img src="../../assets/svg-icon/star-svgrepo-com.svg" alt="" style="margin: 0">
-      <p class="landing-course-rating-title-content">{{ courseDetail.rating }} xếp hạng khóa học - {{courseDetail.totalRate}} xếp hạng</p>
+      <p class="landing-course-rating-title-content">{{ courseDetail.rating | number:'1.2-2'}} xếp hạng khóa học - {{courseDetail.totalRate}} xếp hạng</p>
     </div>
     <div class="card mt-5 landing-course-review">
       <div class="card-body">

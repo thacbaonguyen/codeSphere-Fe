@@ -1,0 +1,228 @@
+*{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+.landing-course-content-body-empty{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+.card-cart-empty{
+  .card-body{
+    .svg-empty{
+      margin: 0 auto;
+      width: 300px;
+    }
+    .continue-shopping{
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      .btn{
+        margin: 0 auto;
+        width: 200px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        background: rgb(109, 40, 210);
+        color: #fff;
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .card-cart-empty{
+    .card-body{
+      .svg-empty{
+        margin: 0 auto;
+        width: 200px;
+      }
+      .continue-shopping{
+        .btn{
+          width: 150px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .card-cart-empty{
+    .card-body{
+      .svg-empty{
+        margin: 0 auto;
+        width: 150px;
+      }
+    }
+  }
+}
+.landing-course-content{
+  width: 100%;
+  .landing-course-content-header{
+    background-color: #1D1E27;
+    height: 180px;
+    margin-top: 80px;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+    .landing-course-content-header-text{
+      width: 80%;
+      margin: 0 auto;
+      p{
+        padding-top: 80px;
+      }
+    }
+  }
+  .landing-course-content-body{
+    margin-top: 30px;
+    .card{
+      width: 80%;
+      margin: 0 auto;
+      border-radius: 10px !important;
+      .card-body{
+        padding-top: 30px;
+        display: flex;
+        gap: 400px;
+        .card-body-title{
+          font-size: 25px;
+          font-weight: 500;
+        }
+        .card-body-subtitle{
+          color: #757474;
+        }
+        .card-body-overview{
+          font-size: 25px;
+          font-weight: 500;
+        }
+        .card-body-total{
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+.space{
+  padding-top: 100px;
+}
+.landing-course-content-item-list{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 100px;
+  .in-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+
+    .landing-course-content-item{
+      .item{
+        .image-thumb{
+
+          height: auto;
+          img{
+            width: 100%;
+            object-fit: cover;
+            margin: 0;
+          }
+        }
+        .title{
+          padding-top: 10px;
+          font-size: 17px;
+          font-weight: 500  ;
+        }
+      }
+    }
+    .landing-course-content-item:hover{
+      cursor: pointer;
+      .title{
+        color: #1a73e8;
+      }
+      .image-thumb{
+        position: relative;
+      }
+      .image-thumb::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .card-body{
+    justify-content: space-between !important;
+    gap: 20px !important;
+  }
+  .landing-course-content-item-list{
+    .in-list{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+
+      .landing-course-content-item{
+        .item{
+          .image-thumb{
+            width: 100%;
+            height: auto;
+            img{
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 968px) {
+  .landing-course-content-item-list{
+    .in-list{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 20px;
+
+      .landing-course-content-item{
+        .item{
+          .image-thumb{
+            width: 100%;
+            height: auto;
+            img{
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 618px) {
+  .landing-course-content-item-list{
+    .in-list{
+      display: grid;
+      grid-template-columns: 1fr;
+
+      .landing-course-content-item{
+        .item{
+          .image-thumb{
+            width: 100%;
+            height: auto;
+            img{
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

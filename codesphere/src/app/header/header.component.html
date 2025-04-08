@@ -54,6 +54,10 @@
               <img src="../../assets/svg-icon/shopping-cart.svg" alt="">
               <p class="mt-3" *ngIf="isMobileView && isOpening">Giỏ hàng</p>
             </li>
+            <li class="nav-item nav-item-cart nav-item-cart-2 d-flex gap-3" (click)="navigateToMy()">
+              <img src="../../assets/svg-icon/my.svg" alt="">
+              <p class="mt-3" *ngIf="isMobileView && isOpening">Học tập</p>
+            </li>
           </ul>
         </div>
       </div>

@@ -113,6 +113,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isMenuOpen = false;
   }
 
+  navigateToMy() {
+    this.router.navigate(['/my-courses']);
+    this.isMenuOpen = false;
+  }
+
   openSideBar(){
     this.isOpening = !this.isOpening;
   }

@@ -1,0 +1,186 @@
+*{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+app-header.fixed-top {
+  z-index: 1000 !important;
+}
+.content-video-container{
+  margin-top: 80px;
+}
+p{
+  margin-bottom: 0;
+}
+.section-bar {
+  cursor: pointer;
+  margin: 5px 0;
+}
+.video-list {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.expanded {
+  max-height: 100vh;
+}
+.collapsed {
+  max-height: 0;
+}
+.video-title {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+.expand-icon{
+  rotate: 180deg;
+}
+.screen-player-video{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.title-course-bar{
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 0 10px 10px;
+  color: #fff;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+}
+.title-course-line{
+  background-color: #1D1E27;
+}
+.section-title{
+  background-color: #dcdcdc;
+}
+.section-title-line{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.video-title{
+  background-color: #D1D2E0;
+}
+.video-title-line{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  border-bottom: #c5c5c5 solid 1px;
+}
+
+.video-title-line:hover{
+  background-color: #DCDCDC;
+}
+vg-scrub-bar {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+vg-controls {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.scrub-bar-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.active-tab {
+  font-weight: bold;
+  border-bottom: 3px solid #1d1e27;
+  cursor: pointer;
+
+}
+.navigation-bar {
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.navigation-line{
+  margin-top: 15px;
+  height: 30px;
+}
+.overview-title{
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.overview-rating{
+  .rating{
+    width: 100px;
+  }
+  .duration{
+    width: 100px;
+  }
+  .section-count{
+    width: 100px;
+  }
+  .video-count{
+    width: 100px;
+  }
+}
+.rating {
+  display: flex;
+  align-items: center;
+}
+.rating, .duration, .section-count, .video-count{
+  gap: 10px;
+}
+
+.rating-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+.total-rating{
+  font-size: 38px;
+  font-weight: 700;
+  color: #C4710D;
+}
+
+.avatar-user{
+  height: 40px;
+  width: 40px;
+  border-radius: 100rem;
+  background-color: #1D1E27;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+.review-line{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+  margin-top: 10px;
+}
+.lesson-mobile{
+  display: none;
+}
+@media (max-width: 1336px) {
+  .lesson-full-screen{
+    display: none;
+    width: 0;
+  }
+  .lesson-mobile{
+    display: block;
+  }
+  .video-player-fullscreen{
+    width: 100%;
+  }
+}
+.star-rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+svg {
+  fill: #ccc;
+  transition: fill 0.2s ease;
+}
+
+svg.filled {
+  fill: #ED8A19;
+}
+
+svg:hover {
+  fill: #ED8A19;
+}
+
+
