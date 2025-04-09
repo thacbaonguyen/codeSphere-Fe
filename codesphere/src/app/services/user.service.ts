@@ -95,6 +95,27 @@ export class UserService {
     })
   }
 
+  getProfile(): Observable<ApiResponse<User>>{
+    return this.httpClient.get<ApiResponse<User>>(this.url + "/auth/profile")
+  }
+
+  viewAvatarStorage(): string{
+    let avatarUrl: string = '';
+    if (localStorage.getItem("avatarUrl") !== null){
+      avatarUrl = localStorage.getItem("avatarUrl") ?? '';
+    }
+    else {
+      let obs = this.httpClient.get<ApiResponse<any>>(this.url + "/auth/file/view/avatar");
+      obs.subscribe({
+        next: (response: any)=>{
+          avatarUrl = response.data;
+          localStorage.setItem("avatarUrl", avatarUrl);
+        }
+      })
+    }
+    return avatarUrl;
+  }
+
   searchUser(data: any): Observable<ApiResponse<User[]>>{
 
     let params = new HttpParams();

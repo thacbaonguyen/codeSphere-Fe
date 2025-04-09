@@ -32,6 +32,7 @@ import {SuccessComponent} from "./payment/success/success.component";
 import {CancelComponent} from "./payment/cancel/cancel.component";
 import {ListComponent} from "./access-course/list/list.component";
 import {DetailComponent} from "./access-course/detail/detail.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -205,6 +206,10 @@ const routes: Routes = [
   {
     path: 'my-courses/:id/:thumbnail',
     component: DetailComponent,
+  },
+  {
+    path: 'my-profile',
+    component: ProfileComponent,
   },
   {
     path: '**',

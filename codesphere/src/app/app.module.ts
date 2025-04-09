@@ -47,7 +47,9 @@ import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import {VgControlsModule} from "@videogular/ngx-videogular/controls";
 import {VgCoreModule} from "@videogular/ngx-videogular/core";
 import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
-
+import {SharedChartsModule} from "./shared/charts/charts.module";
+import { ProfileComponent } from './profile/profile.component';
+import { CalenderHeatmapComponent } from './chart/calender-heatmap/calender-heatmap.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
   "bgsOpacity": 0.5,
@@ -111,6 +113,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CancelComponent,
     ListComponent,
     DetailComponent,
+    ProfileComponent,
+    CalenderHeatmapComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,7 +134,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     VgBufferingModule,
     VgControlsModule,
     VgCoreModule,
-    VgOverlayPlayModule
+    VgOverlayPlayModule,
+    SharedChartsModule
 
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],

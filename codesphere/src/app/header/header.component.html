@@ -80,7 +80,7 @@
 
       <div class="dropdown-menu" [class.show]="isMenuOpen">
         <ul>
-          <li class="list">
+          <li class="list" (click)="getProfile()">
             <i class="fa-solid fa-address-card"></i>
             <p>Hồ sơ</p></li>
           <li class="list" (click)="changePassword()">

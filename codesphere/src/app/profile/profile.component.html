@@ -1,0 +1,138 @@
+<div class="box">
+  <div class="container-layer-0">
+    <div class="container-layer-1">
+      <div class="container-content">
+        <h1 class="public-profile">Hồ sơ cá nhân</h1>
+        <div class="profile-overview-container d-flex justify-content-between">
+          <div class="card profile-card ">
+            <div class="profile-card-header d-flex justify-content-sm-between">
+              <p class="public-profile-sm">Hồ sơ</p>
+              <svg height="16px" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                   width="16px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2,6C0.896,6,0,6.896,0,8s0.896,2,2,2s2-0.896,2-2S3.104,6,2,6z M8,6C6.896,6,6,6.896,6,8s0.896,2,2,2s2-0.896,2-2  S9.104,6,8,6z M14,6c-1.104,0-2,0.896-2,2s0.896,2,2,2s2-0.896,2-2S15.104,6,14,6z"/></svg>
+
+            </div>
+            <div class="profile-card-avatar ">
+              <ng-container *ngIf="avatarUrl !== ''; else missingAvatar">
+                <div class="avatar-user-image rounded-circle">
+                  <img class="rounded-circle img" [src]="avatarUrl" alt="">
+                </div>
+              </ng-container>
+              <ng-template #missingAvatar>
+                <div class="avatar-user bg-secondary mt-2">
+                  <div class="d-flex flex-column justify-content-center">
+                    <p class="text-center mt-2">{{ userProfile.fullName.substring(0, 3) }}</p>
+                  </div>
+                </div>
+              </ng-template>
+              <p class="user-full-name">{{ userProfile.fullName }}</p>
+              <p class="user-username">@{{ userProfile.username }}</p>
+              <div class="role d-flex justify-content-between">
+                <div class="d-flex gap-2" *ngFor="let role of userProfile.roles; let i = index">
+                  <p class="user-user-role">
+                    {{ role }}
+                  </p>
+                  <span *ngIf="i + 1 < userProfile.roles.length" class="me-1">
+                <img src="../../assets/svg-icon/dot.svg" alt="">
+              </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="info">
+              <div class="email">
+                <h3>Email</h3>
+                <p>{{ userProfile.email }}</p>
+              </div>
+              <div class="line"></div>
+              <div class="phone">
+                <h3>Số điện thoại</h3>
+                <p>{{ userProfile.phoneNumber }}</p>
+              </div>
+              <div class="line"></div>
+              <div class="dob">
+                <h3>Ngày sinh</h3>
+                <p>{{ userProfile.dob }}</p>
+              </div>
+              <div class="line"></div>
+              <div class="created-at">
+                <h3>Tham gia lúc</h3>
+                <p>{{ userProfile.createdAt }}</p>
+              </div>
+              <div class="line"></div>
+              <div class="activity">
+                <h3>Trạng thái</h3>
+                <div class="status-tag">
+                  <p>Active</p></div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card-chart">
+            <div class="line-1">
+              <div class="spend-chart">
+                <ngx-charts-line-chart
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [legend]="legend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxis]="xAxis"
+                  [yAxis]="yAxis"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  [timeline]="timeline"
+                  [results]="multi"
+                >
+                </ngx-charts-line-chart>
+              </div>
+              <div class="contribute-chart">
+                ok
+              </div>
+            </div>
+
+            <div class="line-2">
+              <div class="card">1</div>
+              <div class="card">2</div>
+              <div class="card">3</div>
+            </div>
+
+            <div class="line-3">
+              <div class="profile-container">
+                <h2>Profile Activity</h2>
+                <div class="chart-container">
+                  <app-calender-heatmap></app-calender-heatmap>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="spend-chart-hidden">
+          <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [legend]="legend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [results]="multi"
+          >
+          </ngx-charts-line-chart>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+

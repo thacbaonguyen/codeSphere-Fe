@@ -121,6 +121,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   openSideBar(){
     this.isOpening = !this.isOpening;
   }
+  getProfile(){
+    this.router.navigate(['/my-profile']);
+    this.isMenuOpen = false;
+  }
 
   closeFilterOnOutsideClick(event: Event) {
     const target = event.target as HTMLElement;

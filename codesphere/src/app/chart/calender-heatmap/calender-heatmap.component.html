@@ -1,0 +1,26 @@
+<div class="heatmap-container">
+  <ngx-charts-heat-map
+    [min]="heatmapMin"
+    [max]="heatmapMax"
+    [view]="[1000, 160]"
+    [scheme]="colorScheme"
+    [results]="calendarData"
+    [animations]="true"
+    [legend]="showLegend"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="false"
+    [showYAxisLabel]="false"
+    [xAxisTickFormatting]="calendarAxisTickFormatting"
+    [tooltipText]="calendarTooltipText"
+    [innerPadding]="innerPadding"
+    [tooltipDisabled]="tooltipDisabled"
+    [trimXAxisTicks]="trimXAxisTicks"
+    [trimYAxisTicks]="trimYAxisTicks"
+    [rotateXAxisTicks]="rotateXAxisTicks"
+    [maxXAxisTickLength]="maxXAxisTickLength"
+    [maxYAxisTickLength]="maxYAxisTickLength"
+  >
+  </ngx-charts-heat-map>
+</div>
