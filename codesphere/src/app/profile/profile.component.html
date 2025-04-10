@@ -70,37 +70,53 @@
           </div>
 
           <div class="profile-card-chart">
+            <div class="choose-chart">
+              <select [(ngModel)]="spendBy" name="" id="" class="form-select" (ngModelChange)="submitSpendBy()">
+                <option value="days" >Theo ngày</option>
+                <option value="months">Theo tháng</option>
+              </select>
+            </div>
             <div class="line-1">
               <div class="spend-chart">
-                <ngx-charts-line-chart
+                <ngx-charts-bar-vertical
                   [view]="view"
                   [scheme]="colorScheme"
-                  [legend]="legend"
+                  [results]="chartData"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
                   [showXAxisLabel]="showXAxisLabel"
                   [showYAxisLabel]="showYAxisLabel"
-                  [xAxis]="xAxis"
-                  [yAxis]="yAxis"
                   [xAxisLabel]="xAxisLabel"
                   [yAxisLabel]="yAxisLabel"
-                  [timeline]="timeline"
-                  [results]="multi"
-                >
-                </ngx-charts-line-chart>
-              </div>
-              <div class="contribute-chart">
-                ok
+                  (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
               </div>
             </div>
 
             <div class="line-2">
-              <div class="card">1</div>
-              <div class="card">2</div>
-              <div class="card">3</div>
+
+                <app-number-card [value]="cartValue"
+                                 [name]="cartName"
+                                 [cardColorInp]="cartColor"
+                                 [bottomColorInp]="bottomColor"
+                ></app-number-card>
+
+                <app-number-card [value]="cartValue"
+                                 [name]="cartName"
+                ></app-number-card>
+
+
+                <app-number-card [value]="cartValue"
+                                 [name]="cartName"
+                ></app-number-card>
+
             </div>
 
             <div class="line-3">
               <div class="profile-container">
-                <h2>Profile Activity</h2>
+                <h2 style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif">Lịch sử giải bài tập</h2>
                 <div class="chart-container">
                   <app-calender-heatmap></app-calender-heatmap>
                 </div>
@@ -110,29 +126,11 @@
 
         </div>
 
-        <div class="spend-chart-hidden">
-          <ngx-charts-line-chart
-            [view]="view"
-            [scheme]="colorScheme"
-            [legend]="legend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxis]="xAxis"
-            [yAxis]="yAxis"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [timeline]="timeline"
-            [results]="multi"
-          >
-          </ngx-charts-line-chart>
-        </div>
-
       </div>
     </div>
   </div>
 
 </div>
-
 
 
 

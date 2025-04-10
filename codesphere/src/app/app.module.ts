@@ -50,6 +50,7 @@ import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
 import {SharedChartsModule} from "./shared/charts/charts.module";
 import { ProfileComponent } from './profile/profile.component';
 import { CalenderHeatmapComponent } from './chart/calender-heatmap/calender-heatmap.component';
+import { NumberCardComponent } from './chart/number-card/number-card.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "#168da5",
   "bgsOpacity": 0.5,
@@ -115,6 +116,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     DetailComponent,
     ProfileComponent,
     CalenderHeatmapComponent,
+    NumberCardComponent,
   ],
   imports: [
     BrowserModule,

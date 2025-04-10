@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { colorSets } from './color-sets';
+import {SubmissionService} from "../../services/submission/submisison.service";
+import {SubmitCount} from "../../models/submit-count";
 
 const monthName = new Intl.DateTimeFormat("en-us", { month: "short" });
 const weekdayName = new Intl.DateTimeFormat("en-us", { weekday: "short" });
@@ -28,6 +30,8 @@ export class CalenderHeatmapComponent implements OnInit {
   colorScheme: any;
   // @ts-ignore
   selectedColorScheme: string;
+
+  submitCount : SubmitCount[] = [];
   // @ts-ignore
 
   // heatmap
@@ -35,12 +39,24 @@ export class CalenderHeatmapComponent implements OnInit {
   heatmapMax: number = 12;
   calendarData: any[] = [];
 
-  constructor() {
+  constructor(private submissionService: SubmissionService) {
     Object.assign(this, {
       colorSets
     });
     this.setColorScheme('vivid');
-    this.calendarData = this.getCalendarData();
+  }
+
+  ngOnInit(): void {
+    this.countSubmitOneYearAgo()
+  }
+
+  countSubmitOneYearAgo(){
+    this.submissionService.countByDayOneYearAgo().subscribe({
+      next: (response: any) => {
+        this.submitCount = response.data;
+        this.calendarData = this.getCalendarData(this.submitCount);
+      }
+    })
   }
 
   setColorScheme(name: any) {
@@ -68,7 +84,7 @@ export class CalenderHeatmapComponent implements OnInit {
     `;
   }
 
-  getCalendarData(): any[] {
+  getCalendarData(submissionData: SubmitCount[]): any[] {
     // today
     const now = new Date(); //Thu Apr 10 2025 01:24:18 GMT+0700
 
@@ -85,6 +101,10 @@ export class CalenderHeatmapComponent implements OnInit {
 
     const thisMondayMonth = thisMonday.getMonth();
 
+    const submissionMap = new Map<string, number>();
+    submissionData.forEach(item => {
+      submissionMap.set(item.createdAt, item.count);
+    });
     // 52 weeks before monday
     const calendarData = [];
     // @ts-ignore
@@ -104,9 +124,11 @@ export class CalenderHeatmapComponent implements OnInit {
         if (date > now) {
           continue;
         }
-
-        // value
-        const value = dayOfWeek < 6 ? date.getMonth() + 1 : 0;
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+        const value = submissionMap.get(dateString) || 0;
 
         series.push({
           date,
@@ -124,6 +146,5 @@ export class CalenderHeatmapComponent implements OnInit {
     return calendarData;
   }
 
-  ngOnInit(): void {
-  }
+
 }
