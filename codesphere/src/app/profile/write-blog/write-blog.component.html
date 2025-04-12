@@ -1,0 +1,153 @@
+<form action="" [formGroup]="blogForm">
+  <div fxFlex fxLayout="column">
+
+    <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline first">
+      <mat-label>Tiêu đề</mat-label>
+      <textarea matInput formControlName="title"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="10"
+      ></textarea>
+      <mat-error *ngIf="blogForm.controls.title.invalid && blogForm.controls.title.touched">
+        <span *ngIf="blogForm.controls.title.errors.required">Tiêu đề không được để trống</span>
+        <!--          <span *ngIf="blogForm.controls.code.errors.pattern">Mã bài tập không hợp lệ</span>-->
+      </mat-error>
+    </mat-form-field>
+
+    <!--      upfile-->
+    <div class="image-upload-section">
+      <div class="upload-container"
+           (click)="fileInput.click()"
+           [class.has-image]="imagePreview"> <!-- them class há-iamge khi imagePreview có giá tri -->
+        <input #fileInput
+               type="file"
+               hidden
+               accept="image/*"
+               (change)="onImageSelected($event)">
+
+        <ng-container *ngIf="!imagePreview">
+          <mat-icon>cloud_upload</mat-icon>
+          <p>Click để chọn ảnh đại diện</p>
+        </ng-container>
+
+        <div *ngIf="imagePreview" class="image-preview">
+          <img [src]="imagePreview" alt="Preview">
+          <button type="button"
+                  mat-icon-button
+                  class="remove-image"
+                  (click)="removeSelectedImage(); $event.stopPropagation()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline"
+                    style="margin-top: 10px"
+    >
+      <mat-label>Tóm tắt</mat-label>
+      <textarea matInput formControlName="excerpt"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="4"
+                cdkAutosizeMaxRows="15"
+      ></textarea>
+      <mat-error *ngIf="blogForm.controls.excerpt.invalid && blogForm.controls.excerpt.touched">
+        <span *ngIf="blogForm.controls.excerpt.errors.required">Tóm tắt không được để trống</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="quill-editor-container">
+      <label class="editor-label">Nội dung</label>
+      <quill-editor
+        #editor
+        (onEditorCreated)="onEditorCreated($event)"
+        (onContentChanged)="onContentChanged($event)"
+      ></quill-editor>
+      <div
+        class="editor-error"
+        *ngIf="blogForm.controls.content.invalid && blogForm.controls.content.touched"
+      >
+      <span *ngIf="blogForm.controls.content.errors?.['required']">
+        Nội dung không được để trống
+      </span>
+      </div>
+    </div>
+
+    <div formArrayName="tags" class="tags-container">
+
+      <div *ngFor="let tag of tags.controls; let i=index" class="tag-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Tag {{ i + 1 }}</mat-label>
+          <input matInput [formControlName]="i" placeholder="Enter tag"
+                 (input)="checkDuplicateTag(tags.at(i).value, i)">
+          <mat-error *ngIf="tags.at(i).errors?.['required']">
+            Tag không được bỏ trống
+          </mat-error>
+          <mat-error *ngIf="tags.at(i).errors?.['minlength']">
+            Tag phải nhiều hơn 2 ký tự
+          </mat-error>
+          <mat-error *ngIf="tags.at(i).errors?.['maxlength']">
+            Tag phải ít hơn 20 kí tự
+          </mat-error>
+          <mat-error *ngIf="tags.at(i).errors?.['duplicate']">
+            Tag đã được nhập
+          </mat-error>
+
+          <button type="button"
+                  matSuffix
+                  mat-icon-button
+                  color="warn"
+                  *ngIf="tags.length > 1"
+                  (click)="removeTag(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!-- Add Tag Button -->
+      <button type="button" style="margin-bottom: 10px"
+              mat-stroked-button
+              color="primary"
+              *ngIf="tags.length < 5"
+              (click)="addTag()">
+        <mat-icon>add</mat-icon>
+        Add Tag
+      </button>
+    </div>
+
+
+    <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+      <mat-label>Ghim</mat-label>
+      <mat-select formControlName="isFeatured">
+        <mat-option value="true">Có</mat-option>
+        <mat-option value="false">Không</mat-option>
+      </mat-select>
+      <mat-error *ngIf="blogForm.controls.isFeatured.invalid && blogForm.controls.isFeatured.touched">
+        <span *ngIf="blogForm.controls.isFeatured.errors.required">Ghim không được để trống</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex appearance="outline" class="full-width custom-field black-outline">
+      <mat-label>Trạng thái</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="published">Xuất bản</mat-option>
+        <mat-option value="draft">Nháp</mat-option>
+        <mat-option value="archived">Lưu trữ</mat-option>
+      </mat-select>
+      <mat-error *ngIf="blogForm.controls.status.invalid && blogForm.controls.status.touched">
+        <span *ngIf="blogForm.controls.status.errors.required">Status không được để trống</span>
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+</form>
+
+<div class="action-form">
+  <button
+          mat-raised-button class="submit-button"
+          type="submit" [disabled]="!blogForm.valid"
+          (click)="handleSubmit()">Tạo bài viết
+  </button>
+</div>

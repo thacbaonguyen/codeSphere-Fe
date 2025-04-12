@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="line-1 d-flex justify-content-between">
+    <div class="intro col-5">
+      Đăng ký quyền để thao tác với nhiều tài nguyên hơn.
+    </div>
+    <div class="form">
+      <div class="form-text-intro" [ngClass]="{'is-blogger': blogger}">
+        Blogger IT là người tạo và chia sẻ các bài viết liên quan đến lĩnh vực công nghệ thông tin như lập trình, phát
+        triển phần mềm, hệ điều hành, bảo mật, DevOps, AI, cloud computing, và các xu hướng công nghệ mới. Người dùng
+        thuộc vai trò này có quyền viết, chỉnh sửa và xuất bản nội dung chuyên sâu, giúp cộng đồng cập nhật kiến thức và
+        nâng cao kỹ năng công nghệ.
+      </div>
+      <div class="form-text-intro" [ngClass]="{'is-manager': manager}">
+        Manager là người quản lý nội dung tổng thể trên nền tảng, bao gồm cả bài viết blog và khóa học. Vai trò này có
+        quyền kiểm duyệt, chỉnh sửa, xuất bản nội dung do người khác tạo ra, cũng như tự viết và đăng các bài viết hoặc
+        khóa học của riêng mình. Manager đóng vai trò quan trọng trong việc đảm bảo chất lượng, tính nhất quán và cập
+        nhật của nội dung trên nền tảng.
+      </div>
+      <div class="select-input d-flex justify-content-between gap-3 col-5">
+        <select style="min-width: 130px" [(ngModel)]="roleId" name="" id="" class="form-select" (ngModelChange)="onChange(roleId)">
+          <option value="4">Blogger</option>
+          <option value="3">Manager</option>
+        </select>
+        <button (click)="sendRequest()" class="btn btn-success" style="min-width: 100px">Gửi</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="line-2">
+    <div class="d-flex justify-content-between gap-5">
+      <div class="description-1">
+        <h2>Cộng đồng</h2>
+        <p>Xây dựng và duy trì cộng đồng người dùng đam mê công nghệ thông qua các hoạt động tương tác, chia sẻ kiến
+          thức và hỗ trợ kỹ thuật. Góp phần tạo nên một môi trường học tập và phát triển bền vững cho mọi thành
+          viên.🥰</p>
+      </div>
+
+      <div class="description-2">
+        <h2>Quản lý</h2>
+        <p>Giám sát và duy trì hoạt động ổn định của hệ thống website. Đảm bảo nội dung luôn được cập nhật, giao diện
+          thân thiện với người dùng và khả năng vận hành hiệu quả trên nhiều nền tảng khác nhau.✋</p>
+      </div>
+
+      <div class="description-2">
+        <h2>Tài nguyên</h2>
+        <p>Cung cấp các tài nguyên học tập miễn phí như khóa học, tài liệu, bài viết và công cụ hỗ trợ. Mục tiêu là giúp
+          cộng đồng tiếp cận tri thức một cách dễ dàng và công bằng.💪
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -129,46 +129,46 @@ export class ActionExerciseComponent implements OnInit {
     }
   }
 
-  addExercise(){
-    this.ngxUiLoader.start()
-    var formData = this.exerciseForm.value;
-    var data = {
-      subjectId: formData.subjectId,
-      code: formData.code,
-      title: formData.title,
-      paper: formData.paper,
-      testCases: formData.testCases,
-      input: formData.input,
-      output: formData.output,
-      note: formData.note,
-      description: formData.description,
-      level: formData.level,
-      timeLimit: formData.timeLimit,
-      memoryLimit: formData.memoryLimit,
-      topic: formData.topic
-    }
-    console.log("data insert", data)
-    this.exerciseService.insertExercise(data).subscribe({
-      next: (response: any)=>{
-        this.matDialogRef.close()
-        this.onAddEvent.emit()
-        this.ngxUiLoader.stop();
-        this.responseMessage = response?.message;
-        this.snackbar.openSnackBar(this.responseMessage, '')
-
-      },
-      error: (err: any)=>{
-        this.ngxUiLoader.stop();
-        if (err.error?.message){
-          this.responseMessage = err.error.message
-        }
-        else {
-          this.responseMessage = GlobalConstants.generateError
-        }
-        this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+    addExercise(){
+      this.ngxUiLoader.start()
+      var formData = this.exerciseForm.value;
+      var data = {
+        subjectId: formData.subjectId,
+        code: formData.code,
+        title: formData.title,
+        paper: formData.paper,
+        testCases: formData.testCases,
+        input: formData.input,
+        output: formData.output,
+        note: formData.note,
+        description: formData.description,
+        level: formData.level,
+        timeLimit: formData.timeLimit,
+        memoryLimit: formData.memoryLimit,
+        topic: formData.topic
       }
-    })
-  }
+      console.log("data insert", data)
+      this.exerciseService.insertExercise(data).subscribe({
+        next: (response: any)=>{
+          this.matDialogRef.close()
+          this.onAddEvent.emit()
+          this.ngxUiLoader.stop();
+          this.responseMessage = response?.message;
+          this.snackbar.openSnackBar(this.responseMessage, '')
+
+        },
+        error: (err: any)=>{
+          this.ngxUiLoader.stop();
+          if (err.error?.message){
+            this.responseMessage = err.error.message
+          }
+          else {
+            this.responseMessage = GlobalConstants.generateError
+          }
+          this.snackbar.openSnackBar(this.responseMessage, GlobalConstants.error)
+        }
+      })
+    }
 
   updateExercise(){
     this.ngxUiLoader.start()

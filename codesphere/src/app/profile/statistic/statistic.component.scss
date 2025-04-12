@@ -1,0 +1,76 @@
+
+.line{
+  border-bottom: #cdcdcd solid 1px;
+}
+.line-2{
+  overflow-x: auto;
+  width: 100%;
+}
+.profile-card-chart{
+  //width: 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .line-1{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px ;
+    .contribute-chart{
+      //width: 300px;
+      flex: 1;
+      background: #f4e0e0;
+    }
+  }
+  .line-2{
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+}
+
+.spend-chart{
+  overflow-x: auto;
+}
+
+.chart-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 30px;
+  overflow-y: hidden;
+}
+@media (max-width: 1576px) {
+  .profile-overview-container{
+    overflow: hidden;
+  }
+  .profile-card{
+  }
+  .profile-card-chart{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .line-1{
+      display: flex;
+      flex-direction: column;
+
+    }
+    .line-3{
+    }
+  }
+}
+
+@media (max-width: 1234px) {
+  .profile-overview-container{
+    overflow: hidden;
+  }
+  .profile-card-chart{
+    .line-1{
+      display: block;
+      .contribute-chart{
+        height: 300px;
+        width: 100% ;
+      }
+
+    }
+
+  }
+}

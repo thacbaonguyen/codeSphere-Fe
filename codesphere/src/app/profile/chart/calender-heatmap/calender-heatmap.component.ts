@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { colorSets } from './color-sets';
-import {SubmissionService} from "../../services/submission/submisison.service";
-import {SubmitCount} from "../../models/submit-count";
+import {Component, Input, OnInit} from '@angular/core';
+import {SubmitCount} from "../../../models/submit-count";
+import {SubmissionService} from "../../../services/submission/submisison.service";
+import {colorSets} from "./color-sets";
 
 const monthName = new Intl.DateTimeFormat("en-us", { month: "short" });
 const weekdayName = new Intl.DateTimeFormat("en-us", { weekday: "short" });

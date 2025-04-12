@@ -1,0 +1,65 @@
+<div class="profile-card-chart">
+  <div class="choose-chart d-flex gap-2 justify-content-between">
+    <div class="col-7">
+      <label for="chart">Biểu đồ chi tiêu</label>
+      <select [(ngModel)]="spendBy" name="" id="chart" class="form-select" (ngModelChange)="submitSpendBy()">
+        <option value="days" >Theo ngày</option>
+        <option value="months">Theo tháng</option>
+      </select>
+    </div>
+    <div *ngIf="isByDay" class="col-4">
+      <label for="days">Từ</label>
+      <select [(ngModel)]="agoDate" name="" id="days" class="form-select" (ngModelChange)="loadSpendByDay()">
+        <option value="7" >7 ngày trước</option>
+        <option value="14"> 14 ngày trước</option>
+        <option value="30">30 ngày trước</option>
+      </select>
+    </div>
+  </div>
+  <div class="line-1">
+    <div class="spend-chart">
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="chartData"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <div class="line-2">
+
+    <app-number-card [dataSingle]="commentChartData"
+                     [cardColorInp]="cartColor"
+                     [bottomColorInp]="bottomColor"
+    ></app-number-card>
+
+    <app-number-card [dataSingle]="contributeChartData"
+                     cardColorInp="#0968c5"
+                     bottomColorInp="#f1b399"
+    ></app-number-card>
+
+    <app-number-card [dataSingle]="fileStoreChartData"
+                     cardColorInp="#09353e"
+                     bottomColorInp="#798fd6"
+    ></app-number-card>
+
+  </div>
+
+  <div class="line-3">
+    <div class="profile-container">
+      <h2 style="font-family: 'Baloo 2', Arial, Helvetica, sans-serif">Lịch sử giải bài tập</h2>
+      <div class="chart-container">
+        <app-calender-heatmap></app-calender-heatmap>
+      </div>
+    </div>
+  </div>
+</div>

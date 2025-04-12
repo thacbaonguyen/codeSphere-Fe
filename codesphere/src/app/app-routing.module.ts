@@ -33,6 +33,10 @@ import {CancelComponent} from "./payment/cancel/cancel.component";
 import {ListComponent} from "./access-course/list/list.component";
 import {DetailComponent} from "./access-course/detail/detail.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {RegisterRoleComponent} from "./profile/register-role/register-role.component";
+import {WriteBlogComponent} from "./profile/write-blog/write-blog.component";
+import {ContributeExComponent} from "./profile/contribute-ex/contribute-ex.component";
+import {StatisticComponent} from "./profile/statistic/statistic.component";
 
 const routes: Routes = [
   {
@@ -210,6 +214,34 @@ const routes: Routes = [
   {
     path: 'my-profile',
     component: ProfileComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/my-profile/statistic',
+        pathMatch: 'full',
+      },
+      { path: 'statistic', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
+      {
+        path: 'statistic',
+        component: StatisticComponent
+      },
+      {
+        path: 'register-role',
+        component: RegisterRoleComponent
+      },
+      {
+        path: 'write-blog',
+        component: WriteBlogComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          allowedRoles: ['BLOGGER', 'ADMIN', 'MANAGER']
+        }
+      },
+      {
+        path: 'contribute-exercise',
+        component: ContributeExComponent
+      }
+    ]
   },
   {
     path: '**',

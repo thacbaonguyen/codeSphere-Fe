@@ -49,12 +49,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .user-full-name{
-    font-size: 23px;
-    font-weight: 600;
-    padding-top: 10px;
-  }
   .user-username{
+    padding-top: 10px;
     font-size: 17px;
     color: #7f919a;
   }
@@ -116,74 +112,6 @@
   border-bottom: #cdcdcd solid 1px;
 }
 
-.profile-card-chart{
-  width: calc(100% - 320px);
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  .line-1{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px ;
-    .contribute-chart{
-      //width: 300px;
-      flex: 1;
-      background: #f4e0e0;
-    }
-  }
-  .line-2{
-    display: flex;
-    justify-content: space-between;
-    overflow-x: auto;
-  }
-}
-
-.spend-chart{
-  overflow-x: auto;
-}
-
-.chart-container {
-  width: 100%;
-  overflow-x: auto;
-  margin-bottom: 30px;
-  overflow-y: hidden;
-}
-@media (max-width: 1576px) {
-  .profile-overview-container{
-    overflow: hidden;
-  }
-  .profile-card{
-  }
-  .profile-card-chart{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    .line-1{
-      display: flex;
-      flex-direction: column;
-
-    }
-    .line-3{
-    }
-  }
-}
-
-@media (max-width: 1234px) {
-  .profile-overview-container{
-    overflow: hidden;
-  }
-  .profile-card-chart{
-    .line-1{
-      display: block;
-      .contribute-chart{
-        height: 300px;
-        width: 100% ;
-      }
-
-    }
-
-  }
-}
 .ok{
   color: #3f4245;
   color: #93d6b7;
@@ -195,4 +123,28 @@
   color: #279e67;
   color: #0fa15f;
   color: #038046;
+  color: #798fd6;
+}
+.mat-menu-profile:hover{
+  item:hover{
+    background-color: #9e9e9e;
+    cursor: pointer;
+  }
+}
+
+.show-edit-profile-form{
+  display: none;
+}
+.show-edit-form{
+  display: block;
+}
+.hide-profile{
+  display: none;
+}
+
+.content-right {
+  width: calc(100% - 250px);
+  padding: 20px;
+  overflow-x: visible;
+  min-width: 0;
 }
