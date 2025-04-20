@@ -37,6 +37,9 @@ yarn-error.log
 testem.log
 /typings
 
+#ignore api key sandbox
+/src/environments/apikey.ts
+
 # System files
 .DS_Store
 Thumbs.db

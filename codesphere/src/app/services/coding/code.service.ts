@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api-response';
 import { SubmissionResponse } from 'src/app/models/submission-response';
 import { environment } from 'src/environments/environment';
+import {apikey} from "../../../environments/apikey";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,10 @@ export class CodeService {
 
   url = environment.apiUrl;
 
-  private apiUrl = 'https://judge0-ce.p.rapidapi.com'; // URL của Judge0 API
+  private apiUrl = apikey.url; // URL của Judge0 API
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    'X-RapidAPI-Key': '7c3b9e1dd3msha739f59f588420cp19f79fjsn8e8f31ca21e9', // Thay thế bằng API key của bạn
-    'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+    'X-Auth-Token': apikey.authToken, // Thay thế bằng API key của bạn
   });
 
   constructor(private httpClient: HttpClient) { }
@@ -31,7 +31,7 @@ export class CodeService {
     // them params api docs
     const params = new HttpParams().set('base64_encoded', 'true');
 
-    return this.httpClient.post(`${this.apiUrl}/submissions`, body, { 
+    return this.httpClient.post(`${this.apiUrl}/submissions`, body, {
       headers: this.headers,
       params: params
     });
@@ -43,7 +43,7 @@ export class CodeService {
       .set('base64_encoded', 'true')
       .set('fields', '*');
 
-    return this.httpClient.get(`${this.apiUrl}/submissions/${token}`, { 
+    return this.httpClient.get(`${this.apiUrl}/submissions/${token}`, {
       headers: this.headers,
       params: params
     });
@@ -58,7 +58,7 @@ export class CodeService {
       'cpp': 54,
       'csharp': 51
     };
-    
+
     return languageMap[language.toLowerCase() as keyof typeof languageMap] || 62;
   }
 
