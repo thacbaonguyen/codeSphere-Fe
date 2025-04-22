@@ -17,6 +17,7 @@ import { interval, Subscription } from 'rxjs';
 import { BlogService } from '../services/blog/blog.service';
 import { Blog } from '../models/blog';
 import {SnackbarService} from "../services/snackbar.service";
+import {GlobalConstants} from "../shared/global-constants";
 interface Article {
   id: number;
   image: string;
@@ -174,7 +175,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private blogService: BlogService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private route: ActivatedRoute
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -189,7 +191,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
+    this.getTokenFromUrl();
     this.getBlogsFeatured();
     this.updateItemsPerPage();
     this.totalPages = Math.ceil(this.articles.length / this.itemsPerPage);
@@ -199,6 +201,25 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
+  }
+
+  getTokenFromUrl(): void{
+    let oldToken = localStorage.getItem("token");
+    if (!oldToken){
+      this.route.queryParams.subscribe(params =>{
+        if (params['token']){
+          this.token = params['token'];
+          localStorage.setItem("token", this.token)
+        }
+        if (params['error']){
+          this.snackbar.openSnackBar(params['error'], GlobalConstants.error)
+        }
+      })
+    }
+    else {
+      this.token = localStorage.getItem("token")
+    }
+
   }
 
   private updateItemsPerPage() {

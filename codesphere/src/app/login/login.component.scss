@@ -2,6 +2,12 @@ body{
   padding-bottom: 300px;
   background-color: #ffffff;
 }
+*{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+mat-icon{
+  font-family: "Material Icons";
+}
 .header{
   display: flex;
   width: 70%;
@@ -83,29 +89,38 @@ input{
   transition: background-color 0.3s ease;
 }
 
-.google{
+.sso-container{
+  padding-top: 30px;
+}
+.login-sso{
   display: flex;
-  background-color: #333333;
-  color: #ffffff;
+  flex-direction: column;
+  gap: 20px;
   width: 70%;
-  height: 40px;
   margin: 0 auto;
-  margin-top: 40px;
+  text-align: center;
   border-radius: 8px;
   justify-content: center;
+  img{
+    margin: 0;
+  }
+  .google, .github{
+    padding: 8px;
+    justify-content: center;
+    gap: 20px;
+    border: #d8d8d8 solid 2px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    p{
+      margin-bottom: 0;
+    }
+  }
+  .google:hover, .github:hover{
+    background-color: #7eb6ed;
+    border: #7eb6ed solid 2px;
+  }
 }
-.gg-button{
-  background-color: #333333;
-  color: #ffffff;
-  width: 33%;
-}
-
-.gg-icon{
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
-}
-
 
 .register{
   display: flex;

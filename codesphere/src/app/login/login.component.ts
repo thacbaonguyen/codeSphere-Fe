@@ -78,4 +78,12 @@ export class LoginComponent implements OnInit {
     matDialogConfig.width = "700px";
     this.matDialog.open(SignupComponent, matDialogConfig);
   }
+
+  loginSSOGoogle() {
+    this.userService.loginSSO('google');
+  }
+
+  loginSSOGithub() {
+    this.userService.loginSSO('github');
+  }
 }

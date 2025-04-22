@@ -53,7 +53,7 @@ export class ExerciseRsComponent implements OnInit, AfterViewInit {
         this.selectedFilter.by = params['by'];
       }
       this.subjectFilter = params['subject'] || 'Java'
-      
+
       this.loadAllExercise()
     });
   }
@@ -87,13 +87,13 @@ export class ExerciseRsComponent implements OnInit, AfterViewInit {
 
   updateUrlParams(params: any) {
     const queryParams: any = {};
-    
+
     if (params.search) queryParams['search'] = params.search;
     if (params.subject) queryParams['subject'] = params.subject;
-    this.currentPage = parseInt(params['page']) || 1;
+    queryParams['page'] = parseInt(params['page']) || 1;
     if (params.order) queryParams['order'] = params.order;
     if (params.by) queryParams['by'] = params.by;
-    
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,

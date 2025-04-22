@@ -2,7 +2,12 @@ body{
   padding-bottom: 20px;
   background-color: #ffffff;
 }
-
+*{
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+}
+mat-icon{
+  font-family: "Material Icons";
+}
 .title{
   font-size: 25px;
   font-weight: 700;
@@ -43,20 +48,6 @@ input{
   color: black !important;
 }
 
-//.forgot-password{
-//  text-decoration: none;
-//  text-align: end;
-//  width: 70%;
-//  margin: 0 auto;
-//  margin-bottom: 10px;
-//}
-//
-//.forgot-password a{
-//  text-decoration: none ;
-//  color: #007AFF;
-//
-//}
-
 .submit-button{
   display: block;
   background-color: #007AFF;
@@ -76,27 +67,7 @@ input{
 .submit-button {
   transition: background-color 0.3s ease;
 }
-.google{
-  display: flex;
-  background-color: #333333;
-  color: #ffffff;
-  width: 70%;
-  height: 40px;
-  margin: 0 auto;
-  margin-top: 40px;
-  justify-content: center;
-  border-radius: 8px;
 
-}
-.gg-button{
-  background-color: #333333;
-  color: #ffffff;
-}
-.gg-icon{
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
-}
 .register{
   display: flex;
   justify-content: center;

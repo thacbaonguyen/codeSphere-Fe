@@ -48,7 +48,11 @@ export class ProfileComponent implements OnInit {
 
 
   viewAvatar(){
-    this.avatarUrl = this.userService.viewAvatarStorage();
+    this.userService.viewAvatarStorage().subscribe({
+      next: (response: any)=>{
+        this.avatarUrl = response.data;
+      }
+    });
   }
 
   navigateTo(route: string){

@@ -171,7 +171,7 @@ export class CourseRsComponent implements OnInit, AfterViewInit, OnDestroy {
     const queryParams: any = {};
 
     if (params.search) queryParams['search'] = params.search;
-    this.currentPage = parseInt(params['page']) || 1;
+    queryParams['page'] = parseInt(params['page']) || 1;
     if (params.order) queryParams['order'] = params.order;
     if (params.by) queryParams['by'] = params.by;
     if(params.categoryId) queryParams['categoryId'] = params.categoryId;

@@ -99,21 +99,8 @@ export class UserService {
     return this.httpClient.get<ApiResponse<User>>(this.url + "/auth/profile")
   }
 
-  viewAvatarStorage(): string{
-    let avatarUrl: string = '';
-    if (localStorage.getItem("avatarUrl") !== null){
-      avatarUrl = localStorage.getItem("avatarUrl") ?? '';
-    }
-    else {
-      let obs = this.httpClient.get<ApiResponse<any>>(this.url + "/auth/file/view/avatar");
-      obs.subscribe({
-        next: (response: any)=>{
-          avatarUrl = response.data;
-          localStorage.setItem("avatarUrl", avatarUrl);
-        }
-      })
-    }
-    return avatarUrl;
+  viewAvatarStorage(){
+    return  this.httpClient.get<ApiResponse<any>>(this.url + "/auth/file/view/avatar");
   }
 
   searchUser(data: any): Observable<ApiResponse<User[]>>{
@@ -140,5 +127,9 @@ export class UserService {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
+  }
+
+  loginSSO(provider: string) {
+    window.location.href = `http://localhost:8080/oauth2/authorize/${provider}`;
   }
 }

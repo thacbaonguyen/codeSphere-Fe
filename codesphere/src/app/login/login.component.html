@@ -37,15 +37,19 @@
 <div class="submit">
   <button type="submit" mat-raised-button class="submit-button" (click)="handleSubmit()" [disabled]="!loginForm.valid">Đăng nhập</button>
 </div>
-<div class="google">
-  <div><img class="gg-icon" src="../../assets/images/logo-gg.svg" alt=""></div>
-  <div>
-    <button class="gg-button" mat-raised-button>
-      Đăng nhập bằng Google
-    </button>
+
+<div class="sso-container text-center">
+  <p class="pb-0">Hoặc</p>
+  <div class="login-sso">
+    <div class="google d-flex btn" (click)="loginSSOGoogle()">
+      <img src="/assets/svg-icon/google-icon-logo-svgrepo-com.svg" alt="">
+      <p>Đăng nhập bằng Google </p>
+    </div>
+    <div class="github d-flex btn" (click)="loginSSOGithub()">
+      <img src="/assets/svg-icon/github-icon-1-logo-svgrepo-com.svg" alt="">
+      <p>Đăng nhập bằng Github </p>
+    </div>
   </div>
-
-
 </div>
 
 <div class="register">
